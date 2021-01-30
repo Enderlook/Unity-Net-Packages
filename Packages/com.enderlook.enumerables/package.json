@@ -1,0 +1,15 @@
+{
+  "name": "com.enderlook.enumerables",
+  "version": "1.0.1",
+  "displayName": "Enderlook Enumerables",
+  "description": "https://github.com/Enderlook/Net-Enumerables",
+  "dependencies": {
+
+  },
+  "keywords": [
+  ],
+  "author": {
+    "name": "Enderlook",
+    "url": "https://github.com/Enderlook"
+  }
+}
