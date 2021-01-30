@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.Utils</name>
+    </assembly>
+    <members>
+        <member name="T:Enderlook.Utils.CastExtensions">
+            <summary>
+            Extension methods for casting.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Utils.CastExtensions.TryCast``1(System.Object,``0@)">
+            <summary>
+            Try to cast <paramref name="obj"/> into <typeparamref name="T"/> in <paramref name="result"/>.<br/>
+            If <paramref name="obj"/> isn't <typeparamref name="T"/>, <paramref name="result"/> is set with <c>default(<typeparamref name="T"/>)</c>.
+            </summary>
+            <typeparam name="T">Type of the value to cast.</typeparam>
+            <param name="obj"><see cref="T:System.Object"/> to cast.</param>
+            <param name="result">Casted result.</param>
+            <returns><see langword="true"/> if the cast was successful. <see langword="false"/> if it wasn't able to cast.</returns>
+            <seealso url="https://codereview.stackexchange.com/questions/17982/trycastt-method"/>
+            <seealso cref="M:Enderlook.Utils.CastExtensions.CastOrDefault``1(System.Object)"/>
+            <seealso cref="M:Enderlook.Utils.CastExtensions.CastOrNull``1(System.Object,Enderlook.Utils.CastExtensions.RequireStruct{``0})"/>
+            <seealso cref="M:Enderlook.Utils.CastExtensions.CastOrNull``1(System.Object,Enderlook.Utils.CastExtensions.RequireClass{``0})"/>
+        </member>
+        <member name="M:Enderlook.Utils.CastExtensions.CastOrDefault``1(System.Object)">
+            <summary>
+            Try to cast <paramref name="obj"/> into <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">Type of the value to cast.</typeparam>
+            <param name="obj"><see cref="T:System.Object"/> to cast.</param>
+            <returns>Return <c>(<typeparamref name="T"/>)<paramref name="obj"/></c>. <c>default(<typeparamref name="T"/>)</c> if it can't cast.</returns>
+        </member>
+        <member name="T:Enderlook.Utils.CastExtensions.RequireStruct`1">
+            <summary>
+            Don't use me.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Enderlook.Utils.CastExtensions.RequireClass`1">
+            <summary>
+            Don't use me.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Enderlook.Utils.CastExtensions.CastOrNull``1(System.Object,Enderlook.Utils.CastExtensions.RequireStruct{``0})">
+            <summary>
+            Try to cast <paramref name="obj"/> into <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">Type of the value to cast.</typeparam>
+            <param name="obj"><see cref="T:System.Object"/> to cast.</param>
+            <param name="ignoreMe">Ignore this. Don't put anything here.</param>
+            <returns>Return <c>(<typeparamref name="T"/>)<paramref name="obj"/></c>. <see langword="null"/> if it can't cast.</returns>
+            <seealso href="https://stackoverflow.com/questions/2974519/generic-constraints-where-t-struct-and-where-t-class"/>
+            <seealso cref="M:Enderlook.Utils.CastExtensions.TryCast``1(System.Object,``0@)"/>
+            <seealso cref="M:Enderlook.Utils.CastExtensions.CastOrDefault``1(System.Object)"/>
+            <seealso cref="M:Enderlook.Utils.CastExtensions.CastOrNull``1(System.Object,Enderlook.Utils.CastExtensions.RequireClass{``0})"/>
+        </member>
+        <member name="M:Enderlook.Utils.CastExtensions.CastOrNull``1(System.Object,Enderlook.Utils.CastExtensions.RequireClass{``0})">
+            <summary>
+            Try to cast <paramref name="obj"/> into <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">Type of the value to cast.</typeparam>
+            <param name="obj"><see cref="T:System.Object"/> to cast.</param>
+            <param name="ignoreMe">Ignore this. Don't put anything here.</param>
+            <returns>Return <c>(<typeparamref name="T"/>)<paramref name="obj"/></c>. <see langword="null"/> if it can't cast.</returns>
+            <seealso href="https://stackoverflow.com/questions/2974519/generic-constraints-where-t-struct-and-where-t-class"/>
+            <seealso cref="M:Enderlook.Utils.CastExtensions.TryCast``1(System.Object,``0@)"/>
+            <seealso cref="M:Enderlook.Utils.CastExtensions.CastOrDefault``1(System.Object)"/>
+            <seealso cref="M:Enderlook.Utils.CastExtensions.CastOrNull``1(System.Object,Enderlook.Utils.CastExtensions.RequireStruct{``0})"/>
+        </member>
+        <member name="M:Enderlook.Utils.CastExtensions.IsCastableTo(System.Type,System.Type)">
+            <summary>
+            Determines if <paramref name="from"/> is castable to <paramref name="to"/>.
+            This method does more than the is-operator and allows for primitives and implicit/explicit conversions to be compared properly.
+            </summary>
+            <param name="from">The type to cast from.</param>
+            <param name="to">The type to be casted to.</param>
+            <returns><see langword="true"/> if <paramref name="from"/> can be casted to <paramref name="to"/>. <see langword="false"/> otherwise.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="from"/> or <paramref name="to"/> are <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Utils.CastExtensions.IsCastableTo``1(System.Type)">
+            <summary>
+            Determines if <paramref name="from"/> is castable to <typeparamref name="T"/>.
+            This method does more than the is-operator and allows for primitives and implicit/explicit conversions to be compared properly.
+            </summary>
+            <typeparam name="T">The type to be casted to.</typeparam>
+            <param name="from">The type to cast from.</param>
+            <returns><see langword="true"/> if <paramref name="from"/> can be casted to <typeparamref name="T"/>. <see langword="false"/> otherwise.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="from"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Utils.CastExtensions.IsCastableTo``2">
+            <summary>
+            Determines if <typeparamref name="T"/> is castable to <typeparamref name="U"/>.
+            This method does more than the is-operator and allows for primitives and implicit/explicit conversions to be compared properly.
+            </summary>
+            <typeparam name="T">The type to cast from.</typeparam>
+            <typeparam name="U">The type to be casted to.</typeparam>
+            <returns><see langword="true"/> if <typeparamref name="U"/> can be casted to <typeparamref name="T"/>. <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="T:Enderlook.Utils.CustomEqualityComparer">
+            <summary>
+            Helper class to create <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> based on a <see cref="T:System.Func`2"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Utils.CustomEqualityComparer.Create``2(System.Func{``0,``1})">
+            <summary>
+            Creates a custom <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
+            </summary>
+            <typeparam name="TSource">Type of element to compare.</typeparam>
+            <typeparam name="TKey">Type of element of projector.</typeparam>
+            <param name="projector">Project the value that will be compared using the default comparers of that <typeparamref name="TKey"/>.</param>
+            <returns><see cref="T:System.Collections.Generic.IEqualityComparer`1"/> for <typeparamref name="TSource"/> type.</returns>
+        </member>
+        <member name="M:Enderlook.Utils.CustomEqualityComparer.Create``2(System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Creates a custom <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
+            </summary>
+            <typeparam name="TSource">Type of element to compare.</typeparam>
+            <typeparam name="TKey">Type of element of projector.</typeparam>
+            <param name="projector">Project the value that will be compared using the default comparers of that <typeparamref name="TKey"/>.</param>
+            <param name="comparer">Comparer used to compare the value returned by the <paramref name="projector"/>.</param>
+            <returns><see cref="T:System.Collections.Generic.IEqualityComparer`1"/> for <typeparamref name="TSource"/> type.</returns>
+        </member>
+        <member name="T:Enderlook.Utils.EnumExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Enum"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Utils.EnumExtensions.GetUnderlyingValue(System.Enum)">
+            <summary>
+            Returns the underlying primitive value of <paramref name="source"/>.
+            </summary>
+            <param name="source"><see cref="T:System.Enum"/> which value is going to get.</param>
+            <returns>Primitive value of <paramref name="source"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="T:Enderlook.Utils.GarbageCollectorUtils">
+            <summary>
+            A helper class to raise events when a garbage collection happens.
+            </summary>
+        </member>
+        <member name="E:Enderlook.Utils.GarbageCollectorUtils.OnFullGarbageCollectionApproach">
+            <summary>
+            Event raised when a full garbage collection is about to happen.
+            </summary>
+        </member>
+        <member name="E:Enderlook.Utils.GarbageCollectorUtils.OnFullGarbageCollectionComplete">
+            <summary>
+            Event raised after a full garbage collection.
+            </summary>
+        </member>
+        <member name="E:Enderlook.Utils.GarbageCollectorUtils.OnZeroGarbageCollectionComplete">
+            <summary>
+            Event raised when a generation zero garbage collection is completed.
+            </summary>
+        </member>
+        <member name="E:Enderlook.Utils.GarbageCollectorUtils.OnNextFullGarbageCollectionApproach">
+            <summary>
+            Event raised when a full garbage collection is about to happen.<br/>
+            Subcribers to this event are automatically removed after one trigger.
+            </summary>
+        </member>
+        <member name="E:Enderlook.Utils.GarbageCollectorUtils.OnNextFullGarbageCollectionComplete">
+            <summary>
+            Event raised after a full garbage collection.<br/>
+            Subcribers to this event are automatically removed after one trigger.
+            </summary>
+        </member>
+        <member name="E:Enderlook.Utils.GarbageCollectorUtils.OnNextZeroGarbageCollectionComplete">
+            <summary>
+            Event raised when a generation zero garbage collection is completed.<br/>
+            Subcribers to this event are automatically removed after one trigger.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Utils.GarbageCollectorUtils.Finalize">
+            <summary>
+            Raises <see cref="E:Enderlook.Utils.GarbageCollectorUtils.OnZeroGarbageCollectionComplete"/> and <see cref="E:Enderlook.Utils.GarbageCollectorUtils.OnNextZeroGarbageCollectionComplete"/>.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Utils.RandomExtensions">
+            <summary>
+            An extension class for <see cref="T:System.Random"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Utils.RandomExtensions.Range(System.Random,System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Random.Next(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Utils.RandomExtensions.Range(System.Random,System.Int32)">
+            <inheritdoc cref="M:System.Random.Next(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Utils.RandomExtensions.Range(System.Random,System.Double,System.Double)">
+            <summary>
+            Returns a random double that is without the specified range.
+            </summary>
+            <param name="source">Seed.</param>
+            <param name="min">Minimum value.</param>
+            <param name="max">Maximum value</param>
+            <returns>Random number between <paramref name="min"/> and <paramref name="max"/>.</returns>
+        </member>
+        <member name="M:Enderlook.Utils.RandomExtensions.Range(System.Random,System.Double)">
+            <summary>
+            Returns a random double that is less than the specified <paramref name="max"/>.
+            </summary>
+            <param name="source">Seed.</param>
+            <param name="max">Maximum value</param>
+            <returns>Random number less than<paramref name="max"/>.</returns>
+        </member>
+        <member name="M:Enderlook.Utils.RandomExtensions.Range(System.Random,System.Single,System.Single)">
+            <summary>
+            Returns a random double that is without the specified range.
+            </summary>
+            <param name="source">Seed.</param>
+            <param name="min">Minimum value.</param>
+            <param name="max">Maximum value</param>
+            <returns>Random number between <paramref name="min"/> and <paramref name="max"/>.</returns>
+        </member>
+        <member name="M:Enderlook.Utils.RandomExtensions.Range(System.Random,System.Single)">
+            <summary>
+            Returns a random double that is less than the specified <paramref name="max"/>.
+            </summary>
+            <param name="source">Seed.</param>
+            <param name="max">Maximum value</param>
+            <returns>Random number less than<paramref name="max"/>.</returns>
+        </member>
+        <member name="M:Enderlook.Utils.RandomExtensions.NextByte(System.Random)">
+            <summary>
+            Produces a random <see cref="T:System.Byte"/>. 
+            </summary>
+            <param name="source"><see cref="T:System.Random"/> generator.</param>
+            <returns>Random <see cref="T:System.Byte"/></returns>
+        </member>
+        <member name="M:Enderlook.Utils.RandomExtensions.NextChar(System.Random)">
+            <summary>
+            Produces a random <see cref="T:System.Char"/>. 
+            </summary>
+            <param name="source"><see cref="T:System.Random"/> generator.</param>
+            <returns>Random <see cref="T:System.Char"/></returns>
+        </member>
+        <member name="T:Enderlook.Utils.code.Linq.TransposeExtensions">
+            <summary>
+            Helper extensions for <see cref="T:System.Collections.Generic.IEnumerable`1"/> related to transposition.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Utils.code.Linq.TransposeExtensions.TransposeMode">
+            <summary>
+            Determines how non-uniform enumerations will be handled.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Utils.code.Linq.TransposeExtensions.TransposeMode.StripOnMissing">
+            <summary>
+            It strip rows that have missing elements.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Utils.code.Linq.TransposeExtensions.TransposeMode.DefaultOnMissing">
+            <summary>
+            Replace missing elements with default valuess.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Utils.code.Linq.TransposeExtensions.TransposeMode.ErrorOnMissing">
+            <summary>
+            Raise <see cref="T:System.ArgumentOutOfRangeException"/> when there is a missing value.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Utils.code.Linq.TransposeExtensions.Transpose``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}},Enderlook.Utils.code.Linq.TransposeExtensions.TransposeMode)">
+            <summary>
+            Transpose <paramref name="source"/>.
+            </summary>
+            <typeparam name="T">Type of element of the nested <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="source">Sequence which will be transposed.</param>
+            <param name="mode">How non-uniform sequences are handled.</param>
+            <returns>Transposed <paramref name="source"/>.</returns>
+        </member>
+        <member name="M:Enderlook.Utils.code.Linq.TransposeExtensions.Transpose``1(System.Collections.Generic.IList{System.Collections.Generic.IList{``0}},Enderlook.Utils.code.Linq.TransposeExtensions.TransposeMode)">
+            <summary>
+            Transpose <paramref name="source"/>.
+            </summary>
+            <typeparam name="T">Type of element of the nested <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="source">Sequence which will be transposed.</param>
+            <param name="mode">How non-uniform sequences are handled.</param>
+            <returns>Transposed <paramref name="source"/>.</returns>
+        </member>
+        <member name="M:Enderlook.Utils.code.Linq.TransposeExtensions.TransposeInPlace``1(``0[0:,0:])">
+            <summary>
+            Transpose the values of <paramref name="source"/> in place.<br/>
+            It can only be used in square 2D multidimensional arrays.
+            </summary>
+            <typeparam name="T">Type of element in <paramref name="source"/>.</typeparam>
+            <param name="source">Array to be transposed in place.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="source"/> width and height aren't the same.</exception>
+        </member>
+        <member name="M:Enderlook.Utils.code.Linq.TransposeExtensions.TransposeInPlace``1(``0[][])">
+            <summary>
+            Transpose the values of <paramref name="source"/> in place.<br/>
+            It can only be used in square 2D multidimensional arrays.
+            </summary>
+            <typeparam name="T">Type of element in <paramref name="source"/>.</typeparam>
+            <param name="source">Array to be transposed in place.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="source"/> width and height aren't the same.</exception>
+        </member>
+        <member name="M:Enderlook.Utils.code.Linq.TransposeExtensions.TransposeInPlace``1(System.Collections.Generic.IList{System.Collections.Generic.IList{``0}})">
+            <summary>
+            Transpose the values of <paramref name="source"/> in place.<br/>
+            It can only be used in square 2D multidimensional arrays.
+            </summary>
+            <typeparam name="T">Type of element in <paramref name="source"/>.</typeparam>
+            <param name="source">Array to be transposed in place.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="source"/> width and height aren't the same.</exception>
+        </member>
+        <member name="M:Enderlook.Utils.code.Linq.TransposeExtensions.Transpose``1(``0[0:,0:])">
+            <summary>
+            Transpose elements of <paramref name="source"/>.
+            </summary>
+            <typeparam name="T">Type of element in <paramref name="source"/>.</typeparam>
+            <param name="source">Array values to be transposed.</param>
+            <returns>Transposed version of <paramref name="source"/>.</returns>
+        </member>
+    </members>
+</doc>
