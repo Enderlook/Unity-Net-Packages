@@ -1,0 +1,12 @@
+{
+  "name": "com.system.memory",
+  "version": "4.5.4",
+  "displayName": "System.Memory",
+  "description": "",
+  "dependencies": {
+    "com.system.buffers": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.system.buffers#com.system.buffers/v4.5.1",
+    "com.system.runtime.compiler_services.unsafe": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.system.runtime.compiler_services.unsafe#com.system.runtime.compiler_services.unsafe/v4.5.3"
+  },
+  "keywords": [
+  ]
+}
