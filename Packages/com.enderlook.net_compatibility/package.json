@@ -1,0 +1,15 @@
+{
+  "name": "com.enderlook.net_compatibility",
+  "version": "0.5.0",
+  "displayName": "Enderlook Net Compatibility",
+  "description": "https://github.com/Enderlook/Net-Compatibility",
+  "dependencies": {
+    "com.system.memory": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.system.memory#com.system.memory/v4.5.4"
+  },
+  "keywords": [
+  ],
+  "author": {
+    "name": "Enderlook",
+    "url": "https://github.com/Enderlook"
+  }
+}

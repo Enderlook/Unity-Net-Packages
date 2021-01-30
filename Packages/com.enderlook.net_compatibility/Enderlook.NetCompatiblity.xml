@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.NetCompatiblity</name>
+    </assembly>
+    <members>
+        <member name="M:System.Collections.Generic.KeyValuePairExtension.Deconstruct``2(System.Collections.Generic.KeyValuePair{``0,``1},``0@,``1@)">
+            <summary>
+            Deconstruction of <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>.
+            </summary>
+        </member>
+        <member name="T:System.Numerics.BitOperations">
+            <summary>
+            Utility methods for intrinsic bit-twiddling operations.
+            The methods use hardware intrinsics when available on the underlying platform,
+            otherwise they use optimized software fallbacks.
+            </summary>
+        </member>
+        <member name="M:System.Numerics.BitOperations.LeadingZeroCount(System.UInt32)">
+            <summary>
+            Count the number of leading zero bits in a mask.
+            Similar in behavior to the x86 instruction LZCNT.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.LeadingZeroCount(System.UInt64)">
+            <summary>
+            Count the number of leading zero bits in a mask.
+            Similar in behavior to the x86 instruction LZCNT.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.Log2(System.UInt32)">
+            <summary>
+            Returns the integer (floor) log of the specified value, base 2.
+            Note that by convention, input value 0 returns 0 since log(0) is undefined.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.Log2(System.UInt64)">
+            <summary>
+            Returns the integer (floor) log of the specified value, base 2.
+            Note that by convention, input value 0 returns 0 since log(0) is undefined.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.Log2SoftwareFallback(System.UInt32)">
+            <summary>
+            Returns the integer (floor) log of the specified value, base 2.
+            Note that by convention, input value 0 returns 0 since Log(0) is undefined.
+            Does not directly use any hardware intrinsics, nor does it incur branching.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.PopCount(System.UInt32)">
+            <summary>
+            Returns the population count (number of bits set) of a mask.
+            Similar in behavior to the x86 instruction POPCNT.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.PopCount(System.UInt64)">
+            <summary>
+            Returns the population count (number of bits set) of a mask.
+            Similar in behavior to the x86 instruction POPCNT.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)">
+            <summary>
+            Count the number of trailing zero bits in an integer value.
+            Similar in behavior to the x86 instruction TZCNT.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)">
+            <summary>
+            Count the number of trailing zero bits in an integer value.
+            Similar in behavior to the x86 instruction TZCNT.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)">
+            <summary>
+            Count the number of trailing zero bits in a mask.
+            Similar in behavior to the x86 instruction TZCNT.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt64)">
+            <summary>
+            Count the number of trailing zero bits in a mask.
+            Similar in behavior to the x86 instruction TZCNT.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperations.RotateLeft(System.UInt32,System.Int32)">
+            <summary>
+            Rotates the specified value left by the specified number of bits.
+            Similar in behavior to the x86 instruction ROL.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="offset">The number of bits to rotate by.
+            Any value outside the range [0..31] is treated as congruent mod 32.</param>
+            <returns>The rotated value.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperations.RotateLeft(System.UInt64,System.Int32)">
+            <summary>
+            Rotates the specified value left by the specified number of bits.
+            Similar in behavior to the x86 instruction ROL.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="offset">The number of bits to rotate by.
+            Any value outside the range [0..63] is treated as congruent mod 64.</param>
+            <returns>The rotated value.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperations.RotateRight(System.UInt32,System.Int32)">
+            <summary>
+            Rotates the specified value right by the specified number of bits.
+            Similar in behavior to the x86 instruction ROR.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="offset">The number of bits to rotate by.
+            Any value outside the range [0..31] is treated as congruent mod 32.</param>
+            <returns>The rotated value.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperations.RotateRight(System.UInt64,System.Int32)">
+            <summary>
+            Rotates the specified value right by the specified number of bits.
+            Similar in behavior to the x86 instruction ROR.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="offset">The number of bits to rotate by.
+            Any value outside the range [0..63] is treated as congruent mod 64.</param>
+            <returns>The rotated value.</returns>
+        </member>
+        <member name="T:System.MemoryExtensions">
+            <summary>
+            Extension methods for Span{T}, Memory{T}, and friends.
+            </summary>
+        </member>
+        <member name="M:System.MemoryExtensions.Sort``1(System.Span{``0})">
+            <summary>
+            Sorts the elements in the entire <see cref="T:System.Span`1" /> using the <see cref="T:System.IComparable`1" /> implementation
+            of each element of the <see cref= "T:System.Span`1" />
+            </summary>
+            <typeparam name="T">The type of the elements of the span.</typeparam>
+            <param name="span">The <see cref="T:System.Span`1"/> to sort.</param>
+            <exception cref="T:System.InvalidOperationException">
+            One or more elements in <paramref name="span"/> do not implement the <see cref="T:System.IComparable`1" /> interface.
+            </exception>
+        </member>
+        <member name="M:System.MemoryExtensions.Sort``2(System.Span{``0},``1)">
+            <summary>
+            Sorts the elements in the entire <see cref="T:System.Span`1" /> using the <typeparamref name="TComparer" />.
+            </summary>
+            <typeparam name="T">The type of the elements of the span.</typeparam>
+            <typeparam name="TComparer">The type of the comparer to use to compare elements.</typeparam>
+            <param name="span">The <see cref="T:System.Span`1"/> to sort.</param>
+            <param name="comparer">
+            The <see cref="T:System.Collections.Generic.IComparer`1"/> implementation to use when comparing elements, or null to
+            use the <see cref="T:System.IComparable`1"/> interface implementation of each element.
+            </param>
+            <exception cref="T:System.InvalidOperationException">
+            <paramref name="comparer"/> is null, and one or more elements in <paramref name="span"/> do not
+            implement the <see cref="T:System.IComparable`1" /> interface.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            The implementation of <paramref name="comparer"/> caused an error during the sort.
+            </exception>
+        </member>
+        <member name="M:System.MemoryExtensions.Sort``1(System.Span{``0},System.Comparison{``0})">
+            <summary>
+            Sorts the elements in the entire <see cref="T:System.Span`1" /> using the specified <see cref="T:System.Comparison`1" />.
+            </summary>
+            <typeparam name="T">The type of the elements of the span.</typeparam>
+            <param name="span">The <see cref="T:System.Span`1"/> to sort.</param>
+            <param name="comparison">The <see cref="T:System.Comparison`1"/> to use when comparing elements.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="comparison"/> is null.</exception>
+        </member>
+        <member name="M:System.MemoryExtensions.Sort``2(System.Span{``0},System.Span{``1})">
+            <summary>
+            Sorts a pair of spans (one containing the keys and the other containing the corresponding items)
+            based on the keys in the first <see cref="T:System.Span`1" /> using the <see cref="T:System.IComparable`1" />
+            implementation of each key.
+            </summary>
+            <typeparam name="TKey">The type of the elements of the key span.</typeparam>
+            <typeparam name="TValue">The type of the elements of the items span.</typeparam>
+            <param name="keys">The span that contains the keys to sort.</param>
+            <param name="items">The span that contains the items that correspond to the keys in <paramref name="keys"/>.</param>
+            <exception cref="T:System.ArgumentException">
+            The length of <paramref name="keys"/> isn't equal to the length of <paramref name="items"/>.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            One or more elements in <paramref name="keys"/> do not implement the <see cref="T:System.IComparable`1" /> interface.
+            </exception>
+        </member>
+        <member name="M:System.MemoryExtensions.Sort``3(System.Span{``0},System.Span{``1},``2)">
+            <summary>
+            Sorts a pair of spans (one containing the keys and the other containing the corresponding items)
+            based on the keys in the first <see cref="T:System.Span`1" /> using the specified comparer.
+            </summary>
+            <typeparam name="TKey">The type of the elements of the key span.</typeparam>
+            <typeparam name="TValue">The type of the elements of the items span.</typeparam>
+            <typeparam name="TComparer">The type of the comparer to use to compare elements.</typeparam>
+            <param name="keys">The span that contains the keys to sort.</param>
+            <param name="items">The span that contains the items that correspond to the keys in <paramref name="keys"/>.</param>
+            <param name="comparer">
+            The <see cref="T:System.Collections.Generic.IComparer`1"/> implementation to use when comparing elements, or null to
+            use the <see cref="T:System.IComparable`1"/> interface implementation of each element.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            The length of <paramref name="keys"/> isn't equal to the length of <paramref name="items"/>.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            <paramref name="comparer"/> is null, and one or more elements in <paramref name="keys"/> do not
+            implement the <see cref="T:System.IComparable`1" /> interface.
+            </exception>
+        </member>
+        <member name="M:System.MemoryExtensions.Sort``2(System.Span{``0},System.Span{``1},System.Comparison{``0})">
+            <summary>
+            Sorts a pair of spans (one containing the keys and the other containing the corresponding items)
+            based on the keys in the first <see cref="T:System.Span`1" /> using the specified comparison.
+            </summary>
+            <typeparam name="TKey">The type of the elements of the key span.</typeparam>
+            <typeparam name="TValue">The type of the elements of the items span.</typeparam>
+            <param name="keys">The span that contains the keys to sort.</param>
+            <param name="items">The span that contains the items that correspond to the keys in <paramref name="keys"/>.</param>
+            <param name="comparison">The <see cref="T:System.Comparison`1"/> to use when comparing elements.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="comparison"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">
+            The length of <paramref name="keys"/> isn't equal to the length of <paramref name="items"/>.
+            </exception>
+        </member>
+        <member name="T:System.Runtime.InteropServices.CollectionsMarshal">
+            <summary>
+            An unsafe class that provides a set of methods to access the underlying data representations of collections.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.CollectionsMarshal.AsSpan``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Get a <see cref="T:System.Span`1"/> view over a <see cref="T:System.Collections.Generic.List`1"/>'s data.
+            Items should not be added or removed from the <see cref="T:System.Collections.Generic.List`1"/> while the <see cref="T:System.Span`1"/> is in use.
+            </summary>
+        </member>
+    </members>
+</doc>
