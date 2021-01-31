@@ -1,0 +1,11 @@
+{
+  "name": "com.system.threading.tasks.extensions",
+  "version": "4.5.4",
+  "displayName": "System.Threading.Tasks.Extensions",
+  "description": "",
+  "dependencies": {
+    "com.system.runtime.compiler_services.unsafe": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.system.runtime.compiler_services.unsafe#com.system.runtime.compiler_services.unsafe/v4.5.3"
+  },
+  "keywords": [
+  ]
+}
