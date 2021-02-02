@@ -134,12 +134,12 @@
             Any value outside the range [0..63] is treated as congruent mod 64.</param>
             <returns>The rotated value.</returns>
         </member>
-        <member name="T:System.MemoryExtensions">
+        <member name="T:System.MemoryExtensions2">
             <summary>
             Extension methods for Span{T}, Memory{T}, and friends.
             </summary>
         </member>
-        <member name="M:System.MemoryExtensions.Sort``1(System.Span{``0})">
+        <member name="M:System.MemoryExtensions2.Sort``1(System.Span{``0})">
             <summary>
             Sorts the elements in the entire <see cref="T:System.Span`1" /> using the <see cref="T:System.IComparable`1" /> implementation
             of each element of the <see cref= "T:System.Span`1" />
@@ -150,7 +150,7 @@
             One or more elements in <paramref name="span"/> do not implement the <see cref="T:System.IComparable`1" /> interface.
             </exception>
         </member>
-        <member name="M:System.MemoryExtensions.Sort``2(System.Span{``0},``1)">
+        <member name="M:System.MemoryExtensions2.Sort``2(System.Span{``0},``1)">
             <summary>
             Sorts the elements in the entire <see cref="T:System.Span`1" /> using the <typeparamref name="TComparer" />.
             </summary>
@@ -169,7 +169,7 @@
             The implementation of <paramref name="comparer"/> caused an error during the sort.
             </exception>
         </member>
-        <member name="M:System.MemoryExtensions.Sort``1(System.Span{``0},System.Comparison{``0})">
+        <member name="M:System.MemoryExtensions2.Sort``1(System.Span{``0},System.Comparison{``0})">
             <summary>
             Sorts the elements in the entire <see cref="T:System.Span`1" /> using the specified <see cref="T:System.Comparison`1" />.
             </summary>
@@ -178,7 +178,7 @@
             <param name="comparison">The <see cref="T:System.Comparison`1"/> to use when comparing elements.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="comparison"/> is null.</exception>
         </member>
-        <member name="M:System.MemoryExtensions.Sort``2(System.Span{``0},System.Span{``1})">
+        <member name="M:System.MemoryExtensions2.Sort``2(System.Span{``0},System.Span{``1})">
             <summary>
             Sorts a pair of spans (one containing the keys and the other containing the corresponding items)
             based on the keys in the first <see cref="T:System.Span`1" /> using the <see cref="T:System.IComparable`1" />
@@ -195,7 +195,7 @@
             One or more elements in <paramref name="keys"/> do not implement the <see cref="T:System.IComparable`1" /> interface.
             </exception>
         </member>
-        <member name="M:System.MemoryExtensions.Sort``3(System.Span{``0},System.Span{``1},``2)">
+        <member name="M:System.MemoryExtensions2.Sort``3(System.Span{``0},System.Span{``1},``2)">
             <summary>
             Sorts a pair of spans (one containing the keys and the other containing the corresponding items)
             based on the keys in the first <see cref="T:System.Span`1" /> using the specified comparer.
@@ -217,7 +217,7 @@
             implement the <see cref="T:System.IComparable`1" /> interface.
             </exception>
         </member>
-        <member name="M:System.MemoryExtensions.Sort``2(System.Span{``0},System.Span{``1},System.Comparison{``0})">
+        <member name="M:System.MemoryExtensions2.Sort``2(System.Span{``0},System.Span{``1},System.Comparison{``0})">
             <summary>
             Sorts a pair of spans (one containing the keys and the other containing the corresponding items)
             based on the keys in the first <see cref="T:System.Span`1" /> using the specified comparison.
