@@ -4,36 +4,28 @@
         <name>Enderlook.Memory.Arenas</name>
     </assembly>
     <members>
-        <member name="T:Enderlook.Memory.Allocators.AllocatorAdaptor`1">
-            <summary>
-            Creates an adaptor from <see cref="T:Enderlook.Memory.Allocators.IAllocator`1"/> to <see cref="T:Enderlook.Memory.Allocators.IAllocator`2"/>.
-            </summary>
-            <typeparam name="TElement">Type of element to allocate.</typeparam>
-        </member>
-        <member name="M:Enderlook.Memory.Allocators.AllocatorAdaptor`1.#ctor(Enderlook.Memory.Allocators.IAllocator{`0})">
-            <summary>
-            Creates a wrapper arround the given allocator.
-            </summary>
-            <param name="allocator">Allocator to wrap.</param>
-        </member>
-        <member name="M:Enderlook.Memory.Allocators.AllocatorAdaptor`1.Allocate(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`2.Allocate(System.Int32)"/>
-        </member>
         <member name="T:Enderlook.Memory.Allocators.ArrayPoolAllocator`1">
             <summary>
-            An allocator that rents memory from the array-pool provided, returning them to the pool when done.
+            An allocator that rents memory from the specified array-pool, returning them to the pool when done.
             </summary>
         </member>
-        <member name="F:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Shared">
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.#ctor(System.Buffers.ArrayPool{`0})">
             <summary>
-            Already boxed instance of the allocator.
+            Construct an instance of the allocator which uses the specified pool.
             </summary>
+            <param name="arrayPool">Backing pool for the allocations.</param>
         </member>
         <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Allocate(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`2.Allocate(System.Int32)"/>
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{TElement}#Allocate(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.AllocateZeroed(System.Int32)"/>
         </member>
         <member name="T:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner">
             <summary>
@@ -43,10 +35,19 @@
         <member name="P:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner.Length">
             <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Length"/>
         </member>
-        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner.Allocate(System.Int32)">
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner.Allocate(System.Buffers.ArrayPool{`0},System.Int32)">
             <summary>
             Allocates a region of memory.
             </summary>
+            <param name="arrayPool">Array pool where arrays are rent.</param>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner.AllocateZeroed(System.Buffers.ArrayPool{`0},System.Int32)">
+            <summary>
+            Allocates a region of zeroed memory.
+            </summary>
+            <param name="arrayPool">Array pool where arrays are rent.</param>
             <param name="length">Length of elements to allocate.</param>
             <returns>Allocated memory.</returns>
         </member>
@@ -59,8 +60,8 @@
         <member name="P:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner.Memory">
             <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
         </member>
-        <member name="P:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner.AsSpan">
-            <inheritdoc cref="P:Enderlook.Memory.Allocators.ISegmentOwner`1.AsSpan"/>
+        <member name="P:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpanOwner`1.Span"/>
         </member>
         <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner.Dispose">
             <inheritdoc cref="M:System.IDisposable.Dispose"/>
@@ -68,41 +69,22 @@
         <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.SegmentOwner.GetUnderlyingArray">
             <inheritdoc cref="M:Enderlook.Memory.Allocators.IHasUnderlyingArray`1.GetUnderlyingArray"/>
         </member>
-        <member name="T:Enderlook.Memory.Allocators.IAllocatorFactory">
-            <summary>
-            Represent a factory of allocators.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Memory.Allocators.IAllocatorFactory.CreateAllocator``1">
-            <summary>
-            Creates an allocator for an specific type.
-            </summary>
-            <typeparam name="TElement">Type of element to allocate.</typeparam>
-            <returns>Allocator.</returns>
-        </member>
-        <member name="T:Enderlook.Memory.Allocators.IAllocator`1">
+        <member name="T:Enderlook.Memory.Allocators.IChunkAllocator`1">
             <summary>
             Represent an allocator of memory chunks.
             </summary>
-            <typeparam name="TElement">Type of element to allocate.</typeparam>
+            <typeparam name="TChunk">Type of chunk of memory to allocate.</typeparam>
         </member>
-        <member name="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)">
+        <member name="M:Enderlook.Memory.Allocators.IChunkAllocator`1.Allocate(System.Int32)">
             <summary>
             Allocates an chunk of memory.
             </summary>
             <param name="length">Length of memory to allocate.</param>
             <returns>Allocated memory.</returns>
         </member>
-        <member name="T:Enderlook.Memory.Allocators.IAllocator`2">
+        <member name="M:Enderlook.Memory.Allocators.IChunkAllocator`1.AllocateZeroed(System.Int32)">
             <summary>
-            Represent an allocator of memory chunks.
-            </summary>
-            <typeparam name="TElement">Type of element to allocate.</typeparam>
-            <typeparam name="TSegmentOwner">Type of memory owner.</typeparam>
-        </member>
-        <member name="M:Enderlook.Memory.Allocators.IAllocator`2.Allocate(System.Int32)">
-            <summary>
-            Allocates an chunk of memory.
+            Allocates an chunk of zeroed memory.
             </summary>
             <param name="length">Length of memory to allocate.</param>
             <returns>Allocated memory.</returns>
@@ -120,33 +102,86 @@
             </summary>
             <returns>Underlying array.</returns>
         </member>
-        <member name="T:Enderlook.Memory.Allocators.ISegmentOwner`1">
+        <member name="T:Enderlook.Memory.Allocators.IMemoryAllocator`2">
             <summary>
-            Represent an owner of a segment of memory.
+            Represent an allocator of memory.
             </summary>
-            <typeparam name="TElement">Type of element in the segment.</typeparam>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+            <typeparam name="TMemoryOwner">Type of memory owner.</typeparam>
         </member>
-        <member name="P:Enderlook.Memory.Allocators.ISegmentOwner`1.AsSpan">
+        <member name="M:Enderlook.Memory.Allocators.IMemoryAllocator`2.Allocate(System.Int32)">
             <summary>
-            Get the span belonging to this owner.
+            Allocates a memory owner.
             </summary>
+            <param name="length">Length of memory to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.IMemoryAllocator`2.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a memory owner.
+            </summary>
+            <param name="length">Length of memory to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.ISegmentAllocator`2">
+            <summary>
+            Represent an allocator of memory chunks.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+            <typeparam name="TSegmentOwner">Type of segment owner.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)">
+            <summary>
+            Allocates a segment of memory.
+            </summary>
+            <param name="length">Length of memory to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a segment of zeroed memory.
+            </summary>
+            <param name="length">Length of memory to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.ISpanAllocator`2">
+            <summary>
+            Represent an allocator of spans.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+            <typeparam name="TSpanOwner">Type of memory owner.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ISpanAllocator`2.Allocate(System.Int32)">
+            <summary>
+            Allocates a span owner.
+            </summary>
+            <param name="length">Length of span to allocate.</param>
+            <returns>Allocated span.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ISpanAllocator`2.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a span owner.
+            </summary>
+            <param name="length">Length of span to allocate.</param>
+            <returns>Allocated span.</returns>
         </member>
         <member name="T:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1">
             <summary>
             An allocator that rents memory from the array-pool provided, returning them to the pool when done.<br/>
-            Allocated arrays are pinned.
-            </summary>
-        </member>
-        <member name="F:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Shared">
-            <summary>
-            Already boxed instance of the allocator.
+            Allocations arrays are pinned.
             </summary>
         </member>
         <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Allocate(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`2.Allocate(System.Int32)"/>
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{TElement}#Allocate(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.AllocateZeroed(System.Int32)"/>
         </member>
         <member name="T:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner">
             <summary>
@@ -156,10 +191,19 @@
         <member name="P:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner.Length">
             <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Length"/>
         </member>
-        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner.Allocate(System.Int32)">
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner.Allocate(System.Buffers.ArrayPool{`0},System.Int32)">
             <summary>
             Allocates a region of memory.
             </summary>
+            <param name="arrayPool">Array pool where arrays are rent.</param>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner.AllocateZeroed(System.Buffers.ArrayPool{`0},System.Int32)">
+            <summary>
+            Allocates a region of zeroed memory.
+            </summary>
+            <param name="arrayPool">Array pool where arrays are rent.</param>
             <param name="length">Length of elements to allocate.</param>
             <returns>Allocated memory.</returns>
         </member>
@@ -172,8 +216,8 @@
         <member name="P:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner.Memory">
             <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
         </member>
-        <member name="P:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner.AsSpan">
-            <inheritdoc cref="P:Enderlook.Memory.Allocators.ISegmentOwner`1.AsSpan"/>
+        <member name="P:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpanOwner`1.Span"/>
         </member>
         <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner.Pin(System.Int32)">
             <inheritdoc cref="M:System.Buffers.IPinnable.Pin(System.Int32)"/>
@@ -187,9 +231,194 @@
         <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.SegmentOwner.GetUnderlyingArray">
             <inheritdoc cref="M:Enderlook.Memory.Allocators.IHasUnderlyingArray`1.GetUnderlyingArray"/>
         </member>
+        <member name="T:Enderlook.Memory.Allocators.SegmentAllocatorAdaptor`1">
+            <summary>
+            Creates an adaptor from <see cref="T:Enderlook.Memory.Allocators.IChunkAllocator`1"/> to <see cref="T:Enderlook.Memory.Allocators.ISegmentAllocator`2"/>.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SegmentAllocatorAdaptor`1.#ctor(Enderlook.Memory.Allocators.IChunkAllocator{Enderlook.Memory.ISegmentOwner{`0}})">
+            <summary>
+            Creates a wrapper arround the given allocator.
+            </summary>
+            <param name="allocator">Allocator to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SegmentAllocatorAdaptor`1.Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SegmentAllocatorAdaptor`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1">
+            <summary>
+            An allocator that rents memory from the array-pool <see cref="P:System.Buffers.ArrayPool`1.Shared"/>, returning them to the pool when done.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Shared">
+            <summary>
+            Already boxed instance of the allocator.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SharedUntyped">
+            <summary>
+            Already boxed instance of the allocator.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner">
+            <summary>
+            Represent an owner array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner.Length">
+            <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Length"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner.Allocate(System.Int32)">
+            <summary>
+            Allocates a region of memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a region of zeroed memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner.Item(System.Int32)">
+            <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner.Item(System.Int64)">
+            <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Item(System.Int64)"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpanOwner`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.SegmentOwner.GetUnderlyingArray">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IHasUnderlyingArray`1.GetUnderlyingArray"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedArrayPoolAllocatorFactory">
+            <summary>
+            Represent a factory of <see cref="T:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1"/>
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.SharedArrayPoolAllocatorFactory.Shared">
+            <summary>
+            Already boxed instance of the factory.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocatorFactory.CreateAllocator``1">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocatorFactory.CreateAllocator``1"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1">
+            <summary>
+            An allocator that rents memory from the array-pool provided, returning them to the pool when done.<br/>
+            Allocations arrays are pinned.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Shared">
+            <summary>
+            Already boxed instance of the allocator.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SharedUntyped">
+            <summary>
+            Already boxed instance of the allocator.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner">
+            <summary>
+            Represent an owner pinned array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.Length">
+            <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Length"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.Allocate(System.Int32)">
+            <summary>
+            Allocates a region of memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a region of zeroed memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.Item(System.Int32)">
+            <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.Item(System.Int64)">
+            <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Item(System.Int64)"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpanOwner`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.Pin(System.Int32)">
+            <inheritdoc cref="M:System.Buffers.IPinnable.Pin(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.Unpin">
+            <inheritdoc cref="M:System.Buffers.IPinnable.Unpin"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.SegmentOwner.GetUnderlyingArray">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IHasUnderlyingArray`1.GetUnderlyingArray"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocatorFactory">
+            <summary>
+            Represent a factory of <see cref="T:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1"/>
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocatorFactory.Shared">
+            <summary>
+            Already boxed instance of the factory.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocatorFactory.CreateAllocator``1">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocatorFactory.CreateAllocator``1"/>
+        </member>
         <member name="T:Enderlook.Memory.Allocators.UnmanagedAllocator`1">
             <summary>
-            An allocator that allocates unmanaged memory, releasing the memory back to the OS when done
+            An allocator that allocates unmanaged memory, releasing the memory back to the OS when done.
             </summary>
         </member>
         <member name="F:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Shared">
@@ -197,11 +426,22 @@
             Already boxed instance of the allocator.
             </summary>
         </member>
-        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Allocate(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`2.Allocate(System.Int32)"/>
+        <member name="F:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SharedUntyped">
+            <summary>
+            Already boxed instance of the allocator.
+            </summary>
         </member>
-        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IAllocator{TElement}#Allocate(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocator`2.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IChunkAllocator{Enderlook#Memory#ISegmentOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IChunkAllocator`1.AllocateZeroed(System.Int32)"/>
         </member>
         <member name="T:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwner">
             <summary>
@@ -224,11 +464,19 @@
             <param name="length">Length of elements to allocate.</param>
             <returns>Allocated memory.</returns>
         </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwner.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a region of zeroed memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
         <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwner.Memory">
             <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+            <remarks>The first time you call this method per struct copy an allocation is done.</remarks>
         </member>
-        <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwner.AsSpan">
-            <inheritdoc cref="P:Enderlook.Memory.Allocators.ISegmentOwner`1.AsSpan"/>
+        <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwner.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpanOwner`1.Span"/>
         </member>
         <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwner.Pin(System.Int32)">
             <inheritdoc cref="M:System.Buffers.IPinnable.Pin(System.Int32)"/>
@@ -239,41 +487,128 @@
         <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwner.Dispose">
             <inheritdoc cref="M:System.IDisposable.Dispose"/>
         </member>
+        <member name="T:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager">
+            <summary>
+            Represent an owner pointer by reference which doesn't allocate when <see cref="P:System.Buffers.MemoryManager`1.Memory"/> is executed.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Length">
+            <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Length"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Item(System.Int32)">
+            <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Item(System.Int64)">
+            <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Item(System.Int64)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Allocate(System.Int32)">
+            <summary>
+            Allocates a region of memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a region of zeroed memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpanOwner`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.GetSpan">
+            <summary>
+            Obtains a span that represents the memory region.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Pin(System.Int32)">
+            <summary>
+            Provides access to a pointer that represents the data.
+            </summary>
+            <remarks>No actual pin occurs.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Unpin">
+            <summary>
+            Has no effect.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Dispose(System.Boolean)">
+            <summary>
+            Has no effect.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.UnmanagedAllocatorFactory">
+            <summary>
+            Represent a factory of <see cref="T:Enderlook.Memory.Allocators.UnmanagedAllocator`1"/>
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.UnmanagedAllocatorFactory.Shared">
+            <summary>
+            Already boxed instance of the factory.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocatorFactory.CreateAllocator``1">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.ISegmentAllocatorFactory.CreateAllocator``1"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.ISegmentAllocatorFactory">
+            <summary>
+            Represent a factory of allocators.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ISegmentAllocatorFactory.CreateAllocator``1">
+            <summary>
+            Creates an allocator for an specific type.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+            <returns>Allocator.</returns>
+        </member>
         <member name="T:Enderlook.Memory.Arenas.Arena">
             <summary>
             Represent a region based allocator that supports multiple element types.
             </summary>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.Arena.#ctor(Enderlook.Memory.Allocators.IAllocatorFactory,System.Int32)">
+        <member name="M:Enderlook.Memory.Arenas.Arena.#ctor(Enderlook.Memory.Allocators.ISegmentAllocatorFactory,Enderlook.Memory.Arenas.ArenaFlags,System.Int32)">
             <summary>
             Creates a new arena.
             </summary>
             <param name="factory">Factory of allocators.</param>
+            <param name="flags">Configuration of the arena.</param>
             <param name="blockSize">Size of allocations in elements.</param>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.Arena.Allocate``1(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena.Allocate``1(System.Int32)"/>
+        <member name="M:Enderlook.Memory.Arenas.Arena.AllocateMemory``1(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaMemory.Allocate``1(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena.AllocateZeroedMemory``1(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaMemory.AllocateZeroed``1(System.Int32)"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena.Allocate``1">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena.Allocate``1"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaReference.Allocate``1"/>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena.AllocateZeroed``1">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaReference.AllocateZeroed``1"/>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena.Allocate``1(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSequence.Allocate``1(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena.AllocateZeroed``1(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSequence.AllocateZeroed``1(System.Int32)"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena.AllocateSpan``1(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena.AllocateSpan``1(System.Int32)"/>
-        </member>
-        <member name="M:Enderlook.Memory.Arenas.Arena.ZeroedAllocate``1(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena.ZeroedAllocate``1(System.Int32)"/>
-        </member>
-        <member name="M:Enderlook.Memory.Arenas.Arena.ZeroedAllocate``1">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena.ZeroedAllocate``1"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSpan.Allocate``1(System.Int32)"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena.ZeroedAllocateSpan``1(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena.ZeroedAllocateSpan``1(System.Int32)"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSpan.AllocateZeroed``1(System.Int32)"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena.Allocated">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena.Allocated"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaBasic.Allocated"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena.Reset">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena.Reset"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaBasic.Reset"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena.Dispose">
             <inheritdoc cref="M:System.IDisposable.Dispose"/>
@@ -285,133 +620,214 @@
             <typeparam name="TElement">Type of element allocated by the arena.</typeparam>
             <returns>Aren</returns>
         </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena.Enderlook#Memory#Arenas#IArenaSpan#Allocate``1(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSpan.Allocate``1(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena.Enderlook#Memory#Arenas#IArenaSpan#AllocateZeroed``1(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSpan.AllocateZeroed``1(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena.Enderlook#Memory#Arenas#IArenaMemory#Allocate``1(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaMemory.Allocate``1(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena.Enderlook#Memory#Arenas#IArenaMemory#AllocateZeroed``1(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaMemory.AllocateZeroed``1(System.Int32)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Arenas.ArenaFlags">
+            <summary>
+            Flags that configures behaviour of the arena.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Arenas.ArenaFlags.Default">
+            <summary>
+            Default configuration.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Arenas.ArenaFlags.ClearMemoryAtReset">
+            <summary>
+            Allocated memory is cleared at each reset to prevent unknown reads.<br/>
+            In case of reference types, this is useful to avoid tracking unused references.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Arenas.ArenaFlags.ClearMemoryAtDispose">
+            <summary>
+            Allocated memory is cleared on dispose to prevent unknown reads.<br/>
+            In case of reference types, this is useful to avoid tracking unused references.
+            </summary>
+        </member>
         <member name="T:Enderlook.Memory.Arenas.Arena`3">
             <summary>
             Represent a region based allocator.
             </summary>
             <typeparam name="TElement">Type of element to allocate.</typeparam>
-            <typeparam name="TSegmentOwner">Type of segment owner.</typeparam>
             <typeparam name="TAllocator">Type of allocator.</typeparam>
+            <typeparam name="TSegmentOwner">Type of segment owner.</typeparam>
         </member>
-        <member name="T:Enderlook.Memory.Arenas.Arena`3.Flags">
-            <summary>
-            Flags that configures behaviour of the arena.
-            </summary>
-        </member>
-        <member name="F:Enderlook.Memory.Arenas.Arena`3.Flags.ClearMemoryAtReset">
-            <summary>
-            Allocated memory is cleared at each reset to prevent unknown reads.<br/>
-            In case of reference types, this is useful to avoid tracking unused references.
-            </summary>
-        </member>
-        <member name="F:Enderlook.Memory.Arenas.Arena`3.Flags.ClearMemoryAtDispose">
-            <summary>
-            Allocated memory is cleared at each reset to prevent unknown reads.<br/>
-            In case of reference types, this is useful to avoid tracking unused references.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Memory.Arenas.Arena`3.#ctor(`2,System.Int32)">
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.#ctor(`1,Enderlook.Memory.Arenas.ArenaFlags,System.Int32)">
             <summary>
             Construct an arena allocator.
             </summary>
             <param name="allocator">Allocator used.</param>
+            <param name="flags">Configuration of the arena.</param>
             <param name="blockSize">Default size of blocks to allocate</param>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena`3.AllocateSpan(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena`1.AllocateSpan(System.Int32)"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSpan`1.Allocate(System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.Arena`3.ZeroedAllocateSpan(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena`1.AllocateSpan(System.Int32)"/>
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.AllocateZeroedSpan(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSpan`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.AllocateMemory(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaMemory`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.AllocateZeroedMemory(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaMemory`1.AllocateZeroed(System.Int32)"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena`3.Allocate(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena`1.Allocate(System.Int32)"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSequence`1.Allocate(System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.Arena`3.ZeroedAllocate(System.Int32)">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena`1.ZeroedAllocate(System.Int32)"/>
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSequence`1.AllocateZeroed(System.Int32)"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena`3.Allocate">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena`1.Allocate"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaReference`1.Allocate"/>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.Arena`3.ZeroedAllocate">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena`1.ZeroedAllocate"/>
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.AllocateZeroed">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaReference`1.AllocateZeroed"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena`3.Allocated">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena`1.Allocate(System.Int32)"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaBasic.Allocated"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena`3.Reset">
-            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArena`1.Reset"/>
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaBasic.Reset"/>
         </member>
         <member name="M:Enderlook.Memory.Arenas.Arena`3.Dispose">
             <inheritdoc cref="M:System.IDisposable.Dispose"/>
         </member>
-        <member name="T:Enderlook.Memory.Arenas.IArena`1">
-            <summary>
-            Represent a region based allocator.
-            </summary>
-            <typeparam name="TElement">Type of element to allocate.</typeparam>
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.Enderlook#Memory#Arenas#IArenaSpan{TElement}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSpan`1.Allocate(System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena`1.Allocate(System.Int32)">
-            <summary>
-            Allocates a (possibly non-contiguous) sequence of elements of the specified length.
-            </summary>
-            <param name="length">Length of the sequence in elements.</param>
-            <returns>New sequence.</returns>
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.Enderlook#Memory#Arenas#IArenaSpan{TElement}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaSpan`1.AllocateZeroed(System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena`1.ZeroedAllocate(System.Int32)">
-            <summary>
-            Allocates a (possibly non-contiguous) sequence of elements of the specified length.<br/>
-            Memory is zeroed.
-            </summary>
-            <param name="length">Length of the sequence in elements.</param>
-            <returns>New sequence.</returns>
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.Enderlook#Memory#Arenas#IArenaMemory{TElement}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaMemory`1.Allocate(System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena`1.AllocateSpan(System.Int32)">
-            <summary>
-            Allocates a span of elements of the specified length.
-            </summary>
-            <param name="length">Length of the span in elements.</param>
-            <returns>New span.</returns>
-            <remarks>This method can waste space if the remaining space of current segment is not enought to allocate an span.</remarks>
-        </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena`1.ZeroedAllocateSpan(System.Int32)">
-            <summary>
-            Allocates a span of elements of the specified length.<br/>
-            Memory is zeroed.
-            </summary>
-            <param name="length">Length of the span in elements.</param>
-            <returns>New span.</returns>
-            <remarks>This method can waste space if the remaining space of current segment is not enought to allocate an span.</remarks>
-        </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena`1.Allocate">
-            <summary>
-            Allocates a single element.
-            </summary>
-            <returns>New reference.</returns>
-        </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena`1.ZeroedAllocate">
-            <summary>
-            Allocates a single element.<br/>
-            Memory is zeroed.
-            </summary>
-            <returns>New reference.</returns>
-        </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena`1.Allocated">
-            <summary>
-            Determines the number of allocated elements since last reset.
-            </summary>
-            <returns>Number of allocated elements since last reset.</returns>
-        </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena`1.Reset">
-            <summary>
-            Turn into undefined behaviour all emited spans, sequences and references and reuses their memory.
-            </summary>
+        <member name="M:Enderlook.Memory.Arenas.Arena`3.Enderlook#Memory#Arenas#IArenaMemory{TElement}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Arenas.IArenaMemory`1.AllocateZeroed(System.Int32)"/>
         </member>
         <member name="T:Enderlook.Memory.Arenas.IArena">
             <summary>
-            Represent a region based allocator that support multiple types.
+            Represent a region-based allocator.
             </summary>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena.Allocate``1(System.Int32)">
+        <member name="T:Enderlook.Memory.Arenas.IArenaBasic">
+            <summary>
+            Represent the basic functionality of region-based allocator.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaBasic.Allocated">
+            <summary>
+            Determines the number of allocated bytes since last reset.
+            </summary>
+            <returns>Number of allocated bytes since last reset.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaBasic.Reset">
+            <summary>
+            Turn into undefined behaviour all emited spans, sequences and references and reuses their memory.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Memory.Arenas.IArenaMemory">
+            <summary>
+            Represent a region-based allocator that allocates memory of elements of multiple types.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaMemory.Allocate``1(System.Int32)">
+            <summary>
+            Allocates a memory of elements of the specified length.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+            <param name="length">Length of the memory in elements.</param>
+            <returns>New memory.</returns>
+            <remarks>This method can waste space if the remaining space of current segment is not enought to allocate a memory.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaMemory.AllocateZeroed``1(System.Int32)">
+            <summary>
+            Allocates a memory of elements of the specified length.<br/>
+            Memory is zeroed.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+            <param name="length">Length of the memory in elements.</param>
+            <returns>New memory.</returns>
+            <remarks>This method can waste space if the remaining space of current segment is not enought to allocate a memory.</remarks>
+        </member>
+        <member name="T:Enderlook.Memory.Arenas.IArenaMemory`1">
+            <summary>
+            Represent a region-based allocator that allocates memory of elements.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaMemory`1.Allocate(System.Int32)">
+            <summary>
+            Allocates a memory of elements of the specified length.
+            </summary>
+            <param name="length">Length of the memory in elements.</param>
+            <returns>New memory.</returns>
+            <remarks>This method can waste space if the remaining space of current segment is not enought to allocate a memory.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaMemory`1.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a memory of elements of the specified length.<br/>
+            Memory is zeroed.
+            </summary>
+            <param name="length">Length of the memory in elements.</param>
+            <returns>New memory.</returns>
+            <remarks>This method can waste space if the remaining space of current segment is not enought to allocate a memory.</remarks>
+        </member>
+        <member name="T:Enderlook.Memory.Arenas.IArenaReference">
+            <summary>
+            Represent a region-based allocator that allocates single elements of multiple types.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaReference.Allocate``1">
+            <summary>
+            Allocates a single element.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+            <returns>New reference.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaReference.AllocateZeroed``1">
+            <summary>
+            Allocates a single element.<br/>
+            Memory is zeroed.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+            <returns>New reference.</returns>
+        </member>
+        <member name="T:Enderlook.Memory.Arenas.IArenaReference`1">
+            <summary>
+            Represent a region-based allocator that allocates single elements.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaReference`1.Allocate">
+            <summary>
+            Allocates a single element.
+            </summary>
+            <returns>New reference.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaReference`1.AllocateZeroed">
+            <summary>
+            Allocates a single element.<br/>
+            Memory is zeroed.
+            </summary>
+            <returns>New reference.</returns>
+        </member>
+        <member name="T:Enderlook.Memory.Arenas.IArenaSequence">
+            <summary>
+            Represent a region-based allocator that allocates sequence of elements of multiple types.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaSequence.Allocate``1(System.Int32)">
             <summary>
             Allocates a (possibly non-contiguous) sequence of elements of the specified length.
             </summary>
@@ -419,7 +835,7 @@
             <param name="length">Length of the sequence in elements.</param>
             <returns>New sequence.</returns>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena.ZeroedAllocate``1(System.Int32)">
+        <member name="M:Enderlook.Memory.Arenas.IArenaSequence.AllocateZeroed``1(System.Int32)">
             <summary>
             Allocates a (possibly non-contiguous) sequence of elements of the specified length.<br/>
             Memory is zeroed.
@@ -428,18 +844,44 @@
             <param name="length">Length of the sequence in elements.</param>
             <returns>New sequence.</returns>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena.AllocateSpan``1(System.Int32)">
+        <member name="T:Enderlook.Memory.Arenas.IArenaSequence`1">
             <summary>
-            Allocates a span of elements of the specified length.
+            Represent a region-based allocator that allocates sequence of elements.
+            </summary>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaSequence`1.Allocate(System.Int32)">
+            <summary>
+            Allocates a (possibly non-contiguous) sequence of elements of the specified length.
+            </summary>
+            <param name="length">Length of the sequence in elements.</param>
+            <returns>New sequence.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaSequence`1.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a (possibly non-contiguous) sequence of elements of the specified length.<br/>
+            Memory is zeroed.
+            </summary>
+            <param name="length">Length of the sequence in elements.</param>
+            <returns>New sequence.</returns>
+        </member>
+        <member name="T:Enderlook.Memory.Arenas.IArenaSpan">
+            <summary>
+            Represent a region-based allocator that allocates spans of elements of multiple types.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaSpan.Allocate``1(System.Int32)">
+            <summary>
+            Allocates an span of elements of the specified length.
             </summary>
             <typeparam name="TElement">Type of element to allocate.</typeparam>
             <param name="length">Length of the span in elements.</param>
             <returns>New span.</returns>
             <remarks>This method can waste space if the remaining space of current segment is not enought to allocate an span.</remarks>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena.ZeroedAllocateSpan``1(System.Int32)">
+        <member name="M:Enderlook.Memory.Arenas.IArenaSpan.AllocateZeroed``1(System.Int32)">
             <summary>
-            Allocates a span of elements of the specified length.<br/>
+            Allocates an span of elements of the specified length.<br/>
             Memory is zeroed.
             </summary>
             <typeparam name="TElement">Type of element to allocate.</typeparam>
@@ -447,30 +889,50 @@
             <returns>New span.</returns>
             <remarks>This method can waste space if the remaining space of current segment is not enought to allocate an span.</remarks>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena.Allocate``1">
+        <member name="T:Enderlook.Memory.Arenas.IArenaSpan`1">
             <summary>
-            Allocates a single element.
+            Represent a region-based allocator that allocates spans of elements.
             </summary>
             <typeparam name="TElement">Type of element to allocate.</typeparam>
-            <returns>New reference.</returns>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena.ZeroedAllocate``1">
+        <member name="M:Enderlook.Memory.Arenas.IArenaSpan`1.Allocate(System.Int32)">
             <summary>
-            Allocates a single element.<br/>
+            Allocates an span of elements of the specified length.
+            </summary>
+            <param name="length">Length of the span in elements.</param>
+            <returns>New span.</returns>
+            <remarks>This method can waste space if the remaining space of current segment is not enought to allocate an span.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.Arenas.IArenaSpan`1.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates an span of elements of the specified length.<br/>
             Memory is zeroed.
             </summary>
-            <typeparam name="TElement">Type of element to allocate.</typeparam>
-            <returns>New reference.</returns>
+            <param name="length">Length of the span in elements.</param>
+            <returns>New span.</returns>
+            <remarks>This method can waste space if the remaining space of current segment is not enought to allocate an span.</remarks>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena.Allocated">
+        <member name="T:Enderlook.Memory.Arenas.IArena`1">
             <summary>
-            Determines the number of allocated elements since last reset.
+            Represent a region-based allocator.
             </summary>
-            <returns>Number of allocated elements since last reset.</returns>
+            <typeparam name="TElement">Type of element to allocate.</typeparam>
         </member>
-        <member name="M:Enderlook.Memory.Arenas.IArena.Reset">
+        <member name="T:Enderlook.Memory.ISegmentOwner`1">
             <summary>
-            Turn into undefined behaviour all emited spans, sequences and references and reuses their memory.
+            Represent an owner of a segment of memory.
+            </summary>
+            <typeparam name="TElement">Type of element in the segment.</typeparam>
+        </member>
+        <member name="T:Enderlook.Memory.ISpanOwner`1">
+            <summary>
+            Represent an owner of an span.
+            </summary>
+            <typeparam name="TElement">Type of element in the span.</typeparam>
+        </member>
+        <member name="P:Enderlook.Memory.ISpanOwner`1.Span">
+            <summary>
+            Owned span.
             </summary>
         </member>
         <member name="T:Enderlook.Memory.Reference`1">
@@ -584,6 +1046,11 @@
             Next segments of memory.
             </summary>
         </member>
+        <member name="P:Enderlook.Memory.ISequenceSegment`1.TotalLength">
+            <summary>
+            Length of the owned memory of this segment and the following ones.
+            </summary>
+        </member>
         <member name="M:Enderlook.Memory.ISequenceSegment`1.IsContained(System.Int32,System.Int32)">
             <summary>
             Determines if the span delimited by <paramref name="offset"/> and <paramref name="length"/> is contained in a single segment.
@@ -668,6 +1135,9 @@
         <member name="P:Enderlook.Memory.SequenceSegment`2.Length">
             <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Length"/>
         </member>
+        <member name="P:Enderlook.Memory.SequenceSegment`2.TotalLength">
+            <inheritdoc cref="P:Enderlook.Memory.ISequenceSegment`1.TotalLength"/>
+        </member>
         <member name="P:Enderlook.Memory.SequenceSegment`2.Item(System.Int32)">
             <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Item(System.Int32)"/>
         </member>
@@ -709,18 +1179,93 @@
             </summary>
             <typeparam name="TElement">Type of elements in the sequence.</typeparam>
         </member>
+        <member name="P:Enderlook.Memory.Sequence`1.Empty">
+            <summary>
+            Returns an empty <see cref="T:Enderlook.Memory.Sequence`1"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.#ctor(`0[])">
+            <summary>
+            Construct a new sequence.
+            </summary>
+            <param name="array">Array of elements.</param>
+            <exception cref="T:System.ArrayTypeMismatchException">Thrown when <paramref name="array"/> is covariant and array's type is not exactly <c>T[]</c>.</exception>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.#ctor(`0[],System.Int32)">
+            <summary>
+            Construct a new sequence.
+            </summary>
+            <param name="array">Array of elements.</param>
+            <param name="start">Offset relative within the array.</param>
+            <exception cref="T:System.ArrayTypeMismatchException">Thrown when <paramref name="array"/> is covariant and array's type is not exactly <c>T[]</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the specified <paramref name="start"/> is negative or larger than <paramref name="array"/> length.</exception>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.#ctor(`0[],System.Int32,System.Int32)">
+            <summary>
+            Construct a new sequence.
+            </summary>
+            <param name="array">Array of elements.</param>
+            <param name="start">Offset relative within the array.</param>
+            <param name="length">Length of the sequence.</param>
+            <exception cref="T:System.ArrayTypeMismatchException">Thrown when <paramref name="array"/> is covariant and array's type is not exactly <c>T[]</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the specified <paramref name="start"/> is lesser than 0 or when the sum of <paramref name="start"/> and <paramref name="length"/> is greater than <paramref name="array"/> length.</exception>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.#ctor(Enderlook.Memory.ISequenceSegment{`0})">
+            <summary>
+            Construct a new sequence.
+            </summary>
+            <param name="segment">First block of memory.</param>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.#ctor(Enderlook.Memory.ISequenceSegment{`0},System.Int32)">
+            <summary>
+            Construct a new sequence.
+            </summary>
+            <param name="segment">First block of memory.</param>
+            <param name="start">Offset relative within the segment.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the specified <paramref name="start"/> is lesser than 0 or is greater than <paramref name="segment"/> length.</exception>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.#ctor(Enderlook.Memory.ISequenceSegment{`0},System.Int32,System.Int32)">
+            <summary>
+            Construct a new sequence.
+            </summary>
+            <param name="segment">First block of memory.</param>
+            <param name="start">Offset relative within the segment.</param>
+            <param name="length">Length of the sequence.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the specified <paramref name="start"/> is lesser than 0 or when the sum of <paramref name="start"/> and <paramref name="length"/> is greater than <paramref name="segment"/> length.</exception>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.CreateUnchecked(System.Object,System.Int32,System.Int32)">
+            <summary>
+            Creates a new instance wtihout perfoming any kind of validataion.
+            </summary>
+            <param name="obj">Underlying storage.</param>
+            <param name="start">Offset within the sotrage.</param>
+            <param name="length">Length of the sequence.</param>
+            <returns>New unchecked instance.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.op_Implicit(`0[])~Enderlook.Memory.Sequence{`0}">
+            <summary>
+            Defines an implicit conversion of an array to a <see cref="T:Enderlook.Memory.Sequence`1"/>
+            </summary>
+            <param name="array">Element to convert.</param>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.op_Implicit(System.ArraySegment{`0})~Enderlook.Memory.Sequence{`0}">
+            <summary>
+            Defines an implicit conversion of a <see cref="T:System.ArraySegment`1"/> to a <see cref="T:Enderlook.Memory.Sequence`1"/>
+            </summary>
+            <param name="segment">Element to convert.</param>
+        </member>
         <member name="P:Enderlook.Memory.Sequence`1.Length">
             <inheritdoc cref="P:Enderlook.Memory.ISegment`1.Length"/>
+        </member>
+        <member name="P:Enderlook.Memory.Sequence`1.IsEmpty">
+            <summary>
+            Whenever the sequence is empty (contains no elements).
+            </summary>
         </member>
         <member name="P:Enderlook.Memory.Sequence`1.IsSingleSegment">
             <summary>
             Whenever the sequence involves multiple segments.<br/>
             If <see langword="true"/>, all elements are located in a single segment of memory.
-            </summary>
-        </member>
-        <member name="P:Enderlook.Memory.Sequence`1.IsEmpty">
-            <summary>
-            Whenever the sequence is empty (contains no elements).
             </summary>
         </member>
         <member name="P:Enderlook.Memory.Sequence`1.Item(System.Int32)">
@@ -734,30 +1279,6 @@
             Extract the first span of this sequence.<br/>
             If <see cref="P:Enderlook.Memory.Sequence`1.IsSingleSegment"/> is <see langword="true"/>, then this span contains the whole sequence.
             </summary>
-        </member>
-        <member name="M:Enderlook.Memory.Sequence`1.#ctor(System.Object,System.Int32,System.Int32)">
-            <summary>
-            Construct a new sequence.
-            </summary>
-            <param name="obj">Backing object.</param>
-            <param name="start">Offset relative within the segment.</param>
-            <param name="length">Length of the sequence.</param>
-        </member>
-        <member name="M:Enderlook.Memory.Sequence`1.#ctor(Enderlook.Memory.ISequenceSegment{`0},System.Int32,System.Int32)">
-            <summary>
-            Construct a new sequence.
-            </summary>
-            <param name="segment">First block of memory.</param>
-            <param name="start">Offset relative within the segment.</param>
-            <param name="length">Length of the sequence.</param>
-        </member>
-        <member name="M:Enderlook.Memory.Sequence`1.#ctor(`0[],System.Int32,System.Int32)">
-            <summary>
-            Construct a new sequence.
-            </summary>
-            <param name="array">Array of elements.</param>
-            <param name="start">Offset relative within the array.</param>
-            <param name="length">Length of the sequence.</param>
         </member>
         <member name="M:Enderlook.Memory.Sequence`1.Equals(Enderlook.Memory.Sequence{`0})">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
@@ -796,7 +1317,7 @@
         <member name="M:Enderlook.Memory.Sequence`1.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
         </member>
-        <member name="M:Enderlook.Memory.Sequence`1.GetSpanEnumerator">
+        <member name="P:Enderlook.Memory.Sequence`1.AsSpanEnumerable">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Enderlook.Memory.Sequence`1.Clear">
@@ -827,6 +1348,12 @@
             <param name="index">Index of the element.</param>
             <returns>Reference to the specified index.</returns>
         </member>
+        <member name="M:Enderlook.Memory.Sequence`1.ToString">
+            <summary>
+            For <see cref="T:Enderlook.Memory.Sequence`1"/>, returns a new instance of string that represents the characters pointed to by the memory.
+            Otherwise, returns a <see cref="T:System.String"/> with the name of the type and the number of elements.
+            </summary>
+        </member>
         <member name="T:Enderlook.Memory.Sequence`1.Enumerator">
             <summary>
             Represent an enumerator of elements.
@@ -847,15 +1374,19 @@
         <member name="M:Enderlook.Memory.Sequence`1.Enumerator.Reset">
             <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
         </member>
-        <member name="M:Enderlook.Memory.Sequence`1.Enumerator.GetEnumerator">
-            <summary>
-            Returns a new enumerator based on this one.
-            </summary>
-            <returns>Enumerator.</returns>
-            <remarks>This is used to conform the C# foreach shape.</remarks>
-        </member>
         <member name="M:Enderlook.Memory.Sequence`1.Enumerator.System#IDisposable#Dispose">
             <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="T:Enderlook.Memory.Sequence`1.SpanEnumerable">
+            <summary>
+            Represent an enumerable of spans.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Sequence`1.SpanEnumerable.GetEnumerator">
+            <summary>
+            Produces an enumerator of spans.
+            </summary>
+            <returns>Span enumerator.</returns>
         </member>
         <member name="T:Enderlook.Memory.Sequence`1.SpanEnumerator">
             <summary>
@@ -871,12 +1402,81 @@
         <member name="M:Enderlook.Memory.Sequence`1.SpanEnumerator.Reset">
             <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
         </member>
-        <member name="M:Enderlook.Memory.Sequence`1.SpanEnumerator.GetEnumerator">
+        <member name="T:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1">
             <summary>
-            Returns a new enumerator based on this one.
+            A <see cref="T:System.Buffers.MemoryManager`1"/> over a <see cref="M:System.Runtime.InteropServices.Marshal.AllocHGlobal(System.Int32)"/>.
             </summary>
-            <returns>Span enumerator.</returns>
-            <remarks>This is used to conform the C# foreach shape.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.#ctor(System.Int32)">
+            <summary>
+            Create a new UnmanagedMemoryManager instance at the given pointer and size.
+            </summary>
+            <param name="length">Length of region to allocate.</param>
+            <remarks>Memory is not zeroed.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Create a new UnmanagedMemoryManager instance at the given pointer and size.
+            </summary>
+            <param name="length">Length of region to allocate.</param>
+            <param name="zeroed">Whenever if the region of memory allocated is zeroed or not.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.GetSpan">
+            <summary>
+            Obtains a span that represents the memory region.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.Pin(System.Int32)">
+            <summary>
+            Provides access to a pointer that represents the data.
+            </summary>
+            <remarks>No actual pin occurs.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.Unpin">
+            <summary>
+            Has no effect.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.Dispose(System.Boolean)">
+            <summary>
+            Dispose the unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Memory.UnmanagedMemoryManager`1">
+            <summary>
+            A <see cref="T:System.Buffers.MemoryManager`1"/> over a raw unmanaged pointer.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.#ctor(`0*,System.Int32)">
+            <summary>
+            Create a new UnmanagedMemoryManager instance at the given pointer and size
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.#ctor(System.IntPtr,System.Int32)">
+            <summary>
+            Create a new UnmanagedMemoryManager instance at the given pointer and size
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.GetSpan">
+            <summary>
+            Obtains a span that represents the memory region.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.Pin(System.Int32)">
+            <summary>
+            Provides access to a pointer that represents the data.
+            </summary>
+            <remarks>No actual pin occurs.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.Unpin">
+            <summary>
+            Has no effect.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.Dispose(System.Boolean)">
+            <summary>
+            Has no effect.
+            </summary>
         </member>
     </members>
 </doc>
