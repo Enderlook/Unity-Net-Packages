@@ -1,0 +1,662 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.Collections.LowLevel</name>
+    </assembly>
+    <members>
+        <member name="T:Enderlook.Collections.LowLevel.DynamicArray`1">
+            <summary>
+            Defines a lighweight, zero-cost, simple dynamic array with no safety costly features.
+            </summary>
+            <typeparam name="T">Type of the array.</typeparam>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.Item(System.Int32)">
+            <summary>
+            Access an element from the array.
+            </summary>
+            <param name="index">index to access.</param>
+            <returns>Reference to the element of the given index.</returns>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.System#Collections#Generic#IList{T}#Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IList`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.System#Collections#Generic#IReadOnlyList{T}#Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.Count">
+            <summary>
+            Used slots in the array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.Capacity">
+            <summary>
+            Capacity of the array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
+            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that the underlying array can hold up to a specified number of element without any further expansion of its backing storage.
+            </summary>
+            <param name="minCapacity">Minimal amount of entried it must has capacity for.</param>
+            <returns>The current capacity.</returns>
+            <remarks>In contrast with other types that has this method, this one doesn't throw if <paramref name="minCapacity"/> is negative.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.IsEmpty">
+            <summary>
+            Determines if this array is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.IsDefault">
+            <summary>
+            Determines if this dynamic array was not initialized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.IsDefaultOrEmpty">
+            <summary>
+            Determines if this dynamic array was not initialized or is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.AsSpan">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.UnderlyingArray">
+            <summary>
+            Returns the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Create(`0[],System.Int32)">
+            <summary>
+            Creates a dynamic array from an existent array consuming it.
+            </summary>
+            <param name="array">Array to consume.</param>
+            <param name="count">Consumed part of the array.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Create(`0[])">
+            <summary>
+            Creates a dynamic array from an existent array consuming it.
+            </summary>
+            <param name="array">Array to consume.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Create">
+            <summary>
+            Creates a dynamic array.
+            </summary>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Create(System.Int32)">
+            <summary>
+            Creates a dynamic array with an specified capacity.
+            </summary>
+            <param name="initialSize">Capacity of the underlying array.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Create(System.ReadOnlySpan{`0})">
+            <summary>
+            Creates a dynamic array from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Create``1(``0)">
+            <summary>
+            Creates a dynamic array from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.CreateFromEnumerator``1(``0)">
+            <summary>
+            Creates a dynamic array from an enumerator.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Add(`0)">
+            <summary>
+            Add an element to the array.
+            </summary>
+            <param name="element">Element to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.AddRange(`0[])">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.AddRange``1(``0)">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.AddRangeEnumerator``1(``0)">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.AddRange(System.ReadOnlySpan{`0})">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Clear">
+            <summary>
+            Clear the content of the array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Contains(`0)">
+            <summary>
+            Determines if the specified item is contained in this collection.
+            </summary>
+            <param name="item">Element to search.</param>
+            <returns>Whenever the element is contained or not.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.CopyTo(`0[])">
+            <summary>
+            Copies the content of this dynamic array into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the content of this dynamic array into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+            <param name="startIndex">In which index from <paramref name="array"/> elements should start be copying.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.CopyTo(System.Int32,`0[],System.Int32,System.Int32)">
+            <summary>
+            Copies the content of this dynamic array into <paramref name="array"/>.
+            </summary>
+            <param name="index">In which index from current instance elements should start be copying.</param>
+            <param name="array">Where elements are coppied to.</param>
+            <param name="startIndex">In which index from <paramref name="array"/> elements should start be copying.</param>
+            <param name="count">Amount of elements to copy.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.BinarySearch(System.Int32,System.Int32,`0,System.Collections.Generic.IComparer{`0})">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],System.Int32,System.Int32,``0,System.Collections.Generic.IComparer{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.BinarySearch(System.Int32,System.Int32,`0)">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],System.Int32,System.Int32,``0)"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.BinarySearch(`0,System.Collections.Generic.IComparer{`0})">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],``0,System.Collections.Generic.IComparer{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.BinarySearch(`0)">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],``0)"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.IndexOf(`0)">
+            <summary>
+            Finds the index of the first ocurrence of a given value in a range of this dynamic array.<br/>
+            The list is searched forwards, starting at 0.<br/>
+            The elements of the list are compared to the given value using the <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="item">Element to search its index.</param>
+            <returns>Index where the specified item is located in the specified range, or -1.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.IndexOf(`0,System.Int32)">
+            <summary>
+            Finds the index of the first ocurrence of a given value in a range of this dynamic array.<br/>
+            The list is searched forwards, starting at <paramref name="index"/>.<br/>
+            The elements of the list are compared to the given value using the <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="item">Element to search its index.</param>
+            <param name="index">Search will start at his index.</param>
+            <returns>Index where the specified item is located in the specified range, or -1.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.IndexOf(`0,System.Int32,System.Int32)">
+            <summary>
+            Finds the index of the first ocurrence of a given value in a range of this dynamic array.<br/>
+            The list is searched forwards, starting at <paramref name="index"/> and ending at <paramref name="count"/> number of elements.<br/>
+            The elements of the list are compared to the given value using the <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="item">Element to search its index.</param>
+            <param name="index">Search will start at his index.</param>
+            <param name="count">Amount of elements to search after <paramref name="index"/>.</param>
+            <returns>Index where the specified item is located in the specified range, or -1.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Insert(System.Int32,`0)">
+            <summary>
+            Inserts an element into this dynamic array at a given index.
+            </summary>
+            <param name="index">Index where element is inserted.</param>
+            <param name="item">Element to insert.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.InsertRange(System.Int32,System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Inserts the elements of the given collection at a given index.<br/>
+            Ranges may be added to the end of the list by setting index to the List's size.
+            </summary>
+            <param name="index">Index where elements are inserted.</param>
+            <param name="collection">Elements to insert.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Remove(`0)">
+            <summary>
+            Removes the first element of the dynamic array which matches equality with <paramref name="element"/>.
+            </summary>
+            <param name="element">Element to remove.</param>
+            <returns>Whenever an element was removed or not because it was not found.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.RemoveAt(System.Int32)">
+            <summary>
+            Removes the element at the given index.
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.RemoveRange(System.Int32,System.Int32)">
+            <summary>
+            Removes a range of elements from the dynamic array.
+            </summary>
+            <param name="index">Start of elements to remove.</param>
+            <param name="count">Amount of elements to remove.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Reverse">
+            <summary>
+            Reverse the content of the array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Reverse(System.Int32,System.Int32)">
+            <summary>
+            Reverse a range of elements.
+            </summary>
+            <param name="index">Start of elements to reverse.</param>
+            <param name="count">Amount of elements to reverse.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Sort">
+            <summary>
+            Sort the elements of this dynamic array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Sort(System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Sort the elements of this dynamic array using the provided comparer.
+            </summary>
+            <param name="comparer">Comparer used to compare elements.<br/>
+            If <see langword="null"/>, the elements are compared to each other using the <see cref="T:System.IComparable"/> interface which must be implemented by all elements of the list.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Sort(System.Int32,System.Int32,System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Sort the range elements of this dynamic array using the provided comparer.
+            </summary>
+            <param name="index">Start element to sort.</param>
+            <param name="count">Amount of elements to sort.</param>
+            <param name="comparer">Comparer used to compare elements.<br/>
+            If <see langword="null"/>, the elements are compared to each other using the <see cref="T:System.IComparable"/> interface which must be implemented by all elements of the list.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.ToArray">
+            <summary>
+            Creates a new array containing the elements of this dynamic array.
+            </summary>
+            <returns>Copy of contained elements.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+        </member>
+        <member name="T:Enderlook.Collections.LowLevel.DynamicArray`1.Enumerator">
+            <summary>
+            Enumerator of <see cref="T:Enderlook.Collections.LowLevel.DynamicArray`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.Enumerator.IsDefault">
+            <summary>
+            Determines if this enumerator was not initialized.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Enumerator.MoveBack">
+            <summary>
+            Move the enumerator back by one.<br/>
+            If already at beginning, nothing happens.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Enumerator.Reset">
+            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Enumerator.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="T:Enderlook.Collections.LowLevel.DynamicPooledArray`1">
+            <summary>
+            Defines a lighweight, zero-cost, simple dynamic array with no safety costly features that uses <see cref="P:System.Buffers.ArrayPool`1.Shared"/> as array pool.
+            </summary>
+            <typeparam name="T">Type of the array.</typeparam>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Item(System.Int32)">
+            <summary>
+            Access an element from the array.
+            </summary>
+            <param name="index">index to access.</param>
+            <returns>Reference to the element of the given index.</returns>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.System#Collections#Generic#IList{T}#Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IList`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.System#Collections#Generic#IReadOnlyList{T}#Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Count">
+            <summary>
+            Used slots in the array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Capacity">
+            <summary>
+            Capacity of the array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
+            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that the underlying array can hold up to a specified number of element without any further expansion of its backing storage.
+            </summary>
+            <param name="minCapacity">Minimal amount of entried it must has capacity for.</param>
+            <returns>The current capacity.</returns>
+            <remarks>In contrast with other types that has this method, this one doesn't throw if <paramref name="minCapacity"/> is negative.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.IsEmpty">
+            <summary>
+            Determines if this array is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.IsDefault">
+            <summary>
+            Determines if this dynamic array was not initialized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.IsDefaultOrEmpty">
+            <summary>
+            Determines if this dynamic array was not initialized or is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.AsSpan">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.UnderlyingArray">
+            <summary>
+            Returns the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Create(`0[])">
+            <summary>
+            Creates a dynamic array from an existent array consuming it.
+            </summary>
+            <param name="array">Array to consume.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Create">
+            <summary>
+            Creates a dynamic array.
+            </summary>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Create(System.Int32)">
+            <summary>
+            Creates a dynamic array with an specified capacity.
+            </summary>
+            <param name="initialSize">Capacity of the underlying array.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Create(System.ReadOnlySpan{`0})">
+            <summary>
+            Creates a dynamic array with initial elements.
+            </summary>
+            <param name="elements">Array to consume.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Create``1(``0)">
+            <summary>
+            Creates a dynamic array from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.CreateFromEnumerator``1(``0)">
+            <summary>
+            Creates a dynamic array from an enumerator.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New dynamic array.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Add(`0)">
+            <summary>
+            Add an element to the array.
+            </summary>
+            <param name="element">Element to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.AddRange(`0[])">
+            <summary>
+            Add an element to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.AddRange``1(``0)">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.AddRangeEnumerator``1(``0)">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.AddRange(System.ReadOnlySpan{`0})">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Clear">
+            <summary>
+            Clear the content of the array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Contains(`0)">
+            <summary>
+            Determines if the specified item is contained in this collection.
+            </summary>
+            <param name="item">Element to search.</param>
+            <returns>Whenever the element is contained or not.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.CopyTo(`0[])">
+            <summary>
+            Copies the content of this dynamic array into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the content of this dynamic array into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+            <param name="startIndex">In which index from <paramref name="array"/> elements should start be copying.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.BinarySearch(System.Int32,System.Int32,`0,System.Collections.Generic.IComparer{`0})">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],System.Int32,System.Int32,``0,System.Collections.Generic.IComparer{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.BinarySearch(System.Int32,System.Int32,`0)">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],System.Int32,System.Int32,``0)"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.BinarySearch(`0,System.Collections.Generic.IComparer{`0})">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],``0,System.Collections.Generic.IComparer{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.BinarySearch(`0)">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],``0)"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.IndexOf(`0)">
+            <summary>
+            Finds the index of the first ocurrence of a given value in a range of this dynamic array.<br/>
+            The list is searched forwards, starting at 0.<br/>
+            The elements of the list are compared to the given value using the <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="item">Element to search its index.</param>
+            <returns>Index where the specified item is located in the specified range, or -1.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.IndexOf(`0,System.Int32)">
+            <summary>
+            Finds the index of the first ocurrence of a given value in a range of this dynamic array.<br/>
+            The list is searched forwards, starting at <paramref name="index"/>.<br/>
+            The elements of the list are compared to the given value using the <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="item">Element to search its index.</param>
+            <param name="index">Search will start at his index.</param>
+            <returns>Index where the specified item is located in the specified range, or -1.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.IndexOf(`0,System.Int32,System.Int32)">
+            <summary>
+            Finds the index of the first ocurrence of a given value in a range of this dynamic array.<br/>
+            The list is searched forwards, starting at <paramref name="index"/> and ending at <paramref name="count"/> number of elements.<br/>
+            The elements of the list are compared to the given value using the <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="item">Element to search its index.</param>
+            <param name="index">Search will start at his index.</param>
+            <param name="count">Amount of elements to search after <paramref name="index"/>.</param>
+            <returns>Index where the specified item is located in the specified range, or -1.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Insert(System.Int32,`0)">
+            <summary>
+            Inserts an element into this dynamic array at a given index.
+            </summary>
+            <param name="index">Index where element is inserted.</param>
+            <param name="item">Element to insert.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.InsertRange(System.Int32,System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Inserts the elements of the given collection at a given index.<br/>
+            Ranges may be added to the end of the list by setting index to the List's size.
+            </summary>
+            <param name="index">Index where elements are inserted.</param>
+            <param name="collection">Elements to insert.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Remove(`0)">
+            <summary>
+            Removes the first element of the dynamic array which matches equality with <paramref name="element"/>.
+            </summary>
+            <param name="element">Element to remove.</param>
+            <returns>Whenever an element was removed or not because it was not found.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.RemoveAt(System.Int32)">
+            <summary>
+            Removes the element at the given index.
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.RemoveRange(System.Int32,System.Int32)">
+            <summary>
+            Removes a range of elements from the dynamic array.
+            </summary>
+            <param name="index">Start of elements to remove.</param>
+            <param name="count">Amount of elements to remove.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Reverse">
+            <summary>
+            Reverse the content of the array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Reverse(System.Int32,System.Int32)">
+            <summary>
+            Reverse a range of elements.
+            </summary>
+            <param name="index">Start of elements to reverse.</param>
+            <param name="count">Amount of elements to reverse.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Sort">
+            <summary>
+            Sort the elements of this dynamic array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Sort(System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Sort the elements of this dynamic array using the provided comparer.
+            </summary>
+            <param name="comparer">Comparer used to compare elements.<br/>
+            If <see langword="null"/>, the elements are compared to each other using the <see cref="T:System.IComparable"/> interface which must be implemented by all elements of the list.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Sort(System.Int32,System.Int32,System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Sort the range elements of this dynamic array using the provided comparer.
+            </summary>
+            <param name="index">Start element to sort.</param>
+            <param name="count">Amount of elements to sort.</param>
+            <param name="comparer">Comparer used to compare elements.<br/>
+            If <see langword="null"/>, the elements are compared to each other using the <see cref="T:System.IComparable"/> interface which must be implemented by all elements of the list.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.ToArray">
+            <summary>
+            Creates a new array containing the elements of this dynamic array.
+            </summary>
+            <returns>Copy of contained elements.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+        </member>
+        <member name="T:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Enumerator">
+            <summary>
+            Enumerator of <see cref="T:Enderlook.Collections.LowLevel.DynamicPooledArray`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Enumerator.IsDefault">
+            <summary>
+            Determines if this enumerator was not initialized.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Enumerator.MoveBack">
+            <summary>
+            Move the enumerator back by one.<br/>
+            If already at beginning, nothing happens.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Enumerator.Reset">
+            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Enumerator.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+    </members>
+</doc>
