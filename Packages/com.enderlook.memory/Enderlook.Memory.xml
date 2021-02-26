@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.Memory</name>
+    </assembly>
+    <members>
+        <member name="T:Enderlook.Memory.IHasUnderlyingArray`1">
+            <summary>
+            Represent that this object has an underlying array to store its content.
+            </summary>
+            <typeparam name="T">Type of element in the array.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.IHasUnderlyingArray`1.GetUnderlyingArray">
+            <summary>
+            Returns the underlying array of this object.
+            This is unsafe.
+            </summary>
+            <returns>Underlying array.</returns>
+        </member>
+        <member name="T:Enderlook.Memory.IMemory`1">
+            <summary>
+            Represent a carrier of a <see cref="T:System.Memory`1"/>.
+            </summary>
+            <typeparam name="T">Type of element in the <see cref="T:System.Memory`1"/>.</typeparam>
+        </member>
+        <member name="P:Enderlook.Memory.IMemory`1.Memory">
+            <summary>
+            Carried memory.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Memory.ISpan`1">
+            <summary>
+            Represent a carrier of an <see cref="T:System.Span`1"/>.
+            </summary>
+            <typeparam name="T">Type of element in the <see cref="T:System.Span`1"/>.</typeparam>
+        </member>
+        <member name="P:Enderlook.Memory.ISpan`1.Span">
+            <summary>
+            Carried span.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Memory.ISpanOwner`1">
+            <summary>
+            Represent an owner of an span.
+            </summary>
+            <typeparam name="T">Type of element in the span.</typeparam>
+        </member>
+        <member name="T:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1">
+            <summary>
+            A <see cref="T:System.Buffers.MemoryManager`1"/> over a <see cref="M:System.Runtime.InteropServices.Marshal.AllocHGlobal(System.Int32)"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.#ctor(System.Int32)">
+            <summary>
+            Create a new <see cref="T:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1"/> instance at the given pointer and size.
+            </summary>
+            <param name="length">Length of region to allocate.</param>
+            <remarks>Memory is not zeroed.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Create a new <see cref="T:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1"/> instance at the given pointer and size.
+            </summary>
+            <param name="length">Length of region to allocate.</param>
+            <param name="zeroed">Whenever if the region of memory allocated is zeroed or not.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.GetSpan">
+            <summary>
+            Obtains a span that represents the memory region.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.Pin(System.Int32)">
+            <summary>
+            Provides access to a pointer that represents the data.
+            </summary>
+            <remarks>No actual pin occurs.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.Unpin">
+            <summary>
+            Has no effect.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedHGlobalMemoryManager`1.Dispose(System.Boolean)">
+            <summary>
+            Dispose the unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Memory.UnmanagedMemoryManager`1">
+            <summary>
+            A <see cref="T:System.Buffers.MemoryManager`1"/> over a raw unmanaged pointer.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.#ctor(`0*,System.Int32)">
+            <summary>
+            Create a new <see cref="T:Enderlook.Memory.UnmanagedMemoryManager`1"/> instance at the given pointer and size.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.#ctor(System.IntPtr,System.Int32)">
+            <summary>
+            Create a new <see cref="T:Enderlook.Memory.UnmanagedMemoryManager`1"/> instance at the given pointer and size.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.GetSpan">
+            <summary>
+            Obtains a span that represents the memory region.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.Pin(System.Int32)">
+            <summary>
+            Provides access to a pointer that represents the data.
+            </summary>
+            <remarks>No actual pin occurs.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.Unpin">
+            <summary>
+            Has no effect.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnmanagedMemoryManager`1.Dispose(System.Boolean)">
+            <summary>
+            Has no effect.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Memory.MemoryOwnerAdapter`1">
+            <summary>
+            Adapter of <see cref="T:System.Buffers.IMemoryOwner`1"/> to implement more interfaces
+            </summary>
+            <typeparam name="T">Type of element in the memory.</typeparam>
+        </member>
+        <member name="P:Enderlook.Memory.MemoryOwnerAdapter`1.MemoryOwner">
+            <summary>
+            Underlying <see cref="T:System.Buffers.IMemoryOwner`1"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`1.#ctor(System.Buffers.IMemoryOwner{`0})">
+            <summary>
+            Wrap an <see cref="T:System.Buffers.IMemoryOwner`1"/>.
+            </summary>
+            <param name="memoryOwner">Memory owner to wrap.</param>
+        </member>
+        <member name="P:Enderlook.Memory.MemoryOwnerAdapter`1.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="P:Enderlook.Memory.MemoryOwnerAdapter`1.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`1.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`1.op_Explicit(Enderlook.Memory.MemoryOwnerAdapter{`0})~System.Span{`0}">
+            <summary>
+            Extract the underlying memory as a span.
+            </summary>
+            <param name="source">Source of the span to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`1.op_Implicit(Enderlook.Memory.MemoryOwnerAdapter{`0})~System.Memory{`0}">
+            <summary>
+            Extract the underlying memory as memory.
+            </summary>
+            <param name="source">Source of the memory to extract.</param>
+        </member>
+        <member name="T:Enderlook.Memory.MemoryOwnerAdapter`2">
+            <summary>
+            Adapter of <see cref="T:System.Buffers.IMemoryOwner`1"/> to implement more interfaces.
+            </summary>
+            <typeparam name="T">Type of element in the memory.</typeparam>
+            <typeparam name="TMemoryOwner">Type of memory owner.</typeparam>
+        </member>
+        <member name="P:Enderlook.Memory.MemoryOwnerAdapter`2.MemoryOwner">
+            <summary>
+            Underlying <typeparamref name="TMemoryOwner"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`2.#ctor(`1)">
+            <summary>
+            Wrap an <typeparamref name="TMemoryOwner"/>.
+            </summary>
+            <param name="memoryOwner">Memory owner to wrap.</param>
+        </member>
+        <member name="P:Enderlook.Memory.MemoryOwnerAdapter`2.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="P:Enderlook.Memory.MemoryOwnerAdapter`2.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`2.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`2.op_Explicit(Enderlook.Memory.MemoryOwnerAdapter{`0,`1})~System.Span{`0}">
+            <summary>
+            Extract the underlying memory as a span.
+            </summary>
+            <param name="source">Source of the span to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`2.op_Implicit(Enderlook.Memory.MemoryOwnerAdapter{`0,`1})~System.Memory{`0}">
+            <summary>
+            Extract the underlying memory.
+            </summary>
+            <param name="source">Source of the memory to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`2.op_Implicit(Enderlook.Memory.MemoryOwnerAdapter{`0,`1})~`1">
+            <summary>
+            Extract the underlying memory owner.
+            </summary>
+            <param name="source">Source of the memory owner to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.MemoryOwnerAdapter`2.op_Implicit(`1)~Enderlook.Memory.MemoryOwnerAdapter{`0,`1}">
+            <summary>
+            Wrap an <typeparamref name="TMemoryOwner"/>.
+            </summary>
+            <param name="source">Memory owner to wrap.</param>
+        </member>
+        <member name="T:Enderlook.Memory.UnownedArray`1">
+            <summary>
+            Adapter of array to implement more interfaces.
+            <see cref="T:System.IDisposable"/> does nothing.
+            </summary>
+            <typeparam name="T">Type of element in the array.</typeparam>
+        </member>
+        <member name="P:Enderlook.Memory.UnownedArray`1.Array">
+            <summary>
+            Underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArray`1.#ctor(`0[])">
+            <summary>
+            Wrap an array.
+            </summary>
+            <param name="array">Array to wrap.</param>
+        </member>
+        <member name="P:Enderlook.Memory.UnownedArray`1.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="P:Enderlook.Memory.UnownedArray`1.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArray`1.System#IDisposable#Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArray`1.Enderlook#Memory#IHasUnderlyingArray{T}#GetUnderlyingArray">
+            <inheritdoc cref="M:Enderlook.Memory.IHasUnderlyingArray`1.GetUnderlyingArray"/>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArray`1.op_Implicit(Enderlook.Memory.UnownedArray{`0})~`0[]">
+            <summary>
+            Extract the underlying array.
+            </summary>
+            <param name="source">Source of the array to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArray`1.op_Implicit(Enderlook.Memory.UnownedArray{`0})~System.Span{`0}">
+            <summary>
+            Extract the underlying array as an span.
+            </summary>
+            <param name="source">Source of the span to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArray`1.op_Implicit(Enderlook.Memory.UnownedArray{`0})~System.Memory{`0}">
+            <summary>
+            Extract the underlying array as an memory.
+            </summary>
+            <param name="source">Source of the memory to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArray`1.op_Implicit(`0[])~Enderlook.Memory.UnownedArray{`0}">
+            <summary>
+            Wrap an array.
+            </summary>
+            <param name="source">Array to wrap.</param>
+        </member>
+        <member name="T:Enderlook.Memory.UnownedArraySlice`1">
+            <summary>
+            Adapter of array to implement more interfaces.
+            <see cref="T:System.IDisposable"/> does nothing.
+            </summary>
+            <typeparam name="T">Type of element in the array.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.#ctor(System.ArraySegment{`0})">
+            <summary>
+            Wrap an <see cref="T:System.ArraySegment`1"/>.
+            </summary>
+            <param name="segment">Array to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.#ctor(`0[])">
+            <summary>
+            Wrap an array.
+            </summary>
+            <param name="array">Array segment to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.#ctor(`0[],System.Int32)">
+            <summary>
+            Wrap an array.
+            </summary>
+            <param name="array">Array to wrap.</param>
+            <param name="start">Start of segment.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.#ctor(`0[],System.Int32,System.Int32)">
+            <summary>
+            Wrap an array.
+            </summary>
+            <param name="array">Array to wrap.</param>
+            <param name="start">Start of segment.</param>
+            <param name="length">Length of the segment.</param>
+        </member>
+        <member name="P:Enderlook.Memory.UnownedArraySlice`1.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="P:Enderlook.Memory.UnownedArraySlice`1.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="P:Enderlook.Memory.UnownedArraySlice`1.ArraySegment">
+            <summary>
+            Convert to <see cref="T:System.ArraySegment`1"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.System#IDisposable#Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.op_Implicit(Enderlook.Memory.UnownedArraySlice{`0})~System.Span{`0}">
+            <summary>
+            Extract the underlying array segment as a span.
+            </summary>
+            <param name="source">Source of the span to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.op_Implicit(Enderlook.Memory.UnownedArraySlice{`0})~System.Memory{`0}">
+            <summary>
+            Extract the underlying array segment as memory.
+            </summary>
+            <param name="source">Source of the memory to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.op_Implicit(Enderlook.Memory.UnownedArraySlice{`0})~System.ArraySegment{`0}">
+            <summary>
+            Extract the underlying array segment as an <see cref="T:System.ArraySegment`1"/>.
+            </summary>
+            <param name="source">Source of the memory to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.op_Implicit(`0[])~Enderlook.Memory.UnownedArraySlice{`0}">
+            <summary>
+            Wrap an array.
+            </summary>
+            <param name="source">Array to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.op_Implicit(System.ArraySegment{`0})~Enderlook.Memory.UnownedArraySlice{`0}">
+            <summary>
+            Wrap an <see cref="T:System.ArraySegment`1"/>.
+            </summary>
+            <param name="source">Array segment to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedArraySlice`1.op_Implicit(Enderlook.Memory.UnownedArray{`0})~Enderlook.Memory.UnownedArraySlice{`0}">
+            <summary>
+            Wrap an <see cref="T:Enderlook.Memory.UnownedArray`1"/>.
+            </summary>
+            <param name="source">Array segment to wrap.</param>
+        </member>
+        <member name="T:Enderlook.Memory.UnownedMemory`1">
+            <summary>
+            Adapter of <see cref="T:System.Memory`1"/> to implement more interfaces.
+            <see cref="T:System.IDisposable"/> does nothing.
+            </summary>
+            <typeparam name="T">Type of element in the memory.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.#ctor(System.Memory{`0})">
+            <summary>
+            Wrap a memory.
+            </summary>
+            <param name="memory">Memory to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.#ctor(`0[])">
+            <summary>
+            Wrap an array.
+            </summary>
+            <param name="array">Array to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.#ctor(System.ArraySegment{`0})">
+            <summary>
+            Wrap an <see cref="T:System.ArraySegment`1"/>.
+            </summary>
+            <param name="segment">Array segment to wrap.</param>
+        </member>
+        <member name="P:Enderlook.Memory.UnownedMemory`1.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="P:Enderlook.Memory.UnownedMemory`1.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.System#IDisposable#Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.op_Explicit(Enderlook.Memory.UnownedMemory{`0})~System.Span{`0}">
+            <summary>
+            Extract the underlying memory as a span.
+            </summary>
+            <param name="source">Source of the span to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.op_Implicit(Enderlook.Memory.UnownedMemory{`0})~System.Memory{`0}">
+            <summary>
+            Extract the underlying memory as memory.
+            </summary>
+            <param name="source">Source of the memory to extract.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.op_Implicit(`0[])~Enderlook.Memory.UnownedMemory{`0}">
+            <summary>
+            Wrap an array.
+            </summary>
+            <param name="source">Array to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.op_Implicit(System.ArraySegment{`0})~Enderlook.Memory.UnownedMemory{`0}">
+            <summary>
+            Wrap an <see cref="T:System.ArraySegment`1"/>.
+            </summary>
+            <param name="source">Array segment to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.op_Implicit(Enderlook.Memory.UnownedArray{`0})~Enderlook.Memory.UnownedMemory{`0}">
+            <summary>
+            Wrap an <see cref="T:Enderlook.Memory.UnownedArray`1"/>.
+            </summary>
+            <param name="source">Array to wrap.</param>
+        </member>
+        <member name="M:Enderlook.Memory.UnownedMemory`1.op_Implicit(Enderlook.Memory.UnownedArraySlice{`0})~Enderlook.Memory.UnownedMemory{`0}">
+            <summary>
+            Wrap an <see cref="T:Enderlook.Memory.UnownedArraySlice`1"/>.
+            </summary>
+            <param name="source">Array slice to wrap.</param>
+        </member>
+    </members>
+</doc>

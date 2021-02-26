@@ -1,0 +1,583 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.Memory.Allocators</name>
+    </assembly>
+    <members>
+        <member name="T:Enderlook.Memory.Allocators.ArrayPoolAllocator`1">
+            <summary>
+            An allocator that rents memory from the specified array-pool, returning them to the pool when done.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.#ctor(System.Buffers.ArrayPool{`0})">
+            <summary>
+            Construct an instance of the allocator which uses the specified pool.
+            </summary>
+            <param name="arrayPool">Backing pool for the allocations.</param>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.AllocateOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.AllocateZeroedOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Free(Enderlook.Memory.Allocators.ArrayPoolAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Allocation">
+            <summary>
+            Represent an allocation.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Allocation.Enderlook#Memory#ISpan{TElement}#Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Allocation.GetUnderlyingArray">
+            <inheritdoc cref="M:Enderlook.Memory.IHasUnderlyingArray`1.GetUnderlyingArray"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.OwnedAllocation">
+            <summary>
+            Represent an owned allocation.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.OwnedAllocation.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.OwnedAllocation.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.OwnedAllocation.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.OwnedAllocation.GetUnderlyingArray">
+            <inheritdoc cref="M:Enderlook.Memory.IHasUnderlyingArray`1.GetUnderlyingArray"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Free(Enderlook.Memory.ISpan{`0}@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#ArrayPoolAllocator{TElement}#Allocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#ArrayPoolAllocator{TElement}#Allocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#ArrayPoolAllocator{TElement}#Allocation}#Free(Enderlook.Memory.Allocators.ArrayPoolAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#ArrayPoolAllocator{TElement}#OwnedAllocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#ArrayPoolAllocator{TElement}#OwnedAllocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#ArrayPoolAllocator{TElement}#OwnedAllocation}#Free(Enderlook.Memory.Allocators.ArrayPoolAllocator{`0}.OwnedAllocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#ArrayPoolAllocator{TElement}#OwnedAllocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#ArrayPoolAllocator{TElement}#OwnedAllocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.ArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.IAllocator`1">
+            <summary>
+            Represent an allocator of memory chunks.
+            </summary>
+            <typeparam name="TChunk">Type of chunk of memory to allocate.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)">
+            <summary>
+            Allocates an chunk of memory.
+            </summary>
+            <param name="length">Length of memory to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates an chunk of zeroed memory.
+            </summary>
+            <param name="length">Length of memory to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)">
+            <summary>
+            Frees a chunk of memory allocated by this allocator.
+            </summary>
+            <param name="chunk">Chunk to free.</param>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.IDisposableAllocator`1">
+            <summary>
+            Represent an allocator of memory chunks.
+            </summary>
+            <typeparam name="TChunk">Type of chunk of memory to allocate.</typeparam>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)">
+            <summary>
+            Allocates an chunk of memory.
+            </summary>
+            <param name="length">Length of memory to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates an chunk of zeroed memory.
+            </summary>
+            <param name="length">Length of memory to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1">
+            <summary>
+            An allocator that rents memory from the array-pool provided, returning them to the pool when done.<br/>
+            Allocations arrays are pinned.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.#ctor(System.Buffers.ArrayPool{`0})">
+            <summary>
+            Construct an instance of the allocator which uses the specified pool.
+            </summary>
+            <param name="arrayPool">Backing pool for the allocations.</param>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.AllocateOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.AllocateZeroedOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Free(Enderlook.Memory.Allocators.PinnedArrayPoolAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Allocation">
+            <summary>
+            Represent a pinned allocation.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Allocation.Enderlook#Memory#ISpan{TElement}#Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Allocation.GetUnderlyingArray">
+            <inheritdoc cref="M:Enderlook.Memory.IHasUnderlyingArray`1.GetUnderlyingArray"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.OwnedAllocation">
+            <summary>
+            Represent an owner of a pinned allocation.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.OwnedAllocation.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.OwnedAllocation.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.OwnedAllocation.Pin(System.Int32)">
+            <inheritdoc cref="M:System.Buffers.IPinnable.Pin(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.OwnedAllocation.Unpin">
+            <inheritdoc cref="M:System.Buffers.IPinnable.Unpin"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.OwnedAllocation.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.OwnedAllocation.GetUnderlyingArray">
+            <inheritdoc cref="M:Enderlook.Memory.IHasUnderlyingArray`1.GetUnderlyingArray"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Free(Enderlook.Memory.ISpan{`0}@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#PinnedArrayPoolAllocator{TElement}#Allocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#PinnedArrayPoolAllocator{TElement}#Allocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#PinnedArrayPoolAllocator{TElement}#Allocation}#Free(Enderlook.Memory.Allocators.PinnedArrayPoolAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#PinnedArrayPoolAllocator{TElement}#OwnedAllocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#PinnedArrayPoolAllocator{TElement}#OwnedAllocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#PinnedArrayPoolAllocator{TElement}#OwnedAllocation}#Free(Enderlook.Memory.Allocators.PinnedArrayPoolAllocator{`0}.OwnedAllocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#PinnedArrayPoolAllocator{TElement}#OwnedAllocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#PinnedArrayPoolAllocator{TElement}#OwnedAllocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.PinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1">
+            <summary>
+            An allocator that rents memory from the array-pool <see cref="P:System.Buffers.ArrayPool`1.Shared"/>, returning them to the pool when done.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.AllocateOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.AllocateZeroedOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Free(Enderlook.Memory.Allocators.SharedArrayPoolAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Allocation">
+            <summary>
+            Represent an owner of an allocation.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Allocation.Allocate(System.Int32)">
+            <summary>
+            Allocates a region of memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Allocation.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a region of zeroed memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Allocation.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Allocation.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Allocation.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Allocation.GetUnderlyingArray">
+            <inheritdoc cref="M:Enderlook.Memory.IHasUnderlyingArray`1.GetUnderlyingArray"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Free(Enderlook.Memory.ISpan{`0}@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#SharedArrayPoolAllocator{TElement}#Allocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#SharedArrayPoolAllocator{TElement}#Allocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#SharedArrayPoolAllocator{TElement}#Allocation}#Free(Enderlook.Memory.Allocators.SharedArrayPoolAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#SharedArrayPoolAllocator{TElement}#Allocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#SharedArrayPoolAllocator{TElement}#Allocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1">
+            <summary>
+            An allocator that rents memory from the array-pool provided, returning them to the pool when done.<br/>
+            Allocations arrays are pinned.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.AllocateOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.AllocateZeroedOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Free(Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocation">
+            <summary>
+            Represent an owner of a pinned allocation.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocation.Allocate(System.Int32)">
+            <summary>
+            Allocates a region of memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocation.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a region of zeroed memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocation.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocation.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocation.Pin(System.Int32)">
+            <inheritdoc cref="M:System.Buffers.IPinnable.Pin(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocation.Unpin">
+            <inheritdoc cref="M:System.Buffers.IPinnable.Unpin"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocation.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Allocation.GetUnderlyingArray">
+            <inheritdoc cref="M:Enderlook.Memory.IHasUnderlyingArray`1.GetUnderlyingArray"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Free(Enderlook.Memory.ISpan{`0}@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#SharedPinnedArrayPoolAllocator{TElement}#Allocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#SharedPinnedArrayPoolAllocator{TElement}#Allocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#SharedPinnedArrayPoolAllocator{TElement}#Allocation}#Free(Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#SharedPinnedArrayPoolAllocator{TElement}#Allocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#SharedPinnedArrayPoolAllocator{TElement}#Allocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.SharedPinnedArrayPoolAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.UnmanagedAllocator`1">
+            <summary>
+            An allocator that allocates unmanaged memory, releasing the memory back to the OS when done.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.AllocateOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.AllocateZeroedOwned(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Free(Enderlook.Memory.Allocators.UnmanagedAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Allocation">
+            <summary>
+            Represent an owner of an allocation.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Allocation.Memory">
+            <inheritdoc cref="P:System.Buffers.IMemoryOwner`1.Memory"/>
+            <remarks>The first time you call this method per struct copy an allocation is done.</remarks>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Allocation.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Allocation.Pin(System.Int32)">
+            <inheritdoc cref="M:System.Buffers.IPinnable.Pin(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Allocation.Unpin">
+            <inheritdoc cref="M:System.Buffers.IPinnable.Unpin"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Allocation.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager">
+            <summary>
+            Represent an owner pointer by reference which doesn't allocate when <see cref="P:System.Buffers.MemoryManager`1.Memory"/> is executed.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Allocate(System.Int32)">
+            <summary>
+            Allocates a region of memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.AllocateZeroed(System.Int32)">
+            <summary>
+            Allocates a region of zeroed memory.
+            </summary>
+            <param name="length">Length of elements to allocate.</param>
+            <returns>Allocated memory.</returns>
+        </member>
+        <member name="P:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Span">
+            <inheritdoc cref="P:Enderlook.Memory.ISpan`1.Span"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.GetSpan">
+            <summary>
+            Obtains a span that represents the memory region.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Pin(System.Int32)">
+            <summary>
+            Provides access to a pointer that represents the data.
+            </summary>
+            <remarks>No actual pin occurs.</remarks>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Unpin">
+            <summary>
+            Has no effect.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.SegmentOwnerMemoryManager.Dispose(System.Boolean)">
+            <summary>
+            Has no effect.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#ISpan{TElement}}#Free(Enderlook.Memory.ISpan{`0}@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#UnmanagedAllocator{TElement}#Allocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#UnmanagedAllocator{TElement}#Allocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IAllocator{Enderlook#Memory#Allocators#UnmanagedAllocator{TElement}#Allocation}#Free(Enderlook.Memory.Allocators.UnmanagedAllocator{`0}.Allocation@)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IAllocator`1.Free(`0@)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#UnmanagedAllocator{TElement}#Allocation}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#Allocators#UnmanagedAllocator{TElement}#Allocation}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{System#Buffers#IMemoryOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#Allocate(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.Allocate(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Memory.Allocators.UnmanagedAllocator`1.Enderlook#Memory#Allocators#IDisposableAllocator{Enderlook#Memory#ISpanOwner{TElement}}#AllocateZeroed(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Memory.Allocators.IDisposableAllocator`1.AllocateZeroed(System.Int32)"/>
+        </member>
+        <member name="T:Enderlook.Memory.Allocators.AllocatorAttribute">
+            <summary>
+            Autogenerates code to construct an allocator.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.AllocatorAttribute.ElementType">
+            <summary>
+            Determines the name of the element type.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.AllocatorAttribute.IDiposableAllocationType">
+            <summary>
+            Determines the name of the type used by the <see cref="T:Enderlook.Memory.Allocators.IDisposableAllocator`1"/>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Memory.Allocators.AllocatorAttribute.IAllocationType">
+            <summary>
+            Determines the name of the type used by the <see cref="T:Enderlook.Memory.Allocators.IAllocator`1"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

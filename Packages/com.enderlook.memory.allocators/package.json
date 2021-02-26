@@ -1,11 +1,10 @@
 {
-  "name": "com.enderlook.memory.arenas",
-  "version": "0.4.0",
-  "displayName": "Enderlook Memory Arenas",
-  "description": "https://github.com/Enderlook/Net-Memorry",
+  "name": "com.enderlook.memory.allocators",
+  "version": "0.1.0",
+  "displayName": "Enderlook Memory Allocators",
+  "description": "https://github.com/Enderlook/Net-Memory",
   "dependencies": {
     "com.enderlook.memory": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.enderlook.memory#com.enderlook.memory/v0.1.0",
-    "com.enderlook.memory.allocators": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.enderlook.memory.allocators#com.enderlook.memory.allocators/v0.1.0",
     "com.enderlook.net_compatibility": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.enderlook.net_compatibility#com.enderlook.net_compatibility/v0.6.1"
   },
   "keywords": [
