@@ -1,7 +1,7 @@
 {
   "name": "com.enderlook.threading",
   "version": "0.1.0",
-  "displayName": "Enderlook Reflection",
+  "displayName": "Enderlook Threading",
   "description": "https://github.com/Enderlook/Net-Reflection",
   "dependencies": {
     "com.enderlook.net_compatibility": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.enderlook.net_compatibility#com.enderlook.net_compatibility/v0.5.0"
