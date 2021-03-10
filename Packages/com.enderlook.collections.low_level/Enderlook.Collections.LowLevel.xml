@@ -59,11 +59,6 @@
             Determines if this dynamic array was not initialized or is empty.
             </summary>
         </member>
-        <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.AsSpan">
-            <summary>
-            Returns the span of the current underlying array.
-            </summary>
-        </member>
         <member name="P:Enderlook.Collections.LowLevel.DynamicArray`1.UnderlyingArray">
             <summary>
             Returns the current underlying array.
@@ -160,6 +155,21 @@
             Add several elements to the array.
             </summary>
             <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.AsSpan">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.AsSpan(System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.AsSpan(System.Int32,System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
         </member>
         <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.Clear">
             <summary>
@@ -426,11 +436,6 @@
             Determines if this dynamic array was not initialized or is empty.
             </summary>
         </member>
-        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.AsSpan">
-            <summary>
-            Returns the span of the current underlying array.
-            </summary>
-        </member>
         <member name="P:Enderlook.Collections.LowLevel.DynamicPooledArray`1.UnderlyingArray">
             <summary>
             Returns the current underlying array.
@@ -512,6 +517,21 @@
             Add several elements to the array.
             </summary>
             <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.AsSpan">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.AsSpan(System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.AsSpan(System.Int32,System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
         </member>
         <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.Clear">
             <summary>
@@ -753,11 +773,6 @@
             Determines if this dynamic array was not initialized or is empty.
             </summary>
         </member>
-        <member name="P:Enderlook.Collections.LowLevel.DynamicPooledStack`1.AsSpan">
-            <summary>
-            Returns the span of the current underlying array.
-            </summary>
-        </member>
         <member name="P:Enderlook.Collections.LowLevel.DynamicPooledStack`1.UnderlyingArray">
             <summary>
             Returns the current underlying array.
@@ -809,6 +824,21 @@
             </summary>
             <param name="elements">Elements of the stack.</param>
             <returns>New dynamic stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledStack`1.AsSpan">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledStack`1.AsSpan(System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledStack`1.AsSpan(System.Int32,System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
         </member>
         <member name="M:Enderlook.Collections.LowLevel.DynamicPooledStack`1.Clear">
             <summary>
@@ -980,11 +1010,6 @@
             Determines if this dynamic array was not initialized or is empty.
             </summary>
         </member>
-        <member name="P:Enderlook.Collections.LowLevel.DynamicStack`1.AsSpan">
-            <summary>
-            Returns the span of the current underlying array.
-            </summary>
-        </member>
         <member name="P:Enderlook.Collections.LowLevel.DynamicStack`1.UnderlyingArray">
             <summary>
             Returns the current underlying array.
@@ -1051,6 +1076,21 @@
             </summary>
             <param name="elements">Elements of the stack.</param>
             <returns>New dynamic stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicStack`1.AsSpan">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicStack`1.AsSpan(System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicStack`1.AsSpan(System.Int32,System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
         </member>
         <member name="M:Enderlook.Collections.LowLevel.DynamicStack`1.Clear">
             <summary>
