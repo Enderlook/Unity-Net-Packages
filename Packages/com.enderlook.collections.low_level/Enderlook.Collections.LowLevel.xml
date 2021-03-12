@@ -341,6 +341,11 @@
             </summary>
             <returns>Copy of contained elements.</returns>
         </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.TrimExcess">
+            <summary>
+            Sets the capacity of this dynamic array to the actual number of elements it contains.
+            </summary>
+        </member>
         <member name="M:Enderlook.Collections.LowLevel.DynamicArray`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
@@ -693,6 +698,11 @@
             </summary>
             <returns>Copy of contained elements.</returns>
         </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.TrimExcess">
+            <summary>
+            Sets the capacity of this dynamic array to the actual number of elements it contains.
+            </summary>
+        </member>
         <member name="M:Enderlook.Collections.LowLevel.DynamicPooledArray`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
@@ -929,6 +939,11 @@
             Creates a new array containing the elements of this dynamic array.
             </summary>
             <returns>Copy of contained elements.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicPooledStack`1.TrimExcess">
+            <summary>
+            Sets the capacity of this dynamic array to the actual number of elements it contains.
+            </summary>
         </member>
         <member name="M:Enderlook.Collections.LowLevel.DynamicPooledStack`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
@@ -1181,6 +1196,11 @@
             Creates a new array containing the elements of this dynamic array.
             </summary>
             <returns>Copy of contained elements.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.LowLevel.DynamicStack`1.TrimExcess">
+            <summary>
+            Sets the capacity of this dynamic array to the actual number of elements it contains.
+            </summary>
         </member>
         <member name="M:Enderlook.Collections.LowLevel.DynamicStack`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
