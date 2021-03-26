@@ -564,6 +564,217 @@
         <member name="M:Enderlook.Collections.Pooled.PooledStack`1.System#Collections#Generic#ICollection{T}#Remove(`0)">
             <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
         </member>
+        <member name="T:Enderlook.Collections.Pooled.PooledQueue`1">
+            <summary>
+            Defines <see cref="T:System.Collections.Generic.Queue`1"/> like type that pools its underlying arrays using <see cref="P:System.Buffers.ArrayPool`1.Shared"/>.
+            </summary>
+            <typeparam name="T">Type of the elements in the array.</typeparam>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Enderlook.Collections.Pooled.PooledQueue`1.head" -->
+        <!-- Badly formed XML comment ignored for member "F:Enderlook.Collections.Pooled.PooledQueue`1.tail" -->
+        <member name="P:Enderlook.Collections.Pooled.PooledQueue`1.Count">
+            <summary>
+            Used slots in the array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.PooledQueue`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
+            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that the underlying array can hold up to a specified number of element without any further expansion of its backing storage.
+            </summary>
+            <param name="minCapacity">Minimal amount of entried it must has capacity for.</param>
+            <returns>The current capacity.</returns>
+            <remarks>In contrast with other types that has this method, this one doesn't throw if <paramref name="minCapacity"/> is negative.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.PooledQueue`1.IsEmpty">
+            <summary>
+            Determines if this array is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.PooledQueue`1.System#Collections#ICollection#IsSynchronized">
+            <inheritdoc cref="P:System.Collections.ICollection.IsSynchronized"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.PooledQueue`1.System#Collections#ICollection#SyncRoot">
+            <inheritdoc cref="P:System.Collections.ICollection.SyncRoot"/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.PooledQueue`1.#ctor" -->
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.#ctor(System.Int32)">
+            <summary>
+            Creates a queue with an specified capacity.
+            </summary>
+            <param name="initialSize">Capacity of the underlying array.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.#ctor(System.ReadOnlySpan{`0})">
+            <summary>
+            Creates a queue from an span.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Creates a queue from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.#ctor(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a queue from an enumerator.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.Peek">
+            <summary>
+            Peek the top element in the queue without removing it.
+            </summary>
+            <returns>Top element of the queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.TryPeek(`0@)">
+            <summary>
+            Try peek the top element in the queue without removing it.
+            </summary>
+            <param name="result">Top element of the queue, if any.</param>
+            <returns>Whenever an element was peeked.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.Dequeue">
+            <summary>
+            Extract the bottom element of the queue.
+            </summary>
+            <returns>Bottom element of the queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.TryDequeue(`0@)">
+            <summary>
+            Try extract the bottom element in the queue without removing it.
+            </summary>
+            <param name="result">Bottom element of the queue, if any.</param>
+            <returns>Whenever an element was extracted.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.PooledQueue`1.MoveNext(`0[],System.Int32@)" -->
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.Enqueue(`0)">
+            <summary>
+            Enqueue an element to the queue.
+            </summary>
+            <param name="element">Element to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.EnqueueRange(`0[])">
+            <summary>
+            Enqueuees several elements to the array.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.EnqueueRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Enqueuees several elements to the queue.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.EnqueueRange``1(``0)">
+            <summary>
+            Enqueuees several elements to the queue.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.EnqueueRange(System.ReadOnlySpan{`0})">
+            <summary>
+            Enqueuees an element to the queue.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.EnqueueRangeEnumerator(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Enqueuees several elements to the queue.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.EnqueueRangeEnumerator``1(``0)">
+            <summary>
+            Enqueuees several elements to the queue.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.Clear">
+            <summary>
+            Clear the content of the array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.Contains(`0)">
+            <summary>
+            Determines if the specified item is contained in this collection.
+            </summary>
+            <param name="item">Element to search.</param>
+            <returns>Whenever the element is contained or not.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.CopyTo(`0[])">
+            <summary>
+            Copies the content of this queue into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the content of this queue into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+            <param name="startIndex">In which index from <paramref name="array"/> elements should start be copying.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.ToArray">
+            <summary>
+            Creates a new array containing the elements of this queue.
+            </summary>
+            <returns>Copy of contained elements.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.TrimExcess">
+            <summary>
+            Sets the capacity of this queue to the actual number of elements it contains.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="T:Enderlook.Collections.Pooled.PooledQueue`1.Enumerator">
+            <summary>
+            Enumerator of <see cref="T:Enderlook.Collections.Pooled.PooledQueue`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.PooledQueue`1.Enumerator.IsDefault">
+            <summary>
+            Determines if this enumerator was not initialized.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.PooledQueue`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.PooledQueue`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.Enumerator.Reset">
+            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.Enumerator.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.System#Collections#Generic#ICollection{T}#Add(`0)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.PooledQueue`1.System#Collections#Generic#ICollection{T}#Remove(`0)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
+        </member>
         <member name="T:Enderlook.Collections.EnumerableHelpers">
             <summary>
             Helper functions for working with enumerables.
