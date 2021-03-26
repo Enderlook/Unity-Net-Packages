@@ -1,0 +1,964 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.Collections.Pooled.LowLevel</name>
+    </assembly>
+    <members>
+        <member name="T:Enderlook.Collections.EnumerableHelpers">
+            <summary>
+            Helper functions for working with enumerables.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArrayFromPool``2(``0,System.Int32@)">
+            <summary>
+            Converts an enumerable to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/> using pooled arrays..
+            </summary>
+            <param name="source">The enumerable to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
+        </member>
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArrayFromPoolEnumerator``2(``0,System.Int32@)">
+            <summary>
+            Converts an enumerator to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/> using pooled arrays.
+            </summary>
+            <param name="source">The enumerator to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
+        </member>
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArray``2(``0,System.Int32@)">
+            <summary>
+            Converts an enumerable to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <param name="source">The enumerable to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
+        </member>
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArrayEnumerator``2(``0,System.Int32@)">
+            <summary>
+            Converts an enumerator to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <param name="source">The enumerator to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
+        </member>
+        <member name="T:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1">
+            <summary>
+            Defines a lightweight, simple list with no safety costly features that pools its underlying arrays using <see cref="P:System.Buffers.ArrayPool`1.Shared"/>.
+            </summary>
+            <typeparam name="T">Type of the elements in the array.</typeparam>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Item(System.Int32)">
+            <summary>
+            Access an element from the array.
+            </summary>
+            <param name="index">index to access.</param>
+            <returns>Reference to the element of the given index.</returns>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.System#Collections#Generic#IList{T}#Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IList`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.System#Collections#Generic#IReadOnlyList{T}#Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Count">
+            <summary>
+            Used slots in the array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Capacity">
+            <summary>
+            Capacity of the array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
+            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that the underlying array can hold up to a specified number of element without any further expansion of its backing storage.
+            </summary>
+            <param name="minCapacity">Minimal amount of entried it must has capacity for.</param>
+            <returns>The current capacity.</returns>
+            <remarks>In contrast with other types that has this method, this one doesn't throw if <paramref name="minCapacity"/> is negative.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.IsEmpty">
+            <summary>
+            Determines if this array is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.IsDefault">
+            <summary>
+            Determines if this list was not initialized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.IsDefaultOrEmpty">
+            <summary>
+            Determines if this list was not initialized or is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.UnderlyingArray">
+            <summary>
+            Returns the current underlying array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.System#Collections#ICollection#IsSynchronized">
+            <inheritdoc cref="P:System.Collections.ICollection.IsSynchronized"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.System#Collections#ICollection#SyncRoot">
+            <inheritdoc cref="P:System.Collections.ICollection.SyncRoot"/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.From(`0[],System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.From(`0[])" -->
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.FromEmpty(`0[])" -->
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Create" -->
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Create(System.Int32)">
+            <summary>
+            Creates a list with an specified capacity.
+            </summary>
+            <param name="initialSize">Capacity of the underlying array.</param>
+            <returns>New list.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Create(System.ReadOnlySpan{`0})">
+            <summary>
+            Creates a list from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New list.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Create(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Creates a list from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New list.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Create``1(``0)">
+            <summary>
+            Creates a list from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New list.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.CreateFromEnumerator(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a list from an enumerator.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New list.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.CreateFromEnumerator``1(``0)">
+            <summary>
+            Creates a list from an enumerator.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New list.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Add(`0)">
+            <summary>
+            Add an element to the array.
+            </summary>
+            <param name="element">Element to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.AddRange(`0[])">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.AddRange``1(``0)">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.AddRangeEnumerator(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.AddRangeEnumerator``1(``0)">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.AddRange(System.ReadOnlySpan{`0})">
+            <summary>
+            Add several elements to the array.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.AsSpan">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.AsSpan(System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.AsSpan(System.Int32,System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Clear">
+            <summary>
+            Clear the content of the array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Contains(`0)">
+            <summary>
+            Determines if the specified item is contained in this collection.
+            </summary>
+            <param name="item">Element to search.</param>
+            <returns>Whenever the element is contained or not.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.CopyTo(`0[])">
+            <summary>
+            Copies the content of this list into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the content of this list into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+            <param name="startIndex">In which index from <paramref name="array"/> elements should start be copying.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.CopyTo(System.Int32,`0[],System.Int32,System.Int32)">
+            <summary>
+            Copies the content of this list into <paramref name="array"/>.
+            </summary>
+            <param name="index">In which index from current instance elements should start be copying.</param>
+            <param name="array">Where elements are coppied to.</param>
+            <param name="startIndex">In which index from <paramref name="array"/> elements should start be copying.</param>
+            <param name="count">Amount of elements to copy.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.BinarySearch(System.Int32,System.Int32,`0,System.Collections.Generic.IComparer{`0})">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],System.Int32,System.Int32,``0,System.Collections.Generic.IComparer{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.BinarySearch(System.Int32,System.Int32,`0)">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],System.Int32,System.Int32,``0)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.BinarySearch(`0,System.Collections.Generic.IComparer{`0})">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],``0,System.Collections.Generic.IComparer{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.BinarySearch(`0)">
+            <inheritdoc cref="M:System.Array.BinarySearch``1(``0[],``0)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.IndexOf(`0)">
+            <summary>
+            Finds the index of the first ocurrence of a given value in a range of this list.<br/>
+            The list is searched forwards, starting at 0.<br/>
+            The elements of the list are compared to the given value using the <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="item">Element to search its index.</param>
+            <returns>Index where the specified item is located in the specified range, or -1.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.IndexOf(`0,System.Int32)">
+            <summary>
+            Finds the index of the first ocurrence of a given value in a range of this list.<br/>
+            The list is searched forwards, starting at <paramref name="index"/>.<br/>
+            The elements of the list are compared to the given value using the <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="item">Element to search its index.</param>
+            <param name="index">Search will start at his index.</param>
+            <returns>Index where the specified item is located in the specified range, or -1.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.IndexOf(`0,System.Int32,System.Int32)">
+            <summary>
+            Finds the index of the first ocurrence of a given value in a range of this list.<br/>
+            The list is searched forwards, starting at <paramref name="index"/> and ending at <paramref name="count"/> number of elements.<br/>
+            The elements of the list are compared to the given value using the <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="item">Element to search its index.</param>
+            <param name="index">Search will start at his index.</param>
+            <param name="count">Amount of elements to search after <paramref name="index"/>.</param>
+            <returns>Index where the specified item is located in the specified range, or -1.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Insert(System.Int32,`0)">
+            <summary>
+            Inserts an element into this list at a given index.
+            </summary>
+            <param name="index">Index where element is inserted.</param>
+            <param name="item">Element to insert.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.InsertRange(System.Int32,`0[])">
+            <summary>
+            Inserts the elements of the given collection at a given index.<br/>
+            Ranges may be added to the end of the list by setting index to the List's size.
+            </summary>
+            <param name="index">Index where elements are inserted.</param>
+            <param name="elements">Elements to insert.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.InsertRange(System.Int32,System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Inserts the elements of the given collection at a given index.<br/>
+            Ranges may be added to the end of the list by setting index to the List's size.
+            </summary>
+            <typeparam name="U">Type of enumerable.</typeparam>
+            <param name="index">Index where elements are inserted.</param>
+            <param name="elements">Elements to insert.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.InsertRange``1(System.Int32,``0)">
+            <summary>
+            Inserts the elements of the given collection at a given index.<br/>
+            Ranges may be added to the end of the list by setting index to the List's size.
+            </summary>
+            <typeparam name="U">Type of enumerable.</typeparam>
+            <param name="index">Index where elements are inserted.</param>
+            <param name="elements">Elements to insert.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.InsertRange(System.Int32,System.ReadOnlySpan{`0})">
+            <summary>
+            Inserts the elements of the given collection at a given index.<br/>
+            Ranges may be added to the end of the list by setting index to the List's size.
+            </summary>
+            <param name="index">Index where elements are inserted.</param>
+            <param name="elements">Elements to insert.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Remove(`0)">
+            <summary>
+            Removes the first element of the list which matches equality with <paramref name="element"/>.
+            </summary>
+            <param name="element">Element to remove.</param>
+            <returns>Whenever an element was removed or not because it was not found.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.RemoveAt(System.Int32)">
+            <summary>
+            Removes the element at the given index.
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.RemoveRange(System.Int32,System.Int32)">
+            <summary>
+            Removes a range of elements from the list.
+            </summary>
+            <param name="index">Start of elements to remove.</param>
+            <param name="count">Amount of elements to remove.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Reverse">
+            <summary>
+            Reverse the content of the array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Reverse(System.Int32,System.Int32)">
+            <summary>
+            Reverse a range of elements.
+            </summary>
+            <param name="index">Start of elements to reverse.</param>
+            <param name="count">Amount of elements to reverse.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Sort">
+            <summary>
+            Sort the elements of this list.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Sort(System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Sort the elements of this list using the provided comparer.
+            </summary>
+            <param name="comparer">Comparer used to compare elements.<br/>
+            If <see langword="null"/>, the elements are compared to each other using the <see cref="T:System.IComparable"/> interface which must be implemented by all elements of the list.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Sort(System.Int32,System.Int32,System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Sort the range elements of this list using the provided comparer.
+            </summary>
+            <param name="index">Start element to sort.</param>
+            <param name="count">Amount of elements to sort.</param>
+            <param name="comparer">Comparer used to compare elements.<br/>
+            If <see langword="null"/>, the elements are compared to each other using the <see cref="T:System.IComparable"/> interface which must be implemented by all elements of the list.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.ToArray">
+            <summary>
+            Creates a new array containing the elements of this list.
+            </summary>
+            <returns>Copy of contained elements.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.TrimExcess">
+            <summary>
+            Sets the capacity of this list to the actual number of elements it contains.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="T:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Enumerator">
+            <summary>
+            Enumerator of <see cref="T:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Enumerator.IsDefault">
+            <summary>
+            Determines if this enumerator was not initialized.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Enumerator.Reset">
+            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledList`1.Enumerator.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="T:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1">
+            <summary>
+            Defines a lightweight, simple stack with no safety costly features that pools its underlying arrays using <see cref="P:System.Buffers.ArrayPool`1.Shared"/>.
+            </summary>
+            <typeparam name="T">Type of the elements in the array.</typeparam>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Count">
+            <summary>
+            Used slots in the array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
+            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that the underlying array can hold up to a specified number of element without any further expansion of its backing storage.
+            </summary>
+            <param name="minCapacity">Minimal amount of entried it must has capacity for.</param>
+            <returns>The current capacity.</returns>
+            <remarks>In contrast with other types that has this method, this one doesn't throw if <paramref name="minCapacity"/> is negative.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.IsEmpty">
+            <summary>
+            Determines if this array is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.IsDefault">
+            <summary>
+            Determines if this stack was not initialized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.IsDefaultOrEmpty">
+            <summary>
+            Determines if this stack was not initialized or is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.UnderlyingArray">
+            <summary>
+            Returns the current underlying array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.System#Collections#ICollection#IsSynchronized">
+            <inheritdoc cref="P:System.Collections.ICollection.IsSynchronized"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.System#Collections#ICollection#SyncRoot">
+            <inheritdoc cref="P:System.Collections.ICollection.SyncRoot"/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.From(`0[],System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.From(`0[])" -->
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.FromEmpty(`0[])" -->
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Create" -->
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Create(System.Int32)">
+            <summary>
+            Creates a stack with an specified capacity.
+            </summary>
+            <param name="initialSize">Capacity of the underlying array.</param>
+            <returns>New stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Create(System.ReadOnlySpan{`0})">
+            <summary>
+            Creates a stack from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Create(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Creates a stack from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Create``1(``0)">
+            <summary>
+            Creates a stack from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.CreateFromEnumerator(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a stack from an enumerator.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.CreateFromEnumerator``1(``0)">
+            <summary>
+            Creates a stack from an enumerator.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Peek">
+            <summary>
+            Peek the top element in the stack without removing it.
+            </summary>
+            <returns>Top element of the stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.TryPeek(`0@)">
+            <summary>
+            Try peek the top element in the stack without removing it.
+            </summary>
+            <param name="result">Top element of the stack, if any.</param>
+            <returns>Whenever an element was peeked.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Pop">
+            <summary>
+            Extract the top element of the stack.
+            </summary>
+            <returns>Top element of the stack.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.TryPop(`0@)">
+            <summary>
+            Try extract the top element in the stack without removing it.
+            </summary>
+            <param name="result">Top element of the stack, if any.</param>
+            <returns>Whenever an element was extracted.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Push(`0)">
+            <summary>
+            Push an element to the stack.
+            </summary>
+            <param name="element">Element to push.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.PushRange(`0[])">
+            <summary>
+            Pushes several elements to the array.
+            </summary>
+            <param name="elements">Elements to push.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.PushRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Pushes several elements to the stack.
+            </summary>
+            <param name="elements">Elements to push.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.PushRange``1(``0)">
+            <summary>
+            Pushes several elements to the stack.
+            </summary>
+            <param name="elements">Elements to push.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.PushRange(System.ReadOnlySpan{`0})">
+            <summary>
+            Pushes an element to the stack.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.PushRangeEnumerator(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Pushes several elements to the stack.
+            </summary>
+            <param name="elements">Elements to push.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.PushRangeEnumerator``1(``0)">
+            <summary>
+            Pushes several elements to the stack.
+            </summary>
+            <param name="elements">Elements to push.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.AsSpan">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.AsSpan(System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.AsSpan(System.Int32,System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Clear">
+            <summary>
+            Clear the content of the array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Contains(`0)">
+            <summary>
+            Determines if the specified item is contained in this collection.
+            </summary>
+            <param name="item">Element to search.</param>
+            <returns>Whenever the element is contained or not.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.CopyTo(`0[])">
+            <summary>
+            Copies the content of this stack into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the content of this stack into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+            <param name="startIndex">In which index from <paramref name="array"/> elements should start be copying.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.ToArray">
+            <summary>
+            Creates a new array containing the elements of this stack.
+            </summary>
+            <returns>Copy of contained elements.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.TrimExcess">
+            <summary>
+            Sets the capacity of this stack to the actual number of elements it contains.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="T:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Enumerator">
+            <summary>
+            Enumerator of <see cref="T:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Enumerator.IsDefault">
+            <summary>
+            Determines if this enumerator was not initialized.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Enumerator.Reset">
+            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.Enumerator.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.System#Collections#Generic#ICollection{T}#Add(`0)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledStack`1.System#Collections#Generic#ICollection{T}#Remove(`0)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
+        </member>
+        <member name="T:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1">
+            <summary>
+            Defines a lightweight, simple queue with no safety costly features that pools its underlying arrays using <see cref="P:System.Buffers.ArrayPool`1.Shared"/>.
+            </summary>
+            <typeparam name="T">Type of the elements in the array.</typeparam>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.head" -->
+        <!-- Badly formed XML comment ignored for member "F:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.tail" -->
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Count">
+            <summary>
+            Used slots in the array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
+            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that the underlying array can hold up to a specified number of element without any further expansion of its backing storage.
+            </summary>
+            <param name="minCapacity">Minimal amount of entried it must has capacity for.</param>
+            <returns>The current capacity.</returns>
+            <remarks>In contrast with other types that has this method, this one doesn't throw if <paramref name="minCapacity"/> is negative.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.IsEmpty">
+            <summary>
+            Determines if this array is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.IsDefault">
+            <summary>
+            Determines if this queue was not initialized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.IsDefaultOrEmpty">
+            <summary>
+            Determines if this queue was not initialized or is empty.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.UnderlyingArray">
+            <summary>
+            Returns the current underlying array.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.System#Collections#ICollection#IsSynchronized">
+            <inheritdoc cref="P:System.Collections.ICollection.IsSynchronized"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.System#Collections#ICollection#SyncRoot">
+            <inheritdoc cref="P:System.Collections.ICollection.SyncRoot"/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.From(`0[],System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.From(`0[])" -->
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.FromEmpty(`0[])" -->
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Create" -->
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Create(System.Int32)">
+            <summary>
+            Creates a queue with an specified capacity.
+            </summary>
+            <param name="initialSize">Capacity of the underlying array.</param>
+            <returns>New queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Create(System.ReadOnlySpan{`0})">
+            <summary>
+            Creates a queue from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Create(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Creates a queue from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Create``1(``0)">
+            <summary>
+            Creates a queue from an enumerable.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.CreateFromEnumerator(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Creates a queue from an enumerator.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.CreateFromEnumerator``1(``0)">
+            <summary>
+            Creates a queue from an enumerator.
+            </summary>
+            <param name="elements">Elements of the array.</param>
+            <returns>New queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Peek">
+            <summary>
+            Peek the top element in the queue without removing it.
+            </summary>
+            <returns>Top element of the queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.TryPeek(`0@)">
+            <summary>
+            Try peek the top element in the queue without removing it.
+            </summary>
+            <param name="result">Top element of the queue, if any.</param>
+            <returns>Whenever an element was peeked.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Dequeue">
+            <summary>
+            Extract the bottom element of the queue.
+            </summary>
+            <returns>Bottom element of the queue.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.TryDequeue(`0@)">
+            <summary>
+            Try extract the bottom element in the queue without removing it.
+            </summary>
+            <param name="result">Bottom element of the queue, if any.</param>
+            <returns>Whenever an element was extracted.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.MoveNext(`0[],System.Int32@)" -->
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Enqueue(`0)">
+            <summary>
+            Enqueue an element to the queue.
+            </summary>
+            <param name="element">Element to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.EnqueueRange(`0[])">
+            <summary>
+            Enqueuees several elements to the array.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.EnqueueRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Enqueuees several elements to the queue.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.EnqueueRange``1(``0)">
+            <summary>
+            Enqueuees several elements to the queue.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.EnqueueRange(System.ReadOnlySpan{`0})">
+            <summary>
+            Enqueuees an element to the queue.
+            </summary>
+            <param name="elements">Elements to add.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.EnqueueRangeEnumerator(System.Collections.Generic.IEnumerator{`0})">
+            <summary>
+            Enqueuees several elements to the queue.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.EnqueueRangeEnumerator``1(``0)">
+            <summary>
+            Enqueuees several elements to the queue.
+            </summary>
+            <param name="elements">Elements to enqueue.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.AsSpan">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.AsSpan(System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.AsSpan(System.Int32,System.Int32)">
+            <summary>
+            Returns the span of the current underlying array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Clear">
+            <summary>
+            Clear the content of the array.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Contains(`0)">
+            <summary>
+            Determines if the specified item is contained in this collection.
+            </summary>
+            <param name="item">Element to search.</param>
+            <returns>Whenever the element is contained or not.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.CopyTo(`0[])">
+            <summary>
+            Copies the content of this queue into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the content of this queue into <paramref name="array"/>.
+            </summary>
+            <param name="array">Where elements are coppied to.</param>
+            <param name="startIndex">In which index from <paramref name="array"/> elements should start be copying.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.ToArray">
+            <summary>
+            Creates a new array containing the elements of this queue.
+            </summary>
+            <returns>Copy of contained elements.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.TrimExcess">
+            <summary>
+            Sets the capacity of this queue to the actual number of elements it contains.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="T:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Enumerator">
+            <summary>
+            Enumerator of <see cref="T:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Enumerator.IsDefault">
+            <summary>
+            Determines if this enumerator was not initialized.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Enumerator.Reset">
+            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.Enumerator.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.System#Collections#Generic#ICollection{T}#Add(`0)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Pooled.LowLevel.RawPooledQueue`1.System#Collections#Generic#ICollection{T}#Remove(`0)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
+        </member>
+    </members>
+</doc>
