@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.StateMachine</name>
+    </assembly>
+    <members>
+        <member name="T:Enderlook.StateMachine.MasterTransitionBuilder`3">
+            <summary>
+            Builder of concrete master transitions.
+            </summary>
+            <typeparam name="TState">Type that determines states.</typeparam>
+            <typeparam name="TEvent">Type that determines events.</typeparam>
+            <typeparam name="TParameter">Type that determines common ground for parameters.</typeparam>
+        </member>
+        <member name="M:Enderlook.StateMachine.MasterTransitionBuilder`3.If(System.Func{System.Boolean})">
+            <inheritdoc cref="M:Enderlook.StateMachine.MasterTransitionBuilder`3.If(System.Delegate)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.MasterTransitionBuilder`3.If(System.Func{`2,System.Boolean})">
+            <inheritdoc cref="M:Enderlook.StateMachine.MasterTransitionBuilder`3.If(System.Delegate)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.MasterTransitionBuilder`3.If(System.Delegate)">
+            <summary>
+            Add a sub transition with a condition.
+            </summary>
+            <param name="guard">Condition to execute transition.</param>
+            <returns>Sub transition.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="guard"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.MasterTransitionBuilder`3.Goto(`0)">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.GotoCore(`0)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.MasterTransitionBuilder`3.GotoSelf">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.GotoSelfCore"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.MasterTransitionBuilder`3.StaySelf">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.StaySelfCore"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.MasterTransitionBuilder`3.Do(System.Action{`2})">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.DoCore(System.Action{`2})"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.MasterTransitionBuilder`3.Do(System.Action)">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.DoCore(System.Action)"/>
+        </member>
+        <member name="T:Enderlook.StateMachine.SlaveTransitionBuilder`4">
+            <summary>
+            Builder of concrete slave transitions.
+            </summary>
+            <typeparam name="TState">Type that determines states.</typeparam>
+            <typeparam name="TEvent">Type that determines events.</typeparam>
+            <typeparam name="TParameter">Type that determines common ground for parameters.</typeparam>
+            <typeparam name="TParent">Type of parent which creates this instance.</typeparam>
+        </member>
+        <member name="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.Otherwise">
+            <summary>
+            Escapes up to the transition which created this instance.
+            </summary>
+            <returns>Builders of this instance.</returns>
+        </member>
+        <member name="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.If(System.Func{System.Boolean})">
+            <inheritdoc cref="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.If(System.Delegate)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.If(System.Func{`2,System.Boolean})">
+            <inheritdoc cref="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.If(System.Delegate)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.If(System.Delegate)">
+            <summary>
+            Add a sub transition with a condition.
+            </summary>
+            <param name="guard">Condition to execute transition.</param>
+            <returns>Sub transition.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="guard"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.Goto(`0)">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.GotoCore(`0)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.GotoSelf">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.GotoSelfCore"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.StaySelf">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.StaySelfCore"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.Do(System.Action{`2})">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.DoCore(System.Action{`2})"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.SlaveTransitionBuilder`4.Do(System.Action)">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.DoCore(System.Action)"/>
+        </member>
+        <member name="T:Enderlook.StateMachine.StateBuilder`3">
+            <summary>
+            Builder of a concrete state.
+            </summary>
+            <typeparam name="TState">Type that determines states.</typeparam>
+            <typeparam name="TEvent">Type that determines events.</typeparam>
+            <typeparam name="TParameter">Type that determines common ground for parameters.</typeparam>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.In(`0)">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateMachineBuilder`3.In(`0)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.Build">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateMachineBuilder`3.Build"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.OnEntry(System.Action)">
+            <summary>
+            Determines an action to execute on entry to this state.
+            </summary>
+            <param name="action">Action to execute.</param>
+            <returns><see cref="!:this"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="action"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.OnEntry(System.Action{`2})">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateBuilder`3.OnEntry(System.Action)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.OnExit(System.Action)">
+            <summary>
+            Determines an action to execute on exit of this state.
+            </summary>
+            <param name="action">Action to execute.</param>
+            <returns><see cref="!:this"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="action"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.OnExit(System.Action{`2})">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateBuilder`3.OnExit(System.Action)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.OnUpdate(System.Action)">
+            <summary>
+            Determines an action to execute on update while in this state.
+            </summary>
+            <param name="action">Action to execute.</param>
+            <returns><see cref="!:this"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="action"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.OnUpdate(System.Action{`2})">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateBuilder`3.OnUpdate(System.Action)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.On(`1)">
+            <summary>
+            Add a behaviour that is executed on an event.
+            </summary>
+            <param name="event">Raised event.</param>
+            <returns>Transition builder.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when this state already has registered <paramref name="event"/>.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateBuilder`3.Ignore(`1)">
+            <summary>
+            Ignores an event.
+            </summary>
+            <param name="event">Event to ignore.</param>
+            <returns><see cref="!:this"/>.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when this state already has registered <paramref name="event"/>.</exception>
+        </member>
+        <member name="T:Enderlook.StateMachine.StateMachineBuilder`3">
+            <summary>
+            Builder of an state machine.
+            </summary>
+            <typeparam name="TState">Type that determines states.</typeparam>
+            <typeparam name="TEvent">Type that determines events.</typeparam>
+            <typeparam name="TParameter">Type that determines common ground for parameters.</typeparam>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachineBuilder`3.In(`0)">
+            <summary>
+            Add a new state.
+            </summary>
+            <param name="state">State to add.</param>
+            <returns>State builder.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the <paramref name="state"/> was already registered.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachineBuilder`3.SetInitialState(`0)">
+            <summary>
+            Determines the initial state of the state machine.
+            </summary>
+            <param name="state">Initial state.</param>
+            <returns><see cref="!:this"/>.</returns>
+            <exception cref="T:System.InvalidOperationException">Throw when the initial state was already registered.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachineBuilder`3.Build">
+            <summary>
+            Convert the builder into an immutable state machinee.
+            </summary>
+            <returns>Immutable state machine.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when there is no registered initial state.<br/>
+            Or when there are no registered states.<br/>
+            Or when a transition refers to a non-registered state.</exception>
+        </member>
+        <member name="T:Enderlook.StateMachine.TransitionBuilder`3">
+            <summary>
+            Builder of concrete transitions.
+            </summary>
+            <typeparam name="TState">Type that determines states.</typeparam>
+            <typeparam name="TEvent">Type that determines events.</typeparam>
+            <typeparam name="TParameter">Type that determines common ground for parameters.</typeparam>
+        </member>
+        <member name="F:Enderlook.StateMachine.TransitionBuilder`3.hasGoto">
+            <summary>
+            Determines the state of the <see cref="F:Enderlook.StateMachine.TransitionBuilder`3.goto"/>.
+            <list type="table">
+                <listheader>
+                    <term>Value</term>
+                    <description>Description</description>
+                </listheader>
+                <item>
+                    <term><c>0</c></term>
+                    <description>Uninitialized.</description>
+                </item>
+                <item>
+                    <term><c>1</c></term>
+                    <description>Goto specified <see cref="F:Enderlook.StateMachine.TransitionBuilder`3.goto"/>.</description>
+                </item>
+                <item>
+                    <term><c>2</c></term>
+                    <description>Maintain in the same state.</description>
+                </item>
+                <item>
+                    <term><c>3</c></term>
+                    <description>Goto to the same state.</description>
+                </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Enderlook.StateMachine.TransitionBuilder`3.GotoCore(`0)">
+            <summary>
+            Determines to which state this transition goes.
+            </summary>
+            <param name="state">State to move.</param>
+            <returns>Creator of this instance.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when already has registered a goto.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.TransitionBuilder`3.GotoSelfCore">
+            <summary>
+            Determines that this transition will go to the same state executing OnEntry and OnExit events.
+            </summary>
+            <returns>Creator of this instance.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when already has registered a goto.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.TransitionBuilder`3.StaySelfCore">
+            <summary>
+            Determines that this transition will not change state so no OnEntry nor OnExit event will be raised.
+            </summary>
+            <returns>Creator of this instance.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when already has registered a goto.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.TransitionBuilder`3.DoCore(System.Action)">
+            <summary>
+            Determines an action that is executed when the event is raised.
+            </summary>
+            <param name="action">Action to execute.</param>
+            <returns><see cref="!:this"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="action"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.TransitionBuilder`3.DoCore(System.Action{`2})">
+            <inheritdoc cref="M:Enderlook.StateMachine.TransitionBuilder`3.DoCore(System.Action)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.TransitionBuilder`3.GetDo">
+            <summary>
+            Get the delegate to execute when on Do event.
+            </summary>
+            <returns>Delegate to execute.</returns>
+        </member>
+        <member name="M:Enderlook.StateMachine.Helper.TryGetStateIndex``1(``0,System.Collections.Generic.Dictionary{``0,System.Int32})">
+            <summary>
+            Extract the index of an state.
+            </summary>
+            <param name="state">State to query.</param>
+            <param name="statesMap">Possible states.</param>
+            <returns>Index of the given state.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if the state <paramref name="state"/> is not registered.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.Helper.Combine``1(System.Action@,System.Action{``0}@)">
+            <summary>
+            Combine two delegates.
+            </summary>
+            <typeparam name="TParameter">Type of parameters used by <paramref name="actionWithParameter"/>.</typeparam>
+            <param name="action">First action.</param>
+            <param name="actionWithParameter">Second action.</param>
+            <returns>Combination of both actions.</returns>
+        </member>
+        <member name="M:Enderlook.StateMachine.Helper.ExecuteVoid``1(System.Delegate,``0)">
+            <summary>
+            Executes the specified delegate.
+            </summary>
+            <typeparam name="TParameter">Type of the parameter.</typeparam>
+            <param name="delegate">Delegate to execute.</param>
+            <param name="parameter">Parameter to pass to delegate.</param>
+        </member>
+        <member name="T:Enderlook.StateMachine.StateMachine`3">
+            <summary>
+            Representation of an state machine.
+            </summary>
+            <typeparam name="TState">Type that determines states.</typeparam>
+            <typeparam name="TEvent">Type that determines events.</typeparam>
+            <typeparam name="TParameter">Type that determines common ground for parameters.</typeparam>
+        </member>
+        <member name="P:Enderlook.StateMachine.StateMachine`3.State">
+            <summary>
+            Returns the current state of this state machine.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown when <see cref="M:Enderlook.StateMachine.StateMachine`3.Start"/> nor <see cref="M:Enderlook.StateMachine.StateMachine`3.Start(`2)"/> has been called yet.</exception>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.Builder">
+            <summary>
+            Creates the builder of an state machine.
+            </summary>
+            <returns>Builder of the state machine.</returns>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.Start">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateMachine`3.Start(`2)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.Start(`2)">
+            <summary>
+            Initializes the state machine.
+            </summary>
+            <param name="parameter">Parameter passed to the OnEntry delegate in the initial state (if any).</param>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.Fire(`1)">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateMachine`3.Fire(`1,`2)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.Fire(`1,`2)">
+            <summary>
+            Fires an event.
+            </summary>
+            <param name="event">Event to fire.</param>
+            <param name="parameter">Parameter of the event.</param>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.Update">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateMachine`3.Update(`2)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.Update(`2)">
+            <summary>
+            Executes the update event of the current state if has any.
+            </summary>
+            <param name="parameter">Parameter of the event.</param>
+        </member>
+        <member name="F:Enderlook.StateMachine.Transition`2.goto">
+            <summary>
+            Determines to which state move.
+            <list type="table">
+                <listheader>
+                    <term>Value</term>
+                    <description>Description</description>
+                </listheader>
+                <item>
+                    <term><c>>= 0</c></term>
+                    <description>Move to that index.</description>
+                </item>
+                <item>
+                    <term><c>-1</c></term>
+                    <description>Maintain in the same state.</description>
+                </item>
+            </list>
+            </summary>
+        </member>
+    </members>
+</doc>
