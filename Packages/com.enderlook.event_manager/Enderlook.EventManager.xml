@@ -1,0 +1,522 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.EventManager</name>
+    </assembly>
+    <members>
+        <member name="T:Enderlook.EventManager.EventManager">
+            <summary>
+            Represent a type safe event manager where types are used as events types.
+            </summary>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Raise``1(``0)">
+            <summary>
+            Raises an event type <typeparamref name="TEvent"/>.
+            </summary>
+            <typeparam name="TEvent">Type of the event</typeparam>
+            <param name="argument">Arguments of this event.</param>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.#ctor">
+            <summary>
+            Creates the event manager.
+            </summary>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Finalize">
+            <summary>
+            Automatically disposes the object it case it wasn't disposed by the user.
+            </summary>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Subscribe``1(System.Action{``0})">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.
+            </summary>
+            <param name="callback">Callback to execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Subscribe``1(System.Action)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.
+            </summary>
+            <param name="callback">Callback to execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Subscribe``2(``1,System.Action{``1,``0})">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.
+            </summary>
+            <param name="closure">Parameter to pass to <paramref name="callback"/>.</param>
+            <param name="callback">Callback to execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Subscribe``2(``1,System.Action{``1})">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.
+            </summary>
+            <param name="closure">Parameter to pass to <paramref name="callback"/>.</param>
+            <param name="callback">Callback to execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Unsubscribe``1(System.Action{``0})">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.Subscribe``1(System.Action{``0})"/>.
+            </summary>
+            <param name="callback">Callback to no longer execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Unsubscribe``1(System.Action)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.Subscribe``1(System.Action)"/>.
+            </summary>
+            <param name="callback">Callback to no longer execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Unsubscribe``2(``1,System.Action{``1,``0})">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.Subscribe``2(``1,System.Action{``1,``0})"/>.
+            </summary>
+            <param name="closure">Parameter to pass to <paramref name="callback"/>.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Unsubscribe``2(``1,System.Action{``1})">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.Subscribe``2(``1,System.Action{``1})"/>.
+            </summary>
+            <param name="closure">Parameter to pass to <paramref name="callback"/>.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action{``1},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action,System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``1,``2},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to execute.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``1},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to execute.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``0,``1,``2},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to execute.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``0,``1},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to execute.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action{``0,``1},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action{``0},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute when the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribe``2(``0,System.Action{``1},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action{``1},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribe``2(``0,System.Action,System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action,System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribe``3(``0,``1,System.Action{``1,``2},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``1,``2},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to no longer execute.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribe``3(``0,``1,System.Action{``1},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``1},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to no longer execute.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribe``3(``0,``1,System.Action{``0,``1,``2},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``0,``1,``2},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to no longer execute.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribe``3(``0,``1,System.Action{``0,``1},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``0,``1},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to no longer execute.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribe``2(``0,System.Action{``0,``1},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action{``0,``1},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribe``2(``0,System.Action{``0},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action{``0},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.SubscribeOnce``1(System.Action{``0})">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.
+            </summary>
+            <param name="callback">Callback to execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.SubscribeOnce``1(System.Action)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.
+            </summary>
+            <param name="callback">Callback to execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.SubscribeOnce``2(``1,System.Action{``1,``0})">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.
+            </summary>
+            <param name="closure">Parameter to pass to <paramref name="callback"/>.</param>
+            <param name="callback">Callback to execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.SubscribeOnce``2(``1,System.Action{``1})">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.
+            </summary>
+            <param name="closure">Parameter to pass to <paramref name="callback"/>.</param>
+            <param name="callback">Callback to execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.UnsubscribeOnce``1(System.Action{``0})">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.Subscribe``1(System.Action{``0})"/>.
+            </summary>
+            <param name="callback">Callback to no longer execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.UnsubscribeOnce``1(System.Action)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.Subscribe``1(System.Action)"/>.
+            </summary>
+            <param name="callback">Callback to no longer execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.UnsubscribeOnce``2(``1,System.Action{``1,``0})">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.Subscribe``2(``1,System.Action{``1,``0})"/>.
+            </summary>
+            <param name="closure">Parameter to pass to <paramref name="callback"/>.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.UnsubscribeOnce``2(``1,System.Action{``1})">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.Subscribe``2(``1,System.Action{``1})"/>.
+            </summary>
+            <param name="closure">Parameter to pass to <paramref name="callback"/>.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribeOnce``2(``0,System.Action{``1},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribeOnce``2(``0,System.Action,System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribeOnce``3(``0,``1,System.Action{``1,``2},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to execute.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribeOnce``3(``0,``1,System.Action{``1},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to execute.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribeOnce``3(``0,``1,System.Action{``0,``1,``2},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to execute.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribeOnce``3(``0,``1,System.Action{``0,``1},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to execute.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribeOnce``2(``0,System.Action{``0,``1},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakSubscribeOnce``2(``0,System.Action{``0},System.Boolean)">
+            <summary>
+            Subscribes the callback <paramref name="callback"/> to execute the next time the event type <typeparamref name="TEvent"/> is raised.<br/>
+            A weak reference to <paramref name="handle"/> is stored. If the reference becomes null, the callback is not executed.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to execute.</param>
+            <param name="trackResurrection">Whenever it should track the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribeOnce``2(``0,System.Action{``1},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action{``1},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribeOnce``2(``0,System.Action,System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action,System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribeOnce``3(``0,``1,System.Action{``1,``2},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``1,``2},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to no longer execute.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribeOnce``3(``0,``1,System.Action{``1},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``1},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to no longer execute.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribeOnce``3(``0,``1,System.Action{``0,``1,``2},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``0,``1,``2},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to no longer execute.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribeOnce``3(``0,``1,System.Action{``0,``1},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``3(``0,``1,System.Action{``0,``1},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="closure">Closure of the callback to no longer execute.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribeOnce``2(``0,System.Action{``0,``1},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action{``0,``1},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.WeakUnsubscribeOnce``2(``0,System.Action{``0},System.Boolean)">
+            <summary>
+            Unsubscribes a callback suscribed by <see cref="M:Enderlook.EventManager.EventManager.WeakSubscribe``2(``0,System.Action{``0},System.Boolean)"/>.
+            </summary>
+            <param name="handle">Object whose weak reference will be stored.</param>
+            <param name="callback">Callback to no longer execute.</param>
+            <param name="trackResurrection">Whenever it was tracking the resurrection of the handle.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="callback"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
+        </member>
+    </members>
+</doc>
