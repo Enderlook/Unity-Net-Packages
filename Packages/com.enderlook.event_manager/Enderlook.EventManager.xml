@@ -9,23 +9,18 @@
             Represent a type safe event manager where types are used as events types.
             </summary>
         </member>
-        <member name="M:Enderlook.EventManager.EventManager.Raise``1(``0)">
-            <summary>
-            Raises an event type <typeparamref name="TEvent"/>.
-            </summary>
-            <typeparam name="TEvent">Type of the event</typeparam>
-            <param name="argument">Arguments of this event.</param>
-            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
-        </member>
-        <member name="M:Enderlook.EventManager.EventManager.#ctor">
-            <summary>
-            Creates the event manager.
-            </summary>
-        </member>
         <member name="M:Enderlook.EventManager.EventManager.Finalize">
             <summary>
             Automatically disposes the object in case it wasn't disposed by the user.
             </summary>
+        </member>
+        <member name="M:Enderlook.EventManager.EventManager.Raise``1(``0)">
+            <summary>
+            Raises an event type <typeparamref name="TEvent"/>.
+            </summary>
+            <typeparam name="TEvent">Type of the event.</typeparam>
+            <param name="argument">Arguments of this event.</param>
+            <exception cref="T:System.ObjectDisposedException">Thrown when this instance has already been disposed.</exception>
         </member>
         <member name="M:Enderlook.EventManager.EventManager.Dispose">
             <inheritdoc cref="M:System.IDisposable.Dispose"/>
