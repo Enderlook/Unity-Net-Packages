@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.Text</name>
+    </assembly>
+    <members>
+        <member name="T:Enderlook.Text.StringExtensions">
+            <summary>
+            Extension functions for <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.FirstCharToUpper(System.String)">
+            <summary>
+            Convert the first character of the string to uppercase.
+            </summary>
+            <param name="source">String to convert.</param>
+            <returns>Converted string.</returns>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.FirstCharToLower(System.String)">
+            <summary>
+            Convert the first character of the string to lowercase.
+            </summary>
+            <param name="source">String to convert.</param>
+            <returns>Converted string.</returns>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.ToSentenceCase(System.String)">
+            <summary>
+            Convert the string to sentence case. Remove all uppercases but add uppercase to the first character.
+            </summary>
+            <param name="source">String to convert.</param>
+            <returns>Converted string.</returns>
+            <example>the Quick Brown Fox Jumps Over The Lazy Dog. -> The quick brown fox jumps over the lazy dog.</example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.SplitByCamelCase(System.String,System.Boolean)">
+            <summary>
+            Split the string in each non-first, non-last uppercase. Only the last consecutive uppercase it splitted.
+            Convert the string from camel case to common.
+            Does the same as <see cref="M:Enderlook.Text.StringExtensions.SplitByPascalCase(System.String,System.Boolean)"/>.
+            </summary>
+            <param name="source">String to convert.</param>
+            <param name="firstCharToUpper">If the first letter should be converted to uppercase through <see cref="M:Enderlook.Text.StringExtensions.FirstCharToUpper(System.String)"/>.</param>
+            <returns>Converted string.</returns>
+            <example>
+                • camelCase -> camel Case<br/>
+                • PascalCase -> Pascal Case<br/>
+                • HTMLCase -> HTML Case
+            </example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.SplitByPascalCase(System.String,System.Boolean)">
+            <summary>
+            Split the string in each non-first, non-last uppercase. Only the last consecutive uppercase it splitted.
+            Convert the string from pascal case to common.
+            Does the same as <see cref="M:Enderlook.Text.StringExtensions.SplitByCamelCase(System.String,System.Boolean)"/>.
+            </summary>
+            <param name="source">String to convert.</param>
+            <param name="firstCharToUpper">If the first letter should be converted to uppercase through <see cref="M:Enderlook.Text.StringExtensions.FirstCharToUpper(System.String)"/>.</param>
+            <returns>Converted string.</returns>
+            <example>
+                • camelCase -> camel Case<br/>
+                • PascalCase -> Pascal Case<br/>
+                • HTMLCase -> HTML Case
+            </example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.SplitByTitleCase(System.String,System.Boolean)">
+            <summary>
+            Split the string in each non-first, non-last uppercase.
+            Convert the string from title case to common.
+            </summary>
+            <param name="source">String to convert.</param>
+            <param name="firstCharToUpper">If the first letter should be converted to uppercase through <see cref="M:Enderlook.Text.StringExtensions.FirstCharToUpper(System.String)"/>.</param>
+            <returns>Converted string.</returns>
+            <example>
+                • camelCase -> camel Case<br/>
+                • PascalCase -> Pascal Case<br/>
+                • HTMLCase -> H T M L Case
+            </example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.SplitBySnakeCase(System.String,System.Boolean)">
+            <summary>
+            Split the string in each non-first, non-last underscore. Treats all consecutive underscores as one.<br/>
+            Convert the string from snake case to common.
+            </summary>
+            <param name="source">String to convert.</param>
+            <param name="firstCharToUpper">If the first letter should be converted to uppercase through <see cref="M:Enderlook.Text.StringExtensions.FirstCharToUpper(System.String)"/>.</param>
+            <returns>Converted string.</returns>
+            <example>
+                • snake_case -> snake case<br/>
+                • _snake_case -> snake case<br/>
+                • snake_case_ -> snake case<br/>
+                • snake__case -> snake case
+            </example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.SplitByKebabCase(System.String,System.Boolean)">
+            <summary>
+            Split the string in each non-first, non-last middle score. Treats all consecutive middle score as one.<br/>
+            Convert the string from kebab case to common.
+            </summary>
+            <param name="source">String to convert.</param>
+            <param name="firstCharToUpper">If the first letter should be converted to uppercase through <see cref="M:Enderlook.Text.StringExtensions.FirstCharToUpper(System.String)"/>.</param>
+            <returns>Converted string.</returns>
+            <example>
+                • kebab-case -> kebab case<br/>
+                • -kebab-case -> kebab case<br/>
+                • kebab-case_ -> kebab case<br/>
+                • kebab--case -> kebab case
+            </example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.ToCapitalWords(System.String)">
+            <summary>
+            Capitalize each word delimited by whitespace
+            </summary>
+            <param name="source">String to convert.</param>
+            <returns>Converted string.</returns>
+            <example>the quick brown fox jumps over the lazy dog ->  The Quick Brown Fox Jumps Over The Lazy Dog</example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.ToPascalCase(System.String)">
+            <summary>
+            Capitalize each word delimited by whitespace and join them together.
+            Does the same as <see cref="M:Enderlook.Text.StringExtensions.ToTitleCase(System.String)"/>.
+            </summary>
+            <param name="source">String to convert.</param>
+            <returns>Converted string.</returns>
+            <example>
+                • pascal case -> PascalCase<br/>
+                • pAscal CaSe -> PascalCase<br/>
+            </example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.ToTitleCase(System.String)">
+            <summary>
+            Capitalize each word delimited by whitespace and join them together.
+            Does the same as <see cref="M:Enderlook.Text.StringExtensions.ToPascalCase(System.String)"/>.
+            </summary>
+            <param name="source">String to convert.</param>
+            <returns>Converted string.</returns>
+            <example>
+                • title case -> TitleCase<br/>
+                • tItle caSe -> TitleCase<br/>
+            </example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.ToCamelCase(System.String)">
+            <summary>
+            Capitalize each word delimited by whitespace and join them together, except the first word which remains in lowercase.
+            </summary>
+            <param name="source">String to convert.</param>
+            <returns>Converted string.</returns>
+            <example>
+                • camel case -> cameCase<br/>
+                • cAmel caSe -> cameCase<br/>
+            </example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.ToSnakeCase(System.String)">
+            <summary>
+            Convert to lowercase and join each word delimited by whitespace with underscores.
+            </summary>
+            <param name="source">String to convert.</param>
+            <returns>Converted string.</returns>
+            <example>Snake Case -> snake_case</example>
+        </member>
+        <member name="M:Enderlook.Text.StringExtensions.ToKebabCase(System.String)">
+            <summary>
+            Convert to lowercase and join each word delimited by whitespace with underscores.
+            </summary>
+            <param name="source">String to convert.</param>
+            <returns>Converted string.</returns>
+            <example>Kebab Case -> kebab-case</example>
+        </member>
+        <member name="T:Enderlook.Text.StringUtils">
+            <summary>
+            Helper class to manipulate <see cref="T:System.String"/>s.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Text.StringUtils.GetCommonPreffix(System.String[])">
+            <summary>
+            Get the common substring preffix in all <paramref name="strings"/>.
+            </summary>
+            <param name="strings"><see cref="T:System.String"/>s to search for common preffix.</param>
+            <returns>Common preffix of all <paramref name="strings"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="strings"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="strings"/> is empty.</exception>
+        </member>
+        <member name="M:Enderlook.Text.StringUtils.GetCommonPreffix(System.String,System.String[])">
+            <summary>
+            Get the common substring preffix in all <paramref name="strings"/>.
+            </summary>
+            <param name="str">First <see cref="T:System.String"/>s to search for common preffix.</param>
+            <param name="strings">Rest of <see cref="T:System.String"/>s to search for common preffix.</param>
+            <returns>Common preffix of all <paramref name="strings"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="strings"/> or <paramref name="str"/> are <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Text.StringUtils.GetCommonPreffix(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get the common substring preffix in all <paramref name="strings"/>.
+            </summary>
+            <param name="strings"><see cref="T:System.String"/>s to search for common preffix.</param>
+            <returns>Common preffix of all <paramref name="strings"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="strings"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="strings"/> is empty.</exception>
+        </member>
+        <member name="M:Enderlook.Text.StringUtils.GetCommonSuffix(System.String[])">
+            <summary>
+            Get the common substring suffix in all <paramref name="strings"/>.
+            </summary>
+            <param name="strings"><see cref="T:System.String"/>s to search for common suffix.</param>
+            <returns>Common suffix of all <paramref name="strings"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="strings"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="strings"/> is empty.</exception>
+        </member>
+        <member name="M:Enderlook.Text.StringUtils.GetCommonSuffix(System.String,System.String[])">
+            <summary>
+            Get the common substring suffix in all <paramref name="strings"/>.
+            </summary>
+            <param name="str">First <see cref="T:System.String"/>s to search for common suffix.</param>
+            <param name="strings"><see cref="T:System.String"/>s to search for common suffix.</param>
+            <returns>Common suffix of all <paramref name="strings"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="strings"/> or <paramref name="str"/> are <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Text.StringUtils.GetCommonSuffix(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get the common substring suffix in all <paramref name="strings"/>.
+            </summary>
+            <param name="strings"><see cref="T:System.String"/>s to search for common suffix.</param>
+            <returns>Common suffix of all <paramref name="strings"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="strings"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="strings"/> is empty.</exception>
+        </member>
+    </members>
+</doc>
