@@ -1,10 +1,11 @@
 {
   "name": "com.enderlook.collections.low_level",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "displayName": "Enderlook Collections Low Level",
   "description": "https://github.com/Enderlook/Net-Collections",
   "dependencies": {
-    "com.system.memory": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.system.memory#com.system.memory/v4.5.4"
+    "com.system.memory": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.system.memory#com.system.memory/v4.5.4",
+    "com.enderlook.collections-extensions": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.enderlook.collections-extensions#com.enderlook.collections-extensions/v0.2.0"
   },
   "keywords": [
   ],
