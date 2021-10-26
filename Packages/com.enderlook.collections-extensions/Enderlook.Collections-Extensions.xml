@@ -143,6 +143,51 @@
             if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.ICollection`1.Count"/>.</returns>
             <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
         </member>
+        <member name="T:Enderlook.Collections.EnumerableHelpers">
+            <summary>
+            Helper functions for working with enumerables.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArrayFromPool``2(``0,System.Int32@)">
+            <summary>
+            Converts an enumerable to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/> using pooled arrays..
+            </summary>
+            <param name="source">The enumerable to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
+        </member>
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArrayFromPoolEnumerator``2(``0,System.Int32@)">
+            <summary>
+            Converts an enumerator to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/> using pooled arrays.
+            </summary>
+            <param name="source">The enumerator to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
+        </member>
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArray``2(``0,System.Int32@)">
+            <summary>
+            Converts an enumerable to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <param name="source">The enumerable to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
+        </member>
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArrayEnumerator``2(``0,System.Int32@)">
+            <summary>
+            Converts an enumerator to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <param name="source">The enumerator to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
+        </member>
         <member name="T:Enderlook.Collections.IListExtensions">
             <summary>
             Extension functions for <see cref="T:System.Collections.Generic.IList`1"/>.
@@ -321,7 +366,7 @@
             <param name="weighter">Produce weight of elements.</param>
             <returns>Random element from <paramref name="source"/>.</returns>
             <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="weighter"/> are <see langword="null"/>.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="source"/> count is 0.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="source"/> count is 0.</exception>
         </member>
         <member name="M:Enderlook.Collections.IListExtensions.RandomPickWeighted``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{System.Single})">
             <summary>
@@ -332,8 +377,8 @@
             <param name="weights">Weight of each element.</param>
             <returns>Random element from <paramref name="source"/>.</returns>
             <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="weights"/> are <see langword="null"/>.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when parameters doesn't have same length.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="source"/> or <paramref name="weights"/> count is 0.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when parameters doesn't have same length.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="source"/> or <paramref name="weights"/> count is 0.</exception>
         </member>
         <member name="M:Enderlook.Collections.IListExtensions.ForEach``1(System.Collections.Generic.IList{``0},System.Action{``0})">
             <summary>
