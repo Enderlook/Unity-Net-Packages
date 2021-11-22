@@ -197,38 +197,6 @@
             <typeparam name="TState">Type of state.</typeparam>
             <typeparam name="TResult">Type of result.</typeparam>
         </member>
-        <member name="M:Enderlook.Threading.TaskFactoryExtension.StartNew``1(System.Threading.Tasks.TaskFactory,System.Func{``0})">
-            <inheritdoc cref="M:System.Threading.Tasks.TaskFactory.StartNew``1(System.Func{``0})"/>
-            <typeparam name="TResult">Type of result.</typeparam>
-        </member>
-        <member name="M:Enderlook.Threading.TaskFactoryExtension.StartNew``1(System.Threading.Tasks.TaskFactory,System.Func{``0},System.Threading.CancellationToken)">
-            <inheritdoc cref="M:System.Threading.Tasks.TaskFactory.StartNew``1(System.Func{``0},System.Threading.CancellationToken)"/>
-            <typeparam name="TResult">Type of result.</typeparam>
-        </member>
-        <member name="M:Enderlook.Threading.TaskFactoryExtension.StartNew``1(System.Threading.Tasks.TaskFactory,System.Func{``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions,System.Threading.Tasks.TaskScheduler)">
-            <inheritdoc cref="M:System.Threading.Tasks.TaskFactory.StartNew``1(System.Func{``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions,System.Threading.Tasks.TaskScheduler)"/>
-            <typeparam name="TResult">Type of result.</typeparam>
-        </member>
-        <member name="M:Enderlook.Threading.TaskFactoryExtension.StartNew``1(System.Threading.Tasks.TaskFactory,System.Func{``0},System.Threading.Tasks.TaskCreationOptions)">
-            <inheritdoc cref="M:System.Threading.Tasks.TaskFactory.StartNew``1(System.Func{``0},System.Threading.Tasks.TaskCreationOptions)"/>
-            <typeparam name="TResult">Type of result.</typeparam>
-        </member>
-        <member name="M:Enderlook.Threading.TaskFactoryExtension.StartNew``1(System.Threading.Tasks.TaskFactory{``0},System.Func{``0})">
-            <inheritdoc cref="M:System.Threading.Tasks.TaskFactory.StartNew``1(System.Func{``0})"/>
-            <typeparam name="TResult">Type of result.</typeparam>
-        </member>
-        <member name="M:Enderlook.Threading.TaskFactoryExtension.StartNew``1(System.Threading.Tasks.TaskFactory{``0},System.Func{``0},System.Threading.CancellationToken)">
-            <inheritdoc cref="M:System.Threading.Tasks.TaskFactory.StartNew``1(System.Func{``0},System.Threading.CancellationToken)"/>
-            <typeparam name="TResult">Type of result.</typeparam>
-        </member>
-        <member name="M:Enderlook.Threading.TaskFactoryExtension.StartNew``1(System.Threading.Tasks.TaskFactory{``0},System.Func{``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions,System.Threading.Tasks.TaskScheduler)">
-            <inheritdoc cref="M:System.Threading.Tasks.TaskFactory.StartNew``1(System.Func{``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions,System.Threading.Tasks.TaskScheduler)"/>
-            <typeparam name="TResult">Type of result.</typeparam>
-        </member>
-        <member name="M:Enderlook.Threading.TaskFactoryExtension.StartNew``1(System.Threading.Tasks.TaskFactory{``0},System.Func{``0},System.Threading.Tasks.TaskCreationOptions)">
-            <inheritdoc cref="M:System.Threading.Tasks.TaskFactory.StartNew``1(System.Func{``0},System.Threading.Tasks.TaskCreationOptions)"/>
-            <typeparam name="TResult">Type of result.</typeparam>
-        </member>
         <member name="M:Enderlook.Threading.TaskFactoryExtension.StartNew``2(System.Threading.Tasks.TaskFactory,System.Func{``0,``1},``0)">
             <inheritdoc cref="M:System.Threading.Tasks.TaskFactory.StartNew``1(System.Func{System.Object,``0},System.Object)"/>
             <typeparam name="TState">Type of state.</typeparam>
