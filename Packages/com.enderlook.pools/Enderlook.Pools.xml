@@ -6,7 +6,7 @@
     <members>
         <member name="T:Enderlook.Pools.DynamicObjectPool`1">
             <summary>
-            A lightweight, fast and thread-safe object pool to store objects.<br/>
+            A lightweight, fast, dynamically-sized and thread-safe object pool to store objects.<br/>
             The pool is desinged for fast rent and return of element, so during multithreading scenarios it may accidentally free unnecessary objects during return (however, this is not a fatal error).
             </summary>
             <typeparam name="T">Type of object to pool</typeparam>
@@ -63,7 +63,7 @@
             This pool has a dynamic size so this value represent the initial size of the pool which may enlarge or shrink over time.</param>
             <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
             If no delegate is provided, a factory with the default constructor of <typeparamref name="T"/> will be used.</param>
-            /// <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="hotCapacity"/> is lower than 1.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="hotCapacity"/> is lower than 1.</exception>
         </member>
         <member name="M:Enderlook.Pools.DynamicObjectPool`1.#ctor(System.Int32,System.Func{`0})">
             <summary>
@@ -103,8 +103,7 @@
         </member>
         <member name="M:Enderlook.Pools.DynamicObjectPool`1.Return(`0)">
             <summary>
-            Return rented object to pool.<br/>
-            If the pool is full, the object will be discarded.
+            Return rented object to pool.
             </summary>
             <param name="obj">Object to return.</param>
         </member>
@@ -128,7 +127,7 @@
             This value is not accurate and may be lower or higher than the actual count.<br/>
             This is primary used for debugging purposes.
             </summary>
-            <returns>Approximate count of elements in the pool.</returns>
+            <returns>Approximate count of elements in the pool. If this operation is not supported, return -1 instead of throwing.</returns>
         </member>
         <member name="M:Enderlook.Pools.ObjectPool`1.Rent">
             <summary>
@@ -141,7 +140,8 @@
             <summary>
             Return an element to the pool.<br/>
             If the pool is full, it's an implementation detail whenever the object is free or the pool is resized.<br/>
-            If <paramref name="obj"/> is <see langword="null"/>, it's an implementation detail whenever it throws an exception or ignores.
+            If <paramref name="obj"/> is <see langword="null"/>, it's an implementation detail whenever it throws an exception or ignores the call.<br/>
+            However, it should never fail silently.
             </summary>
         </member>
         <member name="M:Enderlook.Pools.ObjectPool`1.Trim(System.Boolean)">
