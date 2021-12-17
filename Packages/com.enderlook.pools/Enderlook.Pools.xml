@@ -105,9 +105,116 @@
             <summary>
             Return rented object to pool.
             </summary>
-            <param name="obj">Object to return.</param>
+            <param name="element">Object to return.</param>
         </member>
         <member name="M:Enderlook.Pools.DynamicObjectPool`1.Trim(System.Boolean)">
+            <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.Trim(System.Boolean)"/>
+        </member>
+        <member name="T:Enderlook.Pools.DynamicValueObjectPool`1">
+            <summary>
+            A lightweight, fast, dynamically-sized and thread-safe object pool to store value-type objects.<br/>
+            The pool is desinged for fast rent and return of element, so during multithreading scenarios it may accidentally free unnecessary objects during return (however, this is not a fatal error).
+            </summary>
+            <typeparam name="T">Type of object to pool</typeparam>
+        </member>
+        <member name="F:Enderlook.Pools.DynamicValueObjectPool`1.factory">
+            <summary>
+            Delegate that instantiates new object.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.DynamicValueObjectPool`1.array">
+            <summary>
+            Storage for the pool objects.<br/>
+            The array is not an stack so the whole array must be traversed to find objects.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.DynamicValueObjectPool`1.firstElement">
+            <summary>
+            The first item is stored in a dedicated field because we expect to be able to satisfy most requests from it.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.DynamicValueObjectPool`1.reserve">
+            <summary>
+            A dynamic-size stack reserve of objects.<br/>
+            When <see cref="F:Enderlook.Pools.DynamicValueObjectPool`1.array"/> get fulls, the first half of it is emptied and its element are moved here.<br/>
+            When <see cref="F:Enderlook.Pools.DynamicValueObjectPool`1.array"/> gets empty, the first half of it is fulled with elements from this reserve.<br/>
+            Those operations are done in a batch to reduce the amount of times this requires to be acceded.<br/>
+            However, those operations only moves the first half of the array to prevent a point where this is executed on each rent or return.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.DynamicValueObjectPool`1.reserveCount">
+            <summary>
+            Keep tracks of the amount of used slots in <see cref="F:Enderlook.Pools.DynamicValueObjectPool`1.reserve"/>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.DynamicValueObjectPool`1.reserveMillisecondsTimeStamp">
+            <summary>
+            Keep record of last time <see cref="F:Enderlook.Pools.DynamicValueObjectPool`1.reserve"/> was trimmed;
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.DynamicValueObjectPool`1.arrayMillisecondsTimeStamp">
+            <summary>
+            Keep record of last time <see cref="F:Enderlook.Pools.DynamicValueObjectPool`1.array"/> was trimmed;
+            </summary>
+        </member>
+        <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.#ctor(System.Int32,System.Int32,System.Func{`0})">
+            <summary>
+            Creates a pool of objects.
+            </summary>
+            <param name="hotCapacity">Hot capacity of the pool.<br/>
+            If this capacity is fulled, the pool will expand a cold region.<br/>
+            The hot capacity should preferably be not greater than <c><see cref="P:System.Environment.ProcessorCount"/> * 2</c>.</param>
+            <param name="initialColdCapacity">Initial capacity of the cold pool.<br/>
+            This reserve pool is only acceded when the hot pool gets full or empty since it's slower.<br/>
+            This pool has a dynamic size so this value represent the initial size of the pool which may enlarge or shrink over time.</param>
+            <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
+            If no delegate is provided, a factory with the default constructor of <typeparamref name="T"/> will be used.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="hotCapacity"/> is lower than 1.</exception>
+        </member>
+        <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.#ctor(System.Int32,System.Func{`0})">
+            <summary>
+            Creates a pool of objects.
+            </summary>
+            <param name="hotCapacity">Hot capacity of the pool.<br/>
+            If this capacity is fulled, the pool will expand a cold region.<br/>
+            The hot capacity should preferably be not greater than <c><see cref="P:System.Environment.ProcessorCount"/> * 2</c>.</param>
+            <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
+            If no delegate is provided, a factory with the default constructor for <typeparamref name="T"/> will be used.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="hotCapacity"/> is lower than 1.</exception>
+        </member>
+        <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.#ctor(System.Int32)">
+            <summary>
+            Creates a pool of objects.
+            </summary>
+            <param name="hotCapacity">Hot capacity of the pool. If this capacity is fulled, the pool will expand a cold region.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="hotCapacity"/> is lower than 1.</exception>
+        </member>
+        <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.#ctor(System.Func{`0})">
+            <summary>
+            Creates a pool of objects.
+            </summary>
+            <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
+            If no delegate is provided, a factory with the default constructor for <typeparamref name="T"/> will be used.</param>
+        </member>
+        <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.#ctor">
+            <summary>
+            Creates a pool of objects.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.ApproximateCount">
+            <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.ApproximateCount"/>
+        </member>
+        <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.Rent">
+            <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.Rent"/>
+        </member>
+        <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.Return(`0)">
+            <summary>
+            Return rented object to pool.<br/>
+            Default instances are discarded.
+            </summary>
+            <param name="element">Object to return.</param>
+        </member>
+        <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.Trim(System.Boolean)">
             <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.Trim(System.Boolean)"/>
         </member>
         <member name="T:Enderlook.Pools.ObjectPool`1">
@@ -132,7 +239,8 @@
         <member name="M:Enderlook.Pools.ObjectPool`1.Rent">
             <summary>
             Rent an element from the pool.<br/>
-            If the pool is empty, instantiate a new element.
+            If the pool is empty, instantiate a new element.<br/>
+            Implementors of this interface can choose how elements are instantiated and initialized, or throw if instantiation of new elements is not supported.
             </summary>
             <returns>Rented element.</returns>
         </member>
@@ -140,9 +248,9 @@
             <summary>
             Return an element to the pool.<br/>
             If the pool is full, it's an implementation detail whenever the object is free or the pool is resized.<br/>
-            If <paramref name="obj"/> is <see langword="null"/>, it's an implementation detail whenever it throws an exception or ignores the call.<br/>
-            However, it should never fail silently.
+            If <paramref name="element"/> is <see langword="default"/>, it's an implementation detail whenever it throws an exception or ignores the call. However, it should never leave the pool in an invalid state.
             </summary>
+            <param name="element">Element to return.</param>
         </member>
         <member name="M:Enderlook.Pools.ObjectPool`1.Trim(System.Boolean)">
             <summary>
@@ -215,11 +323,6 @@
             Keep record of last time <see cref="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksObjectPool`1.globalReserve"/> was trimmed;
             </summary>
         </member>
-        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksObjectPool`1.Singlenton">
-            <summary>
-            Unique instance of this type.
-            </summary>
-        </member>
         <member name="M:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksObjectPool`1.ApproximateCount">
             <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.ApproximateCount"/>
         </member>
@@ -231,12 +334,97 @@
             Return rented object to pool.<br/>
             If the pool is full, the object will be discarded.
             </summary>
-            <param name="obj">Object to return.</param>
+            <param name="element">Object to return.</param>
         </member>
         <member name="M:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksObjectPool`1.Trim(System.Boolean)">
             <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.Trim(System.Boolean)"/>
         </member>
         <member name="M:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksObjectPool`1.Trim_(System.Boolean)">
+            <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.Trim(System.Boolean)"/>
+        </member>
+        <member name="T:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1">
+            <summary>
+            A fast and thread-safe object pool to store a large amount of objects.
+            </summary>
+            <typeparam name="T">Type of object to pool</typeparam>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.MaximumPerCoreStack">
+            <summary>
+            Maximum length of <see cref="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.perCoreStacks"/> to use.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.MaxObjectsPerCore">
+            <summary>
+            The maximum number of objects to store in each per-core stack.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.InitialGlobalReserveCapacity">
+            <summary>
+            The initial capacity of <see cref="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.globalReserve"/>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.PerCoreStacksCount">
+            <summary>
+            Number of locked stacks to employ.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.threadLocalElement">
+            <summary>
+            A per-thread element for better cache.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.allThreadLocalElements">
+            <summary>
+            Used to keep tack of all thread local objects for trimming if needed.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.allThreadLocalElementsCount">
+            <summary>
+            Keep tracks of the amount of used slots in <see cref="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.allThreadLocalElements"/>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.perCoreStacks">
+            <summary>
+            An array of per-core objects.<br/>
+            The slots are lazily initialized.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.globalReserve">
+            <summary>
+            A global dynamic-size reserve of elements.<br/>
+            When all <see cref="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.perCoreStacks"/> get fulls, one of them is emptied and all its objects are moved here.<br/>
+            When all <see cref="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.perCoreStacks"/> get empty, one of them is fulled with objects from this reserve.<br/>
+            Those operations are done in a batch to reduce the amount of times this requires to be acceded.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.globalReserveCount">
+            <summary>
+            Keep tracks of the amount of used slots in <see cref="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.globalReserve"/>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.globalReserveMillisecondsTimeStamp">
+            <summary>
+            Keep record of last time <see cref="F:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.globalReserve"/> was trimmed;
+            </summary>
+        </member>
+        <member name="M:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.ApproximateCount">
+            <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.ApproximateCount"/>
+        </member>
+        <member name="M:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.Rent">
+            <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.Rent"/>
+        </member>
+        <member name="M:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.Return(`0)">
+            <summary>
+            Return rented object to pool.<br/>
+            If the pool is full, the object will be discarded.<br/>
+            Default instances are discarded.
+            </summary>
+            <param name="element">Object to return.</param>
+        </member>
+        <member name="M:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.Trim(System.Boolean)">
+            <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.Trim(System.Boolean)"/>
+        </member>
+        <member name="M:Enderlook.Pools.ThreadLocalOverPerCoreLockedStacksValueObjectPool`1.Trim_(System.Boolean)">
             <inheritdoc cref="M:Enderlook.Pools.ObjectPool`1.Trim(System.Boolean)"/>
         </member>
     </members>
