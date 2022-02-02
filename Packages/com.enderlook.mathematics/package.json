@@ -1,0 +1,11 @@
+{
+  "name": "com.enderlook.mathematics",
+  "version": "0.1.0",
+  "displayName": "Enderlook Mathematics",
+  "description": "",
+  "dependencies": {
+    "com.enderlook.net_compatibility": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.enderlook.net_compatibility#com.enderlook.net_compatibility/v0.6.1"
+  },
+  "keywords": [
+  ]
+}

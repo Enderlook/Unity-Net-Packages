@@ -1,0 +1,391 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.Mathematics</name>
+    </assembly>
+    <members>
+        <member name="T:Enderlook.Mathematics.Geometry">
+            <summary>
+            Utility methods used when working with geometry.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.Circumcenter(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Calculates the circumcenter of 3 points
+            </summary>
+            <param name="a">First point.</param>
+            <param name="b">Second point.</param>
+            <param name="c">Third points.</param>
+            <returns>Circumcenter of the given points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.Circumradius(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Calculates the circumradius of 3 points
+            </summary>
+            <param name="a">First point.</param>
+            <param name="b">Second point.</param>
+            <param name="c">Third points.</param>
+            <returns>Circumradius of the given points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.Centroid(System.Span{System.Numerics.Vector2})">
+            <summary>
+            Calculate the centroid of a give span of points.
+            </summary>
+            <param name="points">Span of points.</param>
+            <returns>centroid of the given span.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.AreInCircle(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines if 4 points forms a circle.
+            </summary>
+            <param name="a">First point.</param>
+            <param name="b">Second point.</param>
+            <param name="c">Third point.</param>
+            <param name="p">Fourth point.</param>
+            <returns><see langword="true"/> if points form a circle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.AreColinear(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines if 3 points are colinear.
+            </summary>
+            <param name="p1">First point.</param>
+            <param name="p2">Second point.</param>
+            <param name="p3">Third point.</param>
+            <returns><see langword="true"/> if they are colinear.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.AreClockwise(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines if 3 points are clockwise.
+            </summary>
+            <param name="p1">First point.</param>
+            <param name="p2">Second point.</param>
+            <param name="p3">Third point.</param>
+            <returns><see langword="true"/> if they are clockwise.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.AreCounterClockwise(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines if 3 points are counterclockwise.
+            </summary>
+            <param name="p1">First point.</param>
+            <param name="p2">Second point.</param>
+            <param name="p3">Third point.</param>
+            <returns><see langword="true"/> if they are counterclockwise.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.Orientation(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines the orientation of 3 points.
+            </summary>
+            <param name="p1">First point.</param>
+            <param name="p2">Second point.</param>
+            <param name="p3">Third point.</param>
+            <returns>Orientation of the points</returns>
+        </member>
+        <member name="T:Enderlook.Mathematics.Orientation">
+            <summary>
+            Determines the orientation of a set of points.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Mathematics.Orientation.Colineal">
+            <summary>
+            Points are colinear.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Mathematics.Orientation.Clockwise">
+            <summary>
+            Points are ordered clockwise.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Mathematics.Orientation.Counterclockwise">
+            <summary>
+            Points are ordered counterclockwise.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Mathematics.MeshInfo">
+            <summary>
+            Stores a delunay triangulation.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.TrianglesCount">
+            <summary>
+            Amount of triangles.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.TrianglePointsCount">
+            <summary>
+            Amount of triangles points. This is <c><see cref="P:Enderlook.Mathematics.MeshInfo.TrianglesCount"/> * 3</c>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.TrianglePoints">
+            <summary>
+            Indexes of triangles vertices.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.TrianglePointsFlatten">
+            <summary>
+            Indexes of triangles vertices. Each 3 elements represents a triangle.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.HalfedgePositions">
+            <summary>
+            Indexes of halfedge vertices.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.HalfedgePointsFlatten">
+            <summary>
+            Indexes of halfedge vertices.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.Points">
+            <summary>
+            Input point positions.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.Centroid(System.Int32)">
+            <summary>
+            Calculates the centroid of a triangle.
+            </summary>
+            <param name="triangle">Triangle index.</param>
+            <returns>Centroid of the specified triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.Centroids">
+            <summary>
+            Get all centroids.
+            </summary>
+            <returns>Centroids of this mesh.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.Circumcenter(System.Int32)">
+            <summary>
+            Calculates the circumenter of a triangle.
+            </summary>
+            <param name="triangle">Triangle index.</param>
+            <returns>Circumcenter of the specified triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.Circumcenters">
+            <summary>
+            Get all circumenters.
+            </summary>
+            <returns>Circumcenters of this mesh.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.FromPoints(System.Memory{System.Numerics.Vector2},Enderlook.Mathematics.MeshInfo@)">
+            <summary>
+            Triangulates an span of points.
+            </summary>
+            <param name="points">Points to triangulate.</param>
+            <param name="result">Result of the triangulation, if any.</param>
+            <returns>Whenever the triangulation was sucessful or not.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.EdgePoints">
+            <summary>
+            Get all edge points.
+            </summary>
+            <returns>Edge points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.EdgePointsFlatten">
+            <summary>
+            Get all edge points.
+            </summary>
+            <returns>Edge points flattened. Each 2 elements represent a halfedge.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.EdgePositions">
+            <summary>
+            Get all edge positions.
+            </summary>
+            <returns>Edge positions.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.EdgePositionsFlatten">
+            <summary>
+            Get all edge positions.
+            </summary>
+            <returns>Edge positions flattened. Each 2 elements represent a halfedge.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.PositionOfHull(System.Int32)">
+            <summary>
+            Get a hull position.
+            </summary>
+            <param name="index">Index of hull.</param>
+            <returns>Position of the specified point in the hull.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.HullPositions">
+            <summary>
+            Get all hull positions.
+            </summary>
+            <returns>Position of all hull points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.EdgePositionsOfHull(System.Int32)">
+            <summary>
+            Get a hull edge positions.
+            </summary>
+            <param name="index">Index of hull.</param>
+            <returns>Edge positions of a point in the hull.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.HullEdgePositions">
+            <summary>
+            Get all hull edge positions.
+            </summary>
+            <returns>Edge positiions of all hull points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.NextHalfedge(System.Int32)">
+            <summary>
+            Get the next halfedge index.
+            </summary>
+            <param name="halfedge">Halfedge index.</param>
+            <returns>Next halfedge index of the specified halfedge.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.PreviousHalfedge(System.Int32)">
+            <summary>
+            Get the previous halfedge index.
+            </summary>
+            <param name="halfedge">Halfedge index.</param>
+            <returns>Previous halfedge index of the specified halfedge.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.EdgesOfTriangle(System.Int32)">
+            <summary>
+            Get the halfedge points of a triangle.
+            </summary>
+            <param name="triangle">Triangle index.</param>
+            <returns>Halfedge points of the specified triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.TriangleOfEdge(System.Int32)">
+            <summary>
+            Get the triangle index associated with a edge.
+            </summary>
+            <param name="edge">Edge index.</param>
+            <returns>Triangle index associated with the specified edge.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.TrianglesPositions">
+            <summary>
+            Get all triangles positions.
+            </summary>
+            <returns>Triangle positions.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.TrianglesPositionsFlatten">
+            <summary>
+            Get all triangles positions.
+            </summary>
+            <returns>Triangle positions. Each 3 elements represent a triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.TrianglesAdjacentToTriangle(System.Int32)">
+            <summary>
+            Get indexes of triangles adjacents to a triangle.
+            </summary>
+            <param name="triangle">Triangle index.</param>
+            <returns>Indexes of triangles adjacents to the specified triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.PointsOfTriangle(System.Int32)">
+            <summary>
+            Get the points of a triangle.
+            </summary>
+            <param name="triangle">Index of a triangle.</param>
+            <returns>Indexes of the points of the specified triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.PositionsOfTriangle(System.Int32)">
+            <summary>
+            Get the positions of a triangle vertices.
+            </summary>
+            <param name="triangle">Index of a triangle.</param>
+            <returns>Positions of the vertices of the specified triangle.</returns>
+        </member>
+        <member name="T:Enderlook.Mathematics.MeshInfo.AdjacentTriangles">
+            <summary>
+            Represent adjacents triangles to certain triangle.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.AdjacentTriangles.Count">
+            <summary>
+            Amount of adjacent triangles.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.AdjacentTriangles.Item(System.Int32)">
+            <summary>
+            Access the adjacents triangles by index.
+            </summary>
+            <param name="index">Adjacent index.</param>
+            <returns>Adjacent triangle point.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.AdjacentTriangles.CopyTo(System.Span{System.Int32})">
+            <summary>
+            Copy the points of the adjacent triangles.
+            </summary>
+            <param name="span">Span to store adjacent triangles.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.VoronoiCellsFromCentroids">
+            <summary>
+            Get all voronoi cells calculated using centroids.
+            </summary>
+            <returns>Voronoi cells.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.VoronoiCellsFromCircumcenters">
+            <summary>
+            Get all voronoi cells calculated using circumcenters.
+            </summary>
+            <returns>Voronoi cells.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.VoronoiCellsInfo.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.VoronoiEdgesFromCentroids">
+            <summary>
+            Get all voronoi edges calculated using centroids.
+            </summary>
+            <returns>Voronoi edges.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.VoronoiEdgesFromCentroidsFlatten">
+            <summary>
+            Get all voronoi edges calculated using centroids.
+            </summary>
+            <returns>Voronoi edges. Each 2 elements represent an edge.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.VoronoiEdgesFromCircumcenters">
+            <summary>
+            Get all voronoi edges calculated using circumcenters.
+            </summary>
+            <returns>Voronoi edges.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.MeshInfo.VoronoiEdgesFromCircumcentersFlatten">
+            <summary>
+            Get all voronoi edges calculated using circumcenters.
+            </summary>
+            <returns>Voronoi edges. Each 2 elements represent an edge.</returns>
+        </member>
+        <member name="T:Enderlook.Mathematics.Vectors">
+            <summary>
+            Helper methods for <see cref="T:System.Numerics.Vector2"/>, <see cref="T:System.Numerics.Vector3"/> and <see cref="T:System.Numerics.Vector4"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Mathematics.Vectors.Approximately(System.Single,System.Single)">
+            <summary>
+            Compares two <see cref="T:System.Single"/> and check if they are similar.
+            </summary>
+            <param name="a">First float to compare.</param>
+            <param name="b">Second float to compare.</param>
+            <returns>Whenever both floats are similar.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Vectors.Approximately(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Compares two <see cref="T:System.Numerics.Vector2"/> and check if they are similar.
+            </summary>
+            <param name="a">First vector to compare.</param>
+            <param name="b">Second vector to compare.</param>
+            <returns>Whenever both vectors are similar.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Vectors.Approximately(System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            Compares two <see cref="T:System.Numerics.Vector3"/> and check if they are similar.
+            </summary>
+            <param name="a">First vector to compare.</param>
+            <param name="b">Second vector to compare.</param>
+            <returns>Whenever both vectors are similar.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Vectors.Approximately(System.Numerics.Vector4,System.Numerics.Vector4)">
+            <summary>
+            Compares two <see cref="T:System.Numerics.Vector4"/> and check if they are similar.
+            </summary>
+            <param name="source">First vector to compare.</param>
+            <param name="other">Second vector to compare.</param>
+            <returns>Whenever both vectors are similar.</returns>
+        </member>
+    </members>
+</doc>
