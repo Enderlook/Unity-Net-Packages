@@ -9,14 +9,44 @@
             Utility methods used when working with geometry.
             </summary>
         </member>
+        <member name="M:Enderlook.Mathematics.Geometry.Centroid(System.Span{System.Numerics.Vector2})">
+            <summary>
+            Calculate the centroid of a give span of points.
+            </summary>
+            <param name="points">Span of points.</param>
+            <returns>centroid of the given span.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.Centroid(Enderlook.Mathematics.Triangle{System.Numerics.Vector2})">
+            <summary>
+            Calculates the centroid of a triangle.
+            </summary>
+            <param name="triangle">Triangle to calculate its centroid.</param>
+            <returns>Centroid of the triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.Centroid(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Calculates the centroid for a triangle defined by points <paramref name="a"/>, <paramref name="b"/> and <paramref name="c"/>.
+            </summary>
+            <param name="a">First point of the triangle.</param>
+            <param name="b">Second point of the triangle.</param>
+            <param name="c">Third point of the triangle.</param>
+            <returns>Centroid of the specified trinagle.</returns>
+        </member>
         <member name="M:Enderlook.Mathematics.Geometry.Circumcenter(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
-            Calculates the circumcenter of 3 points
+            Calculates the circumcenter of 3 points.
             </summary>
             <param name="a">First point.</param>
             <param name="b">Second point.</param>
             <param name="c">Third points.</param>
             <returns>Circumcenter of the given points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.Circumcenter(Enderlook.Mathematics.Triangle{System.Numerics.Vector2})">
+            <summary>
+            Calculates the circumcenter of a triangle.
+            </summary>
+            <param name="triangle">Triangle to calculate its circumcenter.</param>
+            <returns>Circumcenter of the triangle.</returns>
         </member>
         <member name="M:Enderlook.Mathematics.Geometry.Circumradius(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
@@ -27,12 +57,12 @@
             <param name="c">Third points.</param>
             <returns>Circumradius of the given points.</returns>
         </member>
-        <member name="M:Enderlook.Mathematics.Geometry.Centroid(System.Span{System.Numerics.Vector2})">
+        <member name="M:Enderlook.Mathematics.Geometry.Circumradius(Enderlook.Mathematics.Triangle{System.Numerics.Vector2})">
             <summary>
-            Calculate the centroid of a give span of points.
+            Calculates the circumradius of a triangle.
             </summary>
-            <param name="points">Span of points.</param>
-            <returns>centroid of the given span.</returns>
+            <param name="triangle">Triangle to calculate its circumradius.</param>
+            <returns>Circumradius of the triangle.</returns>
         </member>
         <member name="M:Enderlook.Mathematics.Geometry.AreInCircle(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
@@ -44,14 +74,45 @@
             <param name="p">Fourth point.</param>
             <returns><see langword="true"/> if points form a circle.</returns>
         </member>
-        <member name="M:Enderlook.Mathematics.Geometry.AreColinear(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+        <member name="M:Enderlook.Mathematics.Geometry.Barycentric(System.Numerics.Vector3,System.Numerics.Vector3,System.Numerics.Vector3,System.Numerics.Vector3)">
             <summary>
-            Determines if 3 points are colinear.
+            Find the barycentric coordinates of point <paramref name="p"/> from a triangle composed of poitns <paramref name="a"/>, <paramref name="b"/> and <paramref name="c"/>.
             </summary>
-            <param name="p1">First point.</param>
-            <param name="p2">Second point.</param>
-            <param name="p3">Third point.</param>
-            <returns><see langword="true"/> if they are colinear.</returns>
+            <param name="p">Poit to find.</param>
+            <param name="a">First point of triangle.</param>
+            <param name="b">Second point of triangle.</param>
+            <param name="c">Third point of triangle.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.HorizontalSideOfPointRespectToLine(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines on which side of a line encompased by <paramref name="startLine"/> and <paramref name="endLine"/> is the point <paramref name="point"/>.
+            </summary>
+            <param name="point">Point to check from which side it is.</param>
+            <param name="startLine">Beginning of the line.</param>
+            <param name="endLine">End of the line.</param>
+            <returns>If positive, the point is on the left side of the line.<br/>
+            If negative, the point is on the right side of the line.<br/>
+            If 0, the point is in the line.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.IsInsideCircumcirclee(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines if the specified point is inside a circumcircle formed by the points <paramref name="c0"/>, <paramref name="c1"/>, <paramref name="point"/>.
+            </summary>
+            <param name="point">Point to check if it's inside a circumcircle.</param>
+            <param name="c0">First point of circumcircle.</param>
+            <param name="c1">Second point of circumcircle.</param>
+            <param name="c2">Third point of circumcircle.</param>
+            <returns>Whenever point <paramref name="point"/> is inside the formed circumcircle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.IsInsideTriangle(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines if the specified point is inside a triangle formed by the points in counter-clockwise order <paramref name="c0"/>, <paramref name="c1"/>, <paramref name="point"/>.
+            </summary>
+            <param name="point">Point to check if it's inside a triangle.</param>
+            <param name="c0">First point of triangle.</param>
+            <param name="c1">Second point of triangle.</param>
+            <param name="c2">Third point of triangle.</param>
+            <returns>Whenever point <paramref name="point"/> is inside the formed triangle.</returns>
         </member>
         <member name="M:Enderlook.Mathematics.Geometry.AreClockwise(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
@@ -61,6 +122,15 @@
             <param name="p2">Second point.</param>
             <param name="p3">Third point.</param>
             <returns><see langword="true"/> if they are clockwise.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Geometry.AreColinear(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines if 3 points are colinear.
+            </summary>
+            <param name="p1">First point.</param>
+            <param name="p2">Second point.</param>
+            <param name="p3">Third point.</param>
+            <returns><see langword="true"/> if they are colinear.</returns>
         </member>
         <member name="M:Enderlook.Mathematics.Geometry.AreCounterClockwise(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
@@ -99,6 +169,37 @@
             <summary>
             Points are ordered counterclockwise.
             </summary>
+        </member>
+        <member name="T:Enderlook.Mathematics.Mathematic">
+            <summary>
+            Math helper methods.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Mathematics.Mathematic.Approximately(System.Single,System.Single)">
+            <summary>
+            Compares two <see cref="T:System.Single"/> and check if they are similar.
+            </summary>
+            <param name="a">First float to compare.</param>
+            <param name="b">Second float to compare.</param>
+            <returns>Whenever both floats are similar.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Mathematic.Max(System.Single,System.Single,System.Single)">
+            <summary>
+            Get the highest number of three.
+            </summary>
+            <param name="a">First number.</param>
+            <param name="b">Second number.</param>
+            <param name="c">Third number.</param>
+            <returns>Highest number of three.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Mathematic.Min(System.Single,System.Single,System.Single)">
+            <summary>
+            Get the lowest number of three.
+            </summary>
+            <param name="a">First number.</param>
+            <param name="b">Second number.</param>
+            <param name="c">Third number.</param>
+            <returns>Lowest number of three.</returns>
         </member>
         <member name="T:Enderlook.Mathematics.MeshInfo">
             <summary>
@@ -326,6 +427,23 @@
         <member name="M:Enderlook.Mathematics.MeshInfo.VoronoiCellsInfo.Dispose">
             <inheritdoc cref="M:System.IDisposable.Dispose"/>
         </member>
+        <member name="T:Enderlook.Mathematics.MeshInfo.VoronoiCells">
+            <summary>
+            Represent the voronoi cells of a mesh.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.VoronoiCells.Count">
+            <summary>
+            Amount of cells.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.MeshInfo.VoronoiCells.Item(System.Int32)">
+            <summary>
+            Get the voronoi cell at the specified index.
+            </summary>
+            <param name="index">Index of the voronoi cell.</param>
+            <returns>Voronoi cell at the specified index.</returns>
+        </member>
         <member name="M:Enderlook.Mathematics.MeshInfo.VoronoiEdgesFromCentroids">
             <summary>
             Get all voronoi edges calculated using centroids.
@@ -350,18 +468,657 @@
             </summary>
             <returns>Voronoi edges. Each 2 elements represent an edge.</returns>
         </member>
+        <member name="T:Enderlook.Mathematics.BoundingBox">
+            <summary>
+            Helper methods for <see cref="T:Enderlook.Mathematics.BoundingBox`1"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Center(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2})">
+            <summary>
+            Calculates the center of a bounding box.
+            </summary>
+            <param name="box">Bounding box whose center will be calculated.</param>
+            <returns>Center of the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Center(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3})">
+            <summary>
+            Calculates the center of a bounding box.
+            </summary>
+            <param name="box">Bounding box whose center will be calculated.</param>
+            <returns>Center of the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Closest(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2},System.Numerics.Vector2)">
+            <summary>
+            Calculates the closest point to <paramref name="point"/> on the bounding box.
+            </summary>
+            <param name="box">Bounding box to check point.</param>
+            <param name="point">Point to check.</param>
+            <returns>Closes point to <paramref name="point"/> on the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Closest(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},System.Numerics.Vector3)">
+            <summary>
+            Calculates the closest point to <paramref name="point"/> on the bounding box.
+            </summary>
+            <param name="box">Bounding box to check point.</param>
+            <param name="point">Point to check.</param>
+            <returns>Closes point to <paramref name="point"/> on the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Contains(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2},System.Numerics.Vector2)">
+            <summary>
+            Determines if a point is contained the specified bounding box.
+            </summary>
+            <param name="box">Box to check if is contained.</param>
+            <param name="point">Point to check.</param>
+            <returns>whenever the point is contained the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Contains(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},System.Numerics.Vector3)">
+            <summary>
+            Determines if a point is contained the specified bounding box.
+            </summary>
+            <param name="box">Box to check if is contained.</param>
+            <param name="point">Point to check.</param>
+            <returns>whenever the point is contained the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Expand(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2}@,System.Numerics.Vector2)">
+            <summary>
+            Expands a bounding box.
+            </summary>
+            <param name="box">Box to expand.</param>
+            <param name="amount">Amount to expand.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Expand(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3}@,System.Numerics.Vector3)">
+            <summary>
+            Expands a bounding box.
+            </summary>
+            <param name="box">Box to expand.</param>
+            <param name="amount">Amount to expand.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Expand(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2}@,System.Single)">
+            <summary>
+            Expands a bounding box.
+            </summary>
+            <param name="box">Box to expand.</param>
+            <param name="amount">Amount to expand.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Expand(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3}@,System.Single)">
+            <summary>
+            Expands a bounding box.
+            </summary>
+            <param name="box">Box to expand.</param>
+            <param name="amount">Amount to expand.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Encapsulate(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3}@,System.Numerics.Vector3)">
+            <summary>
+            Grows the bounding box to include the point.
+            </summary>
+            <param name="box">Box to grow.</param>
+            <param name="point">Point to encapsulate.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Encapsulate(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2}@,System.Numerics.Vector2)">
+            <summary>
+            Grows the bounding box to include the point.
+            </summary>
+            <param name="box">Box to grow.</param>
+            <param name="point">Point to encapsulate.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Encapsulate(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3}@,Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3})">
+            <summary>
+            Grows the bounding box to include the bounds.
+            </summary>
+            <param name="box">Box to grow.</param>
+            <param name="bounds">Bounds to encapsulate.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Encapsulate(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2}@,Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2})">
+            <summary>
+            Grows the bounding box to include the bounds.
+            </summary>
+            <param name="box">Box to grow.</param>
+            <param name="bounds">Bounds to encapsulate.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Extents(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2})">
+            <summary>
+            Calculates the extents of a bounding box.
+            </summary>
+            <param name="box">Bounding box whose extents will be calculated.</param>
+            <returns>Extents of the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Extents(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3})">
+            <summary>
+            Calculates the extents of a bounding box.
+            </summary>
+            <param name="box">Bounding box whose extents will be calculated.</param>
+            <returns>Extents of the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.From(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Calculates the bounding box of the provided points.
+            </summary>
+            <param name="a">First point of the bounding box.</param>
+            <param name="b">Second point of the bounding box.</param>
+            <returns>Bounding box of the specified points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.From(System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            Calculates the bounding box of the provided points.
+            </summary>
+            <param name="a">First point of the bounding box.</param>
+            <param name="b">Second point of the bounding box.</param>
+            <returns>Bounding box of the specified points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.From(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Calculates the bounding box of the provided points.
+            </summary>
+            <param name="a">First point of the bounding box.</param>
+            <param name="b">Second point of the bounding box.</param>
+            <param name="c">Third point of the bounding box.</param>
+            <returns>Bounding box of the specified points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.From(System.Numerics.Vector3,System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            Calculates the bounding box of the provided points.
+            </summary>
+            <param name="a">First point of the bounding box.</param>
+            <param name="b">Second point of the bounding box.</param>
+            <param name="c">Third point of the bounding box.</param>
+            <returns>Bounding box of the specified points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.From(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Calculates the bounding box of the provided points.
+            </summary>
+            <param name="a">First point of the bounding box.</param>
+            <param name="b">Second point of the bounding box.</param>
+            <param name="c">Third point of the bounding box.</param>
+            <param name="d">Four point of the bounding box.</param>
+            <returns>Bounding box of the specified points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.From(System.Numerics.Vector3,System.Numerics.Vector3,System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            Calculates the bounding box of the provided points.
+            </summary>
+            <param name="a">First point of the bounding box.</param>
+            <param name="b">Second point of the bounding box.</param>
+            <param name="c">Third point of the bounding box.</param>
+            <param name="d">Four point of the bounding box.</param>
+            <returns>Bounding box of the specified points.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.From(System.Span{System.Numerics.Vector2})">
+            <summary>
+            Calculates the bounding box of the specified points.
+            </summary>
+            <param name="points">Points used by the bounding box.</param>
+            <returns>Bounding box of the specified points</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.From(System.Span{System.Numerics.Vector3})">
+            <summary>
+            Calculates the bounding box of the specified points.
+            </summary>
+            <param name="points">Points used by the bounding box.</param>
+            <returns>Bounding box of the specified points</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.FromCenter(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Calculates the bounding box.
+            </summary>
+            <param name="center">Center of the bounding box.</param>
+            <param name="size">Size of the bounding box.</param>
+            <returns>Bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.FromCenter(System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            Calculates the bounding box.
+            </summary>
+            <param name="center">Center of the bounding box.</param>
+            <param name="size">Size of the bounding box.</param>
+            <returns>Bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.GetCorners(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2},System.Span{System.Numerics.Vector2})">
+            <summary>
+            Get the corners of the bounding box.
+            </summary>
+            <param name="box">Bounding box whose corners will be calculated.</param>
+            <param name="corners">Where corners will be stored.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.GetCorners(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},System.Span{System.Numerics.Vector3})">
+            <summary>
+            Get the corners of the bounding box.
+            </summary>
+            <param name="box">Bounding box whose corners will be calculated.</param>
+            <param name="corners">Where corners will be stored.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Intersects(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2},Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2})">
+            <summary>
+            Determines if one bonding box intersects with the another.
+            </summary>
+            <param name="box">First bounding box.</param>
+            <param name="other">Second bounding box.</param>
+            <returns>Whenever both bounding boxes intersects each other.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Intersects(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3})">
+            <summary>
+            Determines if one bonding box intersects with the another.
+            </summary>
+            <param name="box">First bounding box.</param>
+            <param name="other">Second bounding box.</param>
+            <returns>Whenever both bounding boxes intersects each other.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Intersects(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            Determines if the line from <paramref name="p1"/> to <paramref name="p2"/> intersects the bounding box.
+            </summary>
+            <param name="box">Bounding box to check.</param>
+            <param name="p1">First point of the line.</param>
+            <param name="p2">Second point of the line.</param>
+            <returns>Whenever the line from <paramref name="p1"/> to <paramref name="p2"/> intersects the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Intersects(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2},System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            Determines if the line from <paramref name="p1"/> to <paramref name="p2"/> intersects the bounding box.
+            </summary>
+            <param name="box">Bounding box to check.</param>
+            <param name="p1">First point of the line.</param>
+            <param name="p2">Second point of the line.</param>
+            <returns>Whenever the line from <paramref name="p1"/> to <paramref name="p2"/> intersects the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Intersects(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},Enderlook.Mathematics.Edge{System.Numerics.Vector3})">
+            <summary>
+            Determines if the edge intersects the bounding box.
+            </summary>
+            <param name="box">Bounding box to check.</param>
+            <param name="edge">Edge to check.</param>
+            <returns>Whenever the edge intersects the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Intersects(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2},Enderlook.Mathematics.Edge{System.Numerics.Vector2})">
+            <summary>
+            Determines if the edge intersects the bounding box.
+            </summary>
+            <param name="box">Bounding box to check.</param>
+            <param name="edge">Edge to check.</param>
+            <returns>Whenever the edge intersects the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Intersects(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},System.Numerics.Vector3,System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            Determines if the triangle compose of <paramref name="a"/>, <paramref name="b"/> and <paramref name="c"/> intersects the bounding box.
+            </summary>
+            <param name="box">Bounding box to check.</param>
+            <param name="a">First point of the tringle.</param>
+            <param name="b">Second point of the tringle.</param>
+            <param name="c">Third point of the tringle.</param>
+            <returns>Whenever the triangle compose of <paramref name="a"/>, <paramref name="b"/> and <paramref name="c"/> intersects the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Intersects(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},Enderlook.Mathematics.Triangle{System.Numerics.Vector3})">
+            <summary>
+            Determines if the triangle intersects the bounding box.
+            </summary>
+            <param name="box">Bounding box to check.</param>
+            <param name="triangle">Triangle to check.</param>
+            <returns>Whenever the triangle intersects the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Intersects(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},System.Numerics.Plane)">
+            <summary>
+            Determines if the plane intersects the bounding box.
+            </summary>
+            <param name="box">Bounding box to check.</param>
+            <param name="plane">Plane to check.</param>
+            <returns>Whenever the plane intersects the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Overlaps(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2},Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2})">
+            <summary>
+            Determines if one bonding box overlaps with the another.
+            </summary>
+            <param name="box">First bounding box.</param>
+            <param name="other">Second bounding box.</param>
+            <returns>Whenever both bounding boxes overlaps each other.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Overlaps(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3},Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3})">
+            <summary>
+            Determines if one bonding box overlaps with the another.
+            </summary>
+            <param name="box">First bounding box.</param>
+            <param name="other">Second bounding box.</param>
+            <returns>Whenever both bounding boxes overlaps each other.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Size(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2})">
+            <summary>
+            Calculates the size of a bounding box.
+            </summary>
+            <param name="box">Bounding box whose size will be calculated.</param>
+            <returns>Size of the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Size(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3})">
+            <summary>
+            Calculates the size of a bounding box.
+            </summary>
+            <param name="box">Bounding box whose size will be calculated.</param>
+            <returns>Size of the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Surface(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector2})">
+            <summary>
+            Calculates the area of a bounding box.
+            </summary>
+            <param name="box">Bounding box whose area will be calculated.</param>
+            <returns>Area of the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Surface(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3})">
+            <summary>
+            Calculates the area of a bounding box.
+            </summary>
+            <param name="box">Bounding box whose area will be calculated.</param>
+            <returns>Area of the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox.Volume(Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3})">
+            <summary>
+            Calculates the volume of a bounding box.
+            </summary>
+            <param name="box">Bounding box whose volume will be calculated.</param>
+            <returns>Volume of the bounding box.</returns>
+        </member>
+        <member name="T:Enderlook.Mathematics.BoundingBox`1">
+            <summary>
+            Represent an axis-aligned bounding box.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.BoundingBox`1.Min">
+            <summary>
+            Minimum point of the bounding box.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.BoundingBox`1.Max">
+            <summary>
+            Maximum point of the bounding box.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox`1.#ctor(`0,`0)">
+            <summary>
+            Creates a bounding box.
+            </summary>
+            <param name="min">Minimum point of the bounding box.</param>
+            <param name="max">Maximum point of the bounding box.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox`1.Equals(Enderlook.Mathematics.BoundingBox{`0})">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox`1.op_Equality(Enderlook.Mathematics.BoundingBox{`0},Enderlook.Mathematics.BoundingBox{`0})">
+            <summary>
+            Determines if two bounding boxes are equal.
+            </summary>
+            <param name="a">First bounding box.</param>
+            <param name="b">Second bounding box.</param>
+            <returns>Whenever both bounding boxes are equal.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.BoundingBox`1.op_Inequality(Enderlook.Mathematics.BoundingBox{`0},Enderlook.Mathematics.BoundingBox{`0})">
+            <summary>
+            Determines if two bounding boxes are unequal.
+            </summary>
+            <param name="a">First bounding box.</param>
+            <param name="b">Second bounding box.</param>
+            <returns>Whenever both bounding boxes are unequal.</returns>
+        </member>
+        <member name="T:Enderlook.Mathematics.Edge`1">
+            <summary>
+            Represent an edge.
+            </summary>
+            <typeparam name="T">Type of point in the edge.</typeparam>
+        </member>
+        <member name="P:Enderlook.Mathematics.Edge`1.First">
+            <summary>
+            First point of the edge.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.Edge`1.Second">
+            <summary>
+            Second point of the edge.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.Edge`1.Item(System.Int32)">
+            <summary>
+            Get a point of the edge.
+            </summary>
+            <param name="index">Index of the point.</param>
+            <returns>Point in the edge.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Edge`1.#ctor(`0,`0)">
+            <summary>
+            Creates a new edge.
+            </summary>
+            <param name="first">First point of the edge.</param>
+            <param name="second">Second point of the edge.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.Edge`1.Equals(Enderlook.Mathematics.Edge{`0})">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.Edge`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.Edge`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.Edge`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.Edge`1.op_Equality(Enderlook.Mathematics.Edge{`0},Enderlook.Mathematics.Edge{`0})">
+            <summary>
+            Determines if two edges are equal.
+            </summary>
+            <param name="a">First edge.</param>
+            <param name="b">Second edge.</param>
+            <returns>Whenever both edges are equal.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Edge`1.op_Inequality(Enderlook.Mathematics.Edge{`0},Enderlook.Mathematics.Edge{`0})">
+            <summary>
+            Determines if two edges are unequal.
+            </summary>
+            <param name="a">First edge.</param>
+            <param name="b">Second edge.</param>
+            <returns>Whenever both edges are unequal.</returns>
+        </member>
+        <member name="T:Enderlook.Mathematics.Triangle`1">
+            <summary>
+            Represent a triangle.
+            </summary>
+            <typeparam name="T">Type of point in the triangle.</typeparam>
+        </member>
+        <member name="P:Enderlook.Mathematics.Triangle`1.First">
+            <summary>
+            First point of the triangle.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.Triangle`1.Second">
+            <summary>
+            Second point of the triangle.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.Triangle`1.Third">
+            <summary>
+            Third point of the triangle.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.Triangle`1.Item(System.Int32)">
+            <summary>
+            Get a point of the triangle.
+            </summary>
+            <param name="index">Index of the point.</param>
+            <returns>Point in the triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle`1.#ctor(`0,`0,`0)">
+            <summary>
+            Creates a new trianagle.
+            </summary>
+            <param name="first">First point of the triangle.</param>
+            <param name="second">Second point of the triangle.</param>
+            <param name="third">Third point of the triangle.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle`1.Equals(Enderlook.Mathematics.Triangle{`0})">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle`1.op_Equality(Enderlook.Mathematics.Triangle{`0},Enderlook.Mathematics.Triangle{`0})">
+            <summary>
+            Determines if two triangles are equal.
+            </summary>
+            <param name="a">First triangle.</param>
+            <param name="b">Second triangle.</param>
+            <returns>Whenever both triangles are equal.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle`1.op_Inequality(Enderlook.Mathematics.Triangle{`0},Enderlook.Mathematics.Triangle{`0})">
+            <summary>
+            Determines if two triangles are unequal.
+            </summary>
+            <param name="a">First triangle.</param>
+            <param name="b">Second triangle.</param>
+            <returns>Whenever both triangles are unequal.</returns>
+        </member>
+        <member name="T:Enderlook.Mathematics.Triangle">
+            <summary>
+            Helper methods for <see cref="T:Enderlook.Mathematics.Triangle`1"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle.Barycentric(Enderlook.Mathematics.Triangle{System.Numerics.Vector3},System.Numerics.Vector3)">
+            <summary>
+            Find the barycentric coordinates of point <paramref name="p"/> from a triangle.
+            </summary>
+            <param name="triangle">Triangle to find barycentric coordiantes.</param>
+            <param name="p">Poit to find.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle.BoundingBox(Enderlook.Mathematics.Triangle{System.Numerics.Vector2})">
+            <summary>
+            Calculates the bounding box of the provided triangle.
+            </summary>
+            <param name="triangle">Triangle whose bounding box will be calculated.</param>
+            <returns>Bounding box of the specified triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle.BoundingBox(Enderlook.Mathematics.Triangle{System.Numerics.Vector3})">
+            <summary>
+            Calculates the bounding box of the provided triangle.
+            </summary>
+            <param name="triangle">Triangle whose bounding box will be calculated.</param>
+            <returns>Bounding box of the specified triangle.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle.Intersects(Enderlook.Mathematics.Triangle{System.Numerics.Vector3},Enderlook.Mathematics.BoundingBox{System.Numerics.Vector3})">
+            <summary>
+            Determines if the triangle intersects the bounding box.
+            </summary>
+            <param name="triangle">Triangle to check.</param>
+            <param name="box">Bounding box to check.</param>
+            <returns>Whenever the triangle intersects the bounding box.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.Triangle.IsInside(Enderlook.Mathematics.Triangle{System.Numerics.Vector2},System.Numerics.Vector2)">
+            <summary>
+            Determines if a point is inside the specified triangle.
+            </summary>
+            <param name="triangle">Triangle to check if is inside.</param>
+            <param name="point">Point to check.</param>
+            <returns>whenever the point is inside the triangle.</returns>
+        </member>
+        <member name="T:Enderlook.Mathematics.TriangleEdges`1">
+            <summary>
+            Represent the edges of a triangle.
+            </summary>
+            <typeparam name="T">Type of edge.</typeparam>
+        </member>
+        <member name="P:Enderlook.Mathematics.TriangleEdges`1.First">
+            <summary>
+            First edge of the triangle.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.TriangleEdges`1.Second">
+            <summary>
+            Second edge of the triangle.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.TriangleEdges`1.Third">
+            <summary>
+            Third edge of the triangle.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.TriangleEdges`1.Item(System.Int32)">
+            <summary>
+            Get an edge of the triangle.
+            </summary>
+            <param name="index">Index of the point.</param>
+            <returns>Point in the edge.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.TriangleEdges`1.#ctor(`0,`0,`0)">
+            <summary>
+            Stores the edges of a triangle.
+            </summary>
+            <param name="first">First edge of the triangle.</param>
+            <param name="second">Second edge of the triangle.</param>
+            <param name="thid">Third edge of the triangle.</param>
+        </member>
+        <member name="M:Enderlook.Mathematics.TriangleEdges`1.Equals(Enderlook.Mathematics.TriangleEdges{`0})">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.TriangleEdges`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.TriangleEdges`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.TriangleEdges`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Enderlook.Mathematics.TriangleEdges`1.op_Equality(Enderlook.Mathematics.TriangleEdges{`0},Enderlook.Mathematics.TriangleEdges{`0})">
+            <summary>
+            Determines if two triangles are equal.
+            </summary>
+            <param name="a">First triangle.</param>
+            <param name="b">Second triangle.</param>
+            <returns>Whenever both triangles are equal.</returns>
+        </member>
+        <member name="M:Enderlook.Mathematics.TriangleEdges`1.op_Inequality(Enderlook.Mathematics.TriangleEdges{`0},Enderlook.Mathematics.TriangleEdges{`0})">
+            <summary>
+            Determines if two triangles are unequal.
+            </summary>
+            <param name="a">First triangle.</param>
+            <param name="b">Second triangle.</param>
+            <returns>Whenever both triangles are unequal.</returns>
+        </member>
+        <member name="T:Enderlook.Mathematics.VoronoiCell`1">
+            <summary>
+            Represent a voronoi cell.
+            </summary>
+            <typeparam name="T">Type of point.</typeparam>
+        </member>
+        <member name="P:Enderlook.Mathematics.VoronoiCell`1.Center">
+            <summary>
+            Center of the voronoi cell.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Mathematics.VoronoiCell`1.Vertices">
+            <summary>
+            Vertices of the voronoi cell.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Mathematics.VoronoiCell`1.#ctor(`0,System.Span{`0})">
+            <summary>
+            Creates a voronoi cell.
+            </summary>
+            <param name="center">Center of the voronoi cell.</param>
+            <param name="vertices">Vertices of the voronoi cell.</param>
+        </member>
         <member name="T:Enderlook.Mathematics.Vectors">
             <summary>
             Helper methods for <see cref="T:System.Numerics.Vector2"/>, <see cref="T:System.Numerics.Vector3"/> and <see cref="T:System.Numerics.Vector4"/>.
             </summary>
-        </member>
-        <member name="M:Enderlook.Mathematics.Vectors.Approximately(System.Single,System.Single)">
-            <summary>
-            Compares two <see cref="T:System.Single"/> and check if they are similar.
-            </summary>
-            <param name="a">First float to compare.</param>
-            <param name="b">Second float to compare.</param>
-            <returns>Whenever both floats are similar.</returns>
         </member>
         <member name="M:Enderlook.Mathematics.Vectors.Approximately(System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
@@ -383,8 +1140,8 @@
             <summary>
             Compares two <see cref="T:System.Numerics.Vector4"/> and check if they are similar.
             </summary>
-            <param name="source">First vector to compare.</param>
-            <param name="other">Second vector to compare.</param>
+            <param name="a">First vector to compare.</param>
+            <param name="b">Second vector to compare.</param>
             <returns>Whenever both vectors are similar.</returns>
         </member>
     </members>
