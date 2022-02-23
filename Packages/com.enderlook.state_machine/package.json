@@ -1,6 +1,6 @@
 {
   "name": "com.enderlook.state_machine",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "displayName": "Enderlook State Machine",
   "description": "https://github.com/Enderlook/Net-State-Machine",
   "dependencies": {
