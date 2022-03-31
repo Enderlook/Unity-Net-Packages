@@ -4,7 +4,7 @@
   "displayName": "Enderlook Threading",
   "description": "https://github.com/Enderlook/Net-Reflection",
   "dependencies": {
-	"com.system.runtime.compiler_services.unsafe": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.runtime.compiler_services.unsafe#com.runtime.compiler_services.unsafe/v4.5.3"
+	"com.system.runtime.compiler_services.unsafe": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.system.runtime.compiler_services.unsafe#com.system.runtime.compiler_services.unsafe/v4.5.3"
   },
   "keywords": [
   ],
