@@ -1,10 +1,10 @@
 {
   "name": "com.enderlook.pools",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "displayName": "Enderlook Pools",
   "description": "https://github.com/Enderlook/Net-Pools",
   "dependencies": {
-	"com.system.runtime.compiler_services.unsafe": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.runtime.compiler_services.unsafe#com.runtime.compiler_services.unsafe/v4.5.3"
+	"com.system.runtime.compiler_services.unsafe": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.system.runtime.compiler_services.unsafe#com.system.runtime.compiler_services.unsafe/v4.5.3"
   },
   "keywords": [
   ],
