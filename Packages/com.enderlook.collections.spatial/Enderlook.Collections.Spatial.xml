@@ -1,0 +1,2524 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enderlook.Collections.Spatial</name>
+    </assembly>
+    <members>
+        <member name="M:Enderlook.Collections.Spatial.BitHelper.ToBitIntArrayLength(System.Int32)">
+            <summary>How many ints must be allocated to represent n bits. Returns (n+31)/32, but avoids overflow.</summary>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTree`3">
+            <summary>
+            Represent a DK-Tree collection to store elements.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTree`3.Count">
+            <summary>
+            Get the number of elements stored in this tree.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.#ctor">
+            <summary>
+            Initializes an instance of a tree.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance of a tree with an specified initial capacity.
+            </summary>
+            <param name="capacity">The number of elements that the new tree can initially store.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.Clear">
+            <summary>
+            Removes all items from this tree.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)">
+            <summary>
+            Determines whether the tree contains a specific key.
+            </summary>
+            <param name="key">Key to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="key"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)">
+            <summary>
+            Copies the elements of the tree to array, starting at a particular array index.
+            </summary>
+            <param name="array">The array that is the destination of the elements copied from the tree.</param>
+            <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="array"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="arrayIndex"/> is less than 0.</exception>
+            <exception cref="T:System.ArgumentException">Throw when the number of elements in the source tree is greater than the available space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)">
+            <summary>
+            Copies the elements of the tree to array, starting at a particular array index.
+            </summary>
+            <param name="array">The array that is the destination of the elements copied from the tree.</param>
+            <param name="index">The zero-based index in array at which copying begins.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="array"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="index"/> is less than 0.</exception>
+            <exception cref="T:System.ArgumentException">Throw when the number of elements in the source tree is greater than the available space from <paramref name="index"/> to the end of the destination <paramref name="array"/>.<br/>
+            Thrown when the <paramref name="array"/> type is invalid.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})">
+            <summary>
+            Copies the elements of the tree to span.
+            </summary>
+            <param name="span">The span that is the destination of the elements copied from the tree.</param>
+            <exception cref="T:System.ArgumentException">Throw when the number of elements in the source tree is greater than <paramref name="span"/> length.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that the tree can hold up to a specified number of entries without any further expansion of its backing storage.
+            </summary>
+            <param name="capacity">The number of entries.</param>
+            <returns>The current capacity of the tree.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="capacity"/> is less than 0.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Determines whether a tree is a proper (strict) subset of a specified collection.
+            </summary>
+            <param name="other">The collection to compare to the current tree.</param>
+            <returns><see langword="true"/> is the current tree is a proper subset of <paramref name="other"/>. Otherwise, <see langword="false"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.ReadOnlySpan{`1})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Determines whether a tree is a proper (strict) subset of a specified collection.
+            </summary>
+            <param name="other">The collection to compare to the current tree.</param>
+            <returns><see langword="true"/> is the current tree is a proper subset of <paramref name="other"/>. Otherwise, <see langword="false"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.ReadOnlySpan{`1})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Determines whether a tree is a subset of a specified collection.
+            </summary>
+            <param name="other">The collection to compare to the current tree.</param>
+            <returns><see langword="true"/> is the current tree is a subset of <paramref name="other"/>. Otherwise, <see langword="false"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Determines whether the current tree is a superset of a specified collection.
+            </summary>
+            <param name="other">The collection to compare to the current tree.</param>
+            <returns><see langword="true"/> if the current tree is a superset of <paramref name="other"/>. Otherwise, <see langword="false"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.IsSupersetOf(System.ReadOnlySpan{`1})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Determines whether the current tree overlaps with the specified collection.
+            </summary>
+            <param name="other">The collection to compare to the current tree.</param>
+            <returns><see langword="true"/> if the current tree and <paramref name="other"/> share at least one common element. Otherwise, <see langword="false"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.ReadOnlySpan{`1})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Determines whether the current tree and the specified collection contain the same elements.
+            </summary>
+            <param name="other">The collection to compare to the current tree.</param>
+            <returns><see langword="true"/> if the current tree is equal to <paramref name="other"/>. Otherwise, <see langword="false"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.ReadOnlySpan{`1})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.RemoveKey(`1)">
+            <summary>
+            Removes the occurrence of a specific element from the tree.
+            </summary>
+            <param name="key">Point to remove.</param>
+            <returns><see langword="true"/> if <paramref name="key"/> was removed. <see langword="false"/> if <paramref name="key"/> was not found.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Collections.Generic.KeyValuePair{`1,`2})">
+            <summary>
+            Removes the occurrence of a specific element from the tree.
+            </summary>
+            <param name="item">Item to remove.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> was removed. <see langword="false"/> if a key with the value specified in <paramref name="item"/> was not found.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.TrimExcess">
+            <summary>
+            Sets the capacity of a tree to the actual number of elements it contains, rounded up to a nearby, implementation-specific value.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current">
+            <summary>
+            Gets the element at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the tree.
+            </summary>
+            <returns><see langword="true"/> if enumerator advanced successfully. <see langword="false"/> if reached end of enumeration.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element in the collection.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose">
+            <summary>
+            Releases all the resources used by the enumerator.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Collections.Spatial.Node`2.Point">
+            <summary>
+            Stores the point of this node.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Collections.Spatial.Node`2.Value">
+            <summary>
+            Stores the value of this node.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Collections.Spatial.Node`2.LeftOrState">
+            <summary>
+            If <see cref="F:Enderlook.Collections.Spatial.Utils.UNUSED_NODE"/>, this node is not used.<br/>
+            If <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>, this node is used but doesn't has a left child.<br/>
+            Otherwise this is the index of its child.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Collections.Spatial.Node`2.RightOrNextFree">
+            <summary>
+            If <see cref="F:Enderlook.Collections.Spatial.Node`2.LeftOrState"/> is not <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>, this value is the index of its right child, unless it's <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>, then it doesn't have a child.<br/>
+            If <see cref="F:Enderlook.Collections.Spatial.Node`2.LeftOrState"/> is <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>, this value is the index of the next unused node, unless it's <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>1, then it doesn't have a next node.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Collections.Spatial.Node`1.Point">
+            <summary>
+            Stores the point of this node.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Collections.Spatial.Node`1.LeftOrState">
+            <summary>
+            If <see cref="F:Enderlook.Collections.Spatial.Utils.UNUSED_NODE"/>, this node is not used.<br/>
+            If <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>, this node is used but doesn't has a left child.<br/>
+            Otherwise this is the index of its child.
+            </summary>
+        </member>
+        <member name="F:Enderlook.Collections.Spatial.Node`1.RightOrNextFree">
+            <summary>
+            If <see cref="F:Enderlook.Collections.Spatial.Node`1.LeftOrState"/> is not <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>, this value is the index of its right child, unless it's <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>, then it doesn't have a child.<br/>
+            If <see cref="F:Enderlook.Collections.Spatial.Node`1.LeftOrState"/> is <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>, this value is the index of the next unused node, unless it's <see cref="F:Enderlook.Collections.Spatial.Utils.NO_NEXT_NODE"/>1, then it doesn't have a next node.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeDictionary.Add``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,System.Object,System.Object)">
+            <summary>
+            Adds the specified key and value to the tree.
+            </summary>
+            <param name="key">The key of the element to add.</param>
+            <param name="value">The value of the element to add.</param>
+            <exception cref="T:System.ArgumentException">Thrown when element with the same key already exists in the tree.<br/>
+            Thrown when <paramref name="key"/> is not assignable to <typeparamref name="TKey"/><br/>
+            Thrown when <paramref name="value"/> is not assignable to <typeparamref name="TValue"/>.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="key"/> is <see langword="null"/>.<br/>
+            Thrown when <paramref name="value"/> is <see langword="null"/> and type doesn't support <see langword="null"/></exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeDictionary.Contains``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``0,``1)">
+            <summary>
+            Determines whether the tree contains a specific key.
+            </summary>
+            <param name="key">Key to locate in the tree.</param>
+            <param name="value">Value that must be associated with key.</param>
+            <returns><see langword="true"/> if <paramref name="key"/> is found in the tree and is associated with <paramref name="value"/>. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeDictionary.ContainsValue``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``1)">
+            <summary>
+            Determines whether the tree contains a specific value.
+            </summary>
+            <param name="value">Value to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="value"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(n)</c>.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeDictionary.TryGetValue``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``0,``1@)">
+            <summary>
+            Gets the value associated with the specified key.
+            </summary>
+            <param name="key">The key whose value to get.</param>
+            <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value"/> parameter.</param>
+            <returns><see langword="true"/> if the tree cotnains an element with the speicfied key. Otherwise, <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Removes all elements in the specified collection from the current tree.
+            </summary>
+            <param name="other">The collection of items to remove from the tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+            <remarks>Time complexity is <c>O(log(n)*m)</c> average and <c>O(n*m)</c> in worst case. Where <c>n</c> is tree's count and <c>m</c> is <paramref name="other"/>'s count.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Modifies the current tree so that it contains only elements that are also in a specified collection.
+            </summary>
+            <param name="other">The collection to compare to the current tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+            <remarks>Time complexity is <c>O(log(n)*m)</c> average and <c>O(n*m)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Modifies the current tree so that it contains all elements that are present in the current tree, in the specified collection, or in both.
+            </summary>
+            <param name="other">The collection to compare to the current tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Modifies the current tree so that it contains only elements that are present either in the current tree or in the specified collection, but not both.
+            </summary>
+            <param name="other">The collection to compare to the current tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector2">
+            <summary>
+            Represent a DK-Tree collection to store <see cref="T:System.Numerics.Vector2"/> elements.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2.System#Collections#Generic#ICollection{System#Numerics#Vector2}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2.System#Collections#ICollection#Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that this instance is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.#ctor">
+            <summary>
+            Initializes an instance of a tree.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance of a tree with an specified initial capacity.
+            </summary>
+            <param name="capacity">The number of elements that the new tree can initially store.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.#ctor(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.#ctor(System.Numerics.Vector2[])">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.#ctor(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Add(System.Numerics.Vector2)">
+            <summary>
+            Attempts to add the specified element to the tree.
+            </summary>
+            <param name="item">The element to add to the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> was added. <see langword="false"/> if <paramref name="item"/> was already contained.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.System#Collections#Generic#ICollection{System#Numerics#Vector2}#Add(System.Numerics.Vector2)">
+            <summary>
+            Add the specified element to the tree.
+            </summary>
+            <param name="item">The element to add to the tree.</param>
+            <exception cref="T:System.ArgumentException">Thrown when element already exists in the tree.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Clear">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Clear"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Contains(System.Numerics.Vector2)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.CopyTo(System.Numerics.Vector2[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.CopyTo(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.CopyTo(System.Span{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.EnsureCapacity(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.EnsureCapacity(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.ExceptWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.ExceptWith(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.ExceptWith(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.System#Collections#Generic#IEnumerable{System#Numerics#Vector2}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector2.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector2.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IntersectWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IntersectWith(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IntersectWith(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsProperSubsetOf(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsProperSubsetOf(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsProperSupersetOf(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsProperSupersetOf(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsSubsetOf(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsSubsetOf(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsSupersetOf(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.IsSupersetOf(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Overlaps(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Overlaps(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Overlaps(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Remove(System.Numerics.Vector2)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.SetEquals(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.SetEquals(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.SetEquals(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.SymmetricExceptWith(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.SymmetricExceptWith(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.TryFindNearestNeighbour(System.Numerics.Vector2,System.Numerics.Vector2@)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.TryFindNearestNeighbour``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,``0,``0@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.TryFindNearestNeighbour(System.Numerics.Vector2,System.Numerics.Vector2@,System.Single@)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.TryFindNearestNeighbour``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,``0,``0@,System.Single@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.UnionWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.UnionWith(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.UnionWith(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector2.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector2"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2.Enumerator.Current">
+            <inheritdoc cref="F:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector2`1">
+            <summary>
+            Represent a DK-Tree collection to store <typeparamref name="TValue"/> keys associated with <see cref="T:System.Numerics.Vector2"/> elements.
+            </summary>
+            <typeparam name="TValue">Type of value per key.</typeparam>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Item(System.Numerics.Vector2)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get or set.</param>
+            <returns>The value associated with the specified key.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when <paramref name="key"/> is not found during a get operation.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IDictionary#Item(System.Object)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get or set.</param>
+            <returns>The value associated with the specified key.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="key"/> is not assignable to <see cref="T:System.Numerics.Vector2"/><br/>
+            Thrown when <see langword="value"/> is not assignable to <typeparamref name="TValue"/>.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="key"/> is <see langword="null"/>.<br/>
+            Thrown when <see langword="value"/> is <see langword="null"/> and type doesn't support <see langword="null"/></exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when <paramref name="key"/> is not found during a get operation.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{System#Numerics#Vector2,TValue}}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Keys">
+            <summary>
+            Gets a collection containing the keys in the tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Values">
+            <summary>
+            Gets a collection containing the values in the tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#Generic#IDictionary{System#Numerics#Vector2,TValue}#Keys">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Keys"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#Generic#IDictionary{System#Numerics#Vector2,TValue}#Values">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Values"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IDictionary#Keys">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Keys"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IDictionary#Values">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Values"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#Generic#IReadOnlyDictionary{System#Numerics#Vector2,TValue}#Keys">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Keys"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#Generic#IReadOnlyDictionary{System#Numerics#Vector2,TValue}#Values">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Values"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IDictionary#IsFixedSize">
+            <summary>
+            Determines that this tree hasn't a fixed size.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IDictionary#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that this tree is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.#ctor">
+            <summary>
+            Initializes an instance of a tree.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance of a tree with an specified initial capacity.
+            </summary>
+            <param name="capacity">The number of elements that the new tree can initially store.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.Numerics.Vector2,`0}})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.#ctor(System.Collections.Generic.KeyValuePair{System.Numerics.Vector2,`0}[])">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.#ctor(System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{System.Numerics.Vector2,`0}})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.Add(System.Numerics.Vector2,`0)">
+            <summary>
+            Adds the specified key and value to the tree.
+            </summary>
+            <param name="key">The key of the element to add.</param>
+            <param name="value">The value of the key to add.</param>
+            <exception cref="T:System.ArgumentException">Thrown when and element with the same key already exists in the tree.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.Add(System.Collections.Generic.KeyValuePair{System.Numerics.Vector2,`0})">
+            <summary>
+            Adds the specified key and value to the tree.
+            </summary>
+            <param name="item">The element to add.</param>
+            <exception cref="T:System.ArgumentException">Thrown when element with the same key already exists in the tree.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IDictionary#Add(System.Object,System.Object)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.Add``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,System.Object,System.Object)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.Clear">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Clear"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.Contains(System.Numerics.Vector2,`0)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.Contains``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``0,``1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.Contains(System.Collections.Generic.KeyValuePair{System.Numerics.Vector2,`0})">
+            <summary>
+            Determines whether the tree contains a specific key.
+            </summary>
+            <param name="item">Item to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IDictionary#Contains(System.Object)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ContainsKey(System.Numerics.Vector2)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ContainsValue(`0)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.ContainsValue``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.CopyTo(System.Collections.Generic.KeyValuePair{System.Numerics.Vector2,`0}[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.CopyTo(System.Span{System.Collections.Generic.KeyValuePair{System.Numerics.Vector2,`0}})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.EnsureCapacity(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.EnsureCapacity(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IDictionary#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector2`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#Numerics#Vector2,TValue}}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector2`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector2`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.TrimExcess">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.TrimExcess"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.TryFindNearestNeighbour(System.Numerics.Vector2,System.Numerics.Vector2@,`0@,System.Single@)">
+            <inheritdoc cref="M:Enderlook.Collections.ISpatialDictionary`3.TryFindNearestNeighbour(`0,`0@,`1@,`2@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.TryFindNearestNeighbour(System.Numerics.Vector2,System.Numerics.Vector2@,`0@)">
+            <inheritdoc cref="M:Enderlook.Collections.ISpatialDictionary`2.TryFindNearestNeighbour(`0,`0@,`1@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.TryGetValue(System.Numerics.Vector2,`0@)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.TryGetValue``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``0,``1@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.Remove(System.Numerics.Vector2)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{System#Numerics#Vector2,TValue}}#Remove(System.Collections.Generic.KeyValuePair{System.Numerics.Vector2,`0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Collections.Generic.KeyValuePair{`1,`2})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.System#Collections#IDictionary#Remove(System.Object)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Int32,System.Int32,System.Collections.Generic.KeyValuePair{`1,`2}@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.RemoveEntry(System.Collections.Generic.KeyValuePair{System.Numerics.Vector2,`0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Collections.Generic.KeyValuePair{`1,`2})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector2`1.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector2`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Enumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector2`1.DictionaryEnumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector2`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.DictionaryEnumerator.Entry">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.DictionaryEnumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.DictionaryEnumerator.System#Collections#IDictionaryEnumerator#Key">
+            <summary>
+            Gets the key at the curernt position of the enumerator.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.DictionaryEnumerator.System#Collections#IDictionaryEnumerator#Value">
+            <summary>
+            Gets the value at the curernt position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.DictionaryEnumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.DictionaryEnumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.DictionaryEnumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection">
+            <summary>
+            Represent the collection of keys in a tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.System#Collections#Generic#ICollection{System#Numerics#Vector2}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that collection is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.System#Collections#Generic#ICollection{System#Numerics#Vector2}#Add(System.Numerics.Vector2)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Clear">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Contains(System.Numerics.Vector2)">
+            <summary>
+            Determines whether the tree contains a specific item.
+            </summary>
+            <param name="item">Item to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(n)</c>.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.CopyTo(System.Numerics.Vector2[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.CopyTo(System.Span{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.System#Collections#Generic#IEnumerable{System#Numerics#Vector2}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsProperSubsetOf(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsProperSubsetOf(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsProperSupersetOf(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsProperSupersetOf(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsSubsetOf(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsSubsetOf(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsSupersetOf(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.IsSupersetOf(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Overlaps(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Overlaps(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Overlaps(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.System#Collections#Generic#ICollection{System#Numerics#Vector2}#Remove(System.Numerics.Vector2)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.SetEquals(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.SetEquals(System.Numerics.Vector2[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.SetEquals(System.ReadOnlySpan{System.Numerics.Vector2})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Enumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.KeyCollection.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection">
+            <summary>
+            Represent the collection of values in a tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.System#Collections#Generic#ICollection{TValue}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that collection is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.System#Collections#Generic#ICollection{TValue}#Add(`0)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.Clear">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.Contains(`0)">
+            <summary>
+            Determines whether the tree contains a specific item.
+            </summary>
+            <param name="item">Item to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(n)</c>.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.CopyTo(`0[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.CopyTo(System.Span{`0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.System#Collections#Generic#IEnumerable{TValue}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.System#Collections#Generic#ICollection{TValue}#Remove(`0)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.Enumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector2`1.ValueCollection.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector3">
+            <summary>
+            Represent a DK-Tree collection to store <see cref="T:System.Numerics.Vector3"/> elements.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3.System#Collections#Generic#ICollection{System#Numerics#Vector3}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3.System#Collections#ICollection#Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that this instance is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.#ctor">
+            <summary>
+            Initializes an instance of a tree.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance of a tree with an specified initial capacity.
+            </summary>
+            <param name="capacity">The number of elements that the new tree can initially store.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.#ctor(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.#ctor(System.Numerics.Vector3[])">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.#ctor(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Add(System.Numerics.Vector3)">
+            <summary>
+            Attempts to add the specified element to the tree.
+            </summary>
+            <param name="item">The element to add to the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> was added. <see langword="false"/> if <paramref name="item"/> was already contained.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.System#Collections#Generic#ICollection{System#Numerics#Vector3}#Add(System.Numerics.Vector3)">
+            <summary>
+            Add the specified element to the tree.
+            </summary>
+            <param name="item">The element to add to the tree.</param>
+            <exception cref="T:System.ArgumentException">Thrown when element already exists in the tree.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Clear">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Clear"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Contains(System.Numerics.Vector3)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.CopyTo(System.Numerics.Vector3[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.CopyTo(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.CopyTo(System.Span{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.EnsureCapacity(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.EnsureCapacity(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.ExceptWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.ExceptWith(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.ExceptWith(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.System#Collections#Generic#IEnumerable{System#Numerics#Vector3}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector3.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector3.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IntersectWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IntersectWith(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IntersectWith(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsProperSubsetOf(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsProperSubsetOf(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsProperSupersetOf(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsProperSupersetOf(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsSubsetOf(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsSubsetOf(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsSupersetOf(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.IsSupersetOf(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Overlaps(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Overlaps(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Overlaps(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Remove(System.Numerics.Vector3)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.SetEquals(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.SetEquals(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.SetEquals(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.SymmetricExceptWith(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.SymmetricExceptWith(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.TryFindNearestNeighbour(System.Numerics.Vector3,System.Numerics.Vector3@)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.TryFindNearestNeighbour``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,``0,``0@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.TryFindNearestNeighbour(System.Numerics.Vector3,System.Numerics.Vector3@,System.Single@)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.TryFindNearestNeighbour``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,``0,``0@,System.Single@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.UnionWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.UnionWith(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.UnionWith(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector3.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector3"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3.Enumerator.Current">
+            <inheritdoc cref="F:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector3`1">
+            <summary>
+            Represent a DK-Tree collection to store <typeparamref name="TValue"/> keys associated with <see cref="T:System.Numerics.Vector3"/> elements.
+            </summary>
+            <typeparam name="TValue">Type of value per key.</typeparam>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Item(System.Numerics.Vector3)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get or set.</param>
+            <returns>The value associated with the specified key.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when <paramref name="key"/> is not found during a get operation.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IDictionary#Item(System.Object)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get or set.</param>
+            <returns>The value associated with the specified key.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="key"/> is not assignable to <see cref="T:System.Numerics.Vector3"/><br/>
+            Thrown when <see langword="value"/> is not assignable to <typeparamref name="TValue"/>.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="key"/> is <see langword="null"/>.<br/>
+            Thrown when <see langword="value"/> is <see langword="null"/> and type doesn't support <see langword="null"/></exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when <paramref name="key"/> is not found during a get operation.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{System#Numerics#Vector3,TValue}}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Keys">
+            <summary>
+            Gets a collection containing the keys in the tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Values">
+            <summary>
+            Gets a collection containing the values in the tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#Generic#IDictionary{System#Numerics#Vector3,TValue}#Keys">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Keys"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#Generic#IDictionary{System#Numerics#Vector3,TValue}#Values">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Values"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IDictionary#Keys">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Keys"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IDictionary#Values">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Values"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#Generic#IReadOnlyDictionary{System#Numerics#Vector3,TValue}#Keys">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Keys"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#Generic#IReadOnlyDictionary{System#Numerics#Vector3,TValue}#Values">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Values"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IDictionary#IsFixedSize">
+            <summary>
+            Determines that this tree hasn't a fixed size.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IDictionary#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that this tree is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.#ctor">
+            <summary>
+            Initializes an instance of a tree.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance of a tree with an specified initial capacity.
+            </summary>
+            <param name="capacity">The number of elements that the new tree can initially store.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.Numerics.Vector3,`0}})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.#ctor(System.Collections.Generic.KeyValuePair{System.Numerics.Vector3,`0}[])">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.#ctor(System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{System.Numerics.Vector3,`0}})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.Add(System.Numerics.Vector3,`0)">
+            <summary>
+            Adds the specified key and value to the tree.
+            </summary>
+            <param name="key">The key of the element to add.</param>
+            <param name="value">The value of the key to add.</param>
+            <exception cref="T:System.ArgumentException">Thrown when and element with the same key already exists in the tree.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.Add(System.Collections.Generic.KeyValuePair{System.Numerics.Vector3,`0})">
+            <summary>
+            Adds the specified key and value to the tree.
+            </summary>
+            <param name="item">The element to add.</param>
+            <exception cref="T:System.ArgumentException">Thrown when element with the same key already exists in the tree.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IDictionary#Add(System.Object,System.Object)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.Add``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,System.Object,System.Object)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.Clear">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Clear"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.Contains(System.Numerics.Vector3,`0)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.Contains``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``0,``1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.Contains(System.Collections.Generic.KeyValuePair{System.Numerics.Vector3,`0})">
+            <summary>
+            Determines whether the tree contains a specific key.
+            </summary>
+            <param name="item">Item to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IDictionary#Contains(System.Object)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ContainsKey(System.Numerics.Vector3)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ContainsValue(`0)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.ContainsValue``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.CopyTo(System.Collections.Generic.KeyValuePair{System.Numerics.Vector3,`0}[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.CopyTo(System.Span{System.Collections.Generic.KeyValuePair{System.Numerics.Vector3,`0}})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.EnsureCapacity(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.EnsureCapacity(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IDictionary#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector3`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#Numerics#Vector3,TValue}}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector3`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector3`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.TrimExcess">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.TrimExcess"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.TryFindNearestNeighbour(System.Numerics.Vector3,System.Numerics.Vector3@,`0@,System.Single@)">
+            <inheritdoc cref="M:Enderlook.Collections.ISpatialDictionary`3.TryFindNearestNeighbour(`0,`0@,`1@,`2@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.TryFindNearestNeighbour(System.Numerics.Vector3,System.Numerics.Vector3@,`0@)">
+            <inheritdoc cref="M:Enderlook.Collections.ISpatialDictionary`2.TryFindNearestNeighbour(`0,`0@,`1@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.TryGetValue(System.Numerics.Vector3,`0@)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.TryGetValue``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``0,``1@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.Remove(System.Numerics.Vector3)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{System#Numerics#Vector3,TValue}}#Remove(System.Collections.Generic.KeyValuePair{System.Numerics.Vector3,`0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Collections.Generic.KeyValuePair{`1,`2})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.System#Collections#IDictionary#Remove(System.Object)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Int32,System.Int32,System.Collections.Generic.KeyValuePair{`1,`2}@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.RemoveEntry(System.Collections.Generic.KeyValuePair{System.Numerics.Vector3,`0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Collections.Generic.KeyValuePair{`1,`2})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector3`1.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector3`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Enumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector3`1.DictionaryEnumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector3`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.DictionaryEnumerator.Entry">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.DictionaryEnumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.DictionaryEnumerator.System#Collections#IDictionaryEnumerator#Key">
+            <summary>
+            Gets the key at the curernt position of the enumerator.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.DictionaryEnumerator.System#Collections#IDictionaryEnumerator#Value">
+            <summary>
+            Gets the value at the curernt position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.DictionaryEnumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.DictionaryEnumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.DictionaryEnumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection">
+            <summary>
+            Represent the collection of keys in a tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.System#Collections#Generic#ICollection{System#Numerics#Vector3}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that collection is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.System#Collections#Generic#ICollection{System#Numerics#Vector3}#Add(System.Numerics.Vector3)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Clear">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Contains(System.Numerics.Vector3)">
+            <summary>
+            Determines whether the tree contains a specific item.
+            </summary>
+            <param name="item">Item to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(n)</c>.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.CopyTo(System.Numerics.Vector3[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.CopyTo(System.Span{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.System#Collections#Generic#IEnumerable{System#Numerics#Vector3}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsProperSubsetOf(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsProperSubsetOf(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsProperSupersetOf(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsProperSupersetOf(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsSubsetOf(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsSubsetOf(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsSupersetOf(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.IsSupersetOf(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Overlaps(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Overlaps(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Overlaps(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.System#Collections#Generic#ICollection{System#Numerics#Vector3}#Remove(System.Numerics.Vector3)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.SetEquals(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.SetEquals(System.Numerics.Vector3[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.SetEquals(System.ReadOnlySpan{System.Numerics.Vector3})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Enumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.KeyCollection.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection">
+            <summary>
+            Represent the collection of values in a tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.System#Collections#Generic#ICollection{TValue}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that collection is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.System#Collections#Generic#ICollection{TValue}#Add(`0)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.Clear">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.Contains(`0)">
+            <summary>
+            Determines whether the tree contains a specific item.
+            </summary>
+            <param name="item">Item to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(n)</c>.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.CopyTo(`0[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.CopyTo(System.Span{`0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.System#Collections#Generic#IEnumerable{TValue}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.System#Collections#Generic#ICollection{TValue}#Remove(`0)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.Enumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector3`1.ValueCollection.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector4">
+            <summary>
+            Represent a DK-Tree collection to store <see cref="T:System.Numerics.Vector4"/> elements.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4.System#Collections#Generic#ICollection{System#Numerics#Vector4}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4.System#Collections#ICollection#Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that this instance is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.#ctor">
+            <summary>
+            Initializes an instance of a tree.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance of a tree with an specified initial capacity.
+            </summary>
+            <param name="capacity">The number of elements that the new tree can initially store.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.#ctor(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.#ctor(System.Numerics.Vector4[])">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.#ctor(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Add(System.Numerics.Vector4)">
+            <summary>
+            Attempts to add the specified element to the tree.
+            </summary>
+            <param name="item">The element to add to the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> was added. <see langword="false"/> if <paramref name="item"/> was already contained.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.System#Collections#Generic#ICollection{System#Numerics#Vector4}#Add(System.Numerics.Vector4)">
+            <summary>
+            Add the specified element to the tree.
+            </summary>
+            <param name="item">The element to add to the tree.</param>
+            <exception cref="T:System.ArgumentException">Thrown when element already exists in the tree.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Clear">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Clear"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Contains(System.Numerics.Vector4)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.CopyTo(System.Numerics.Vector4[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.CopyTo(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.CopyTo(System.Span{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.EnsureCapacity(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.EnsureCapacity(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.ExceptWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.ExceptWith(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.ExceptWith(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.ExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.System#Collections#Generic#IEnumerable{System#Numerics#Vector4}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector4.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector4.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IntersectWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IntersectWith(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IntersectWith(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.IntersectWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsProperSubsetOf(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsProperSubsetOf(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsProperSupersetOf(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsProperSupersetOf(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsSubsetOf(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsSubsetOf(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsSupersetOf(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.IsSupersetOf(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Overlaps(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Overlaps(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Overlaps(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Remove(System.Numerics.Vector4)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.SetEquals(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.SetEquals(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.SetEquals(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.SymmetricExceptWith(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.SymmetricExceptWith(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.SymmetricExceptWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.TryFindNearestNeighbour(System.Numerics.Vector4,System.Numerics.Vector4@)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.TryFindNearestNeighbour``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,``0,``0@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.TryFindNearestNeighbour(System.Numerics.Vector4,System.Numerics.Vector4@,System.Single@)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.TryFindNearestNeighbour``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,``0,``0@,System.Single@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.UnionWith(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.UnionWith(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.UnionWith(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeSet.UnionWith``1(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0},``0,Enderlook.Collections.Spatial.None}@,System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector4.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector4"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4.Enumerator.Current">
+            <inheritdoc cref="F:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector4`1">
+            <summary>
+            Represent a DK-Tree collection to store <typeparamref name="TValue"/> keys associated with <see cref="T:System.Numerics.Vector4"/> elements.
+            </summary>
+            <typeparam name="TValue">Type of value per key.</typeparam>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Item(System.Numerics.Vector4)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get or set.</param>
+            <returns>The value associated with the specified key.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when <paramref name="key"/> is not found during a get operation.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IDictionary#Item(System.Object)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get or set.</param>
+            <returns>The value associated with the specified key.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="key"/> is not assignable to <see cref="T:System.Numerics.Vector4"/><br/>
+            Thrown when <see langword="value"/> is not assignable to <typeparamref name="TValue"/>.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="key"/> is <see langword="null"/>.<br/>
+            Thrown when <see langword="value"/> is <see langword="null"/> and type doesn't support <see langword="null"/></exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when <paramref name="key"/> is not found during a get operation.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{System#Numerics#Vector4,TValue}}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Keys">
+            <summary>
+            Gets a collection containing the keys in the tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Values">
+            <summary>
+            Gets a collection containing the values in the tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#Generic#IDictionary{System#Numerics#Vector4,TValue}#Keys">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Keys"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#Generic#IDictionary{System#Numerics#Vector4,TValue}#Values">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Values"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IDictionary#Keys">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Keys"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IDictionary#Values">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Values"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#Generic#IReadOnlyDictionary{System#Numerics#Vector4,TValue}#Keys">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Keys"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#Generic#IReadOnlyDictionary{System#Numerics#Vector4,TValue}#Values">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Values"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IDictionary#IsFixedSize">
+            <summary>
+            Determines that this tree hasn't a fixed size.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IDictionary#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that this tree is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.#ctor">
+            <summary>
+            Initializes an instance of a tree.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance of a tree with an specified initial capacity.
+            </summary>
+            <param name="capacity">The number of elements that the new tree can initially store.</param>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.Numerics.Vector4,`0}})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.#ctor(System.Collections.Generic.KeyValuePair{System.Numerics.Vector4,`0}[])">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.#ctor(System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{System.Numerics.Vector4,`0}})">
+            <summary>
+            Initializes a new instance of the tree that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="collection">the collection whose elements are copied to the new tree.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="collection"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.Add(System.Numerics.Vector4,`0)">
+            <summary>
+            Adds the specified key and value to the tree.
+            </summary>
+            <param name="key">The key of the element to add.</param>
+            <param name="value">The value of the key to add.</param>
+            <exception cref="T:System.ArgumentException">Thrown when and element with the same key already exists in the tree.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.Add(System.Collections.Generic.KeyValuePair{System.Numerics.Vector4,`0})">
+            <summary>
+            Adds the specified key and value to the tree.
+            </summary>
+            <param name="item">The element to add.</param>
+            <exception cref="T:System.ArgumentException">Thrown when element with the same key already exists in the tree.</exception>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IDictionary#Add(System.Object,System.Object)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.Add``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,System.Object,System.Object)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.Clear">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Clear"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.Contains(System.Numerics.Vector4,`0)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.Contains``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``0,``1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.Contains(System.Collections.Generic.KeyValuePair{System.Numerics.Vector4,`0})">
+            <summary>
+            Determines whether the tree contains a specific key.
+            </summary>
+            <param name="item">Item to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(log(n))</c> average and <c>O(n)</c> in worst case.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IDictionary#Contains(System.Object)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ContainsKey(System.Numerics.Vector4)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.ContainsKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ContainsValue(`0)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.ContainsValue``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.CopyTo(System.Collections.Generic.KeyValuePair{System.Numerics.Vector4,`0}[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.CopyTo(System.Span{System.Collections.Generic.KeyValuePair{System.Numerics.Vector4,`0}})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.EnsureCapacity(System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.EnsureCapacity(System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IDictionary#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector4`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#Numerics#Vector4,TValue}}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector4`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector4`1.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.TrimExcess">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.TrimExcess"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.TryFindNearestNeighbour(System.Numerics.Vector4,System.Numerics.Vector4@,`0@,System.Single@)">
+            <inheritdoc cref="M:Enderlook.Collections.ISpatialDictionary`3.TryFindNearestNeighbour(`0,`0@,`1@,`2@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.TryFindNearestNeighbour(System.Numerics.Vector4,System.Numerics.Vector4@,`0@)">
+            <inheritdoc cref="M:Enderlook.Collections.ISpatialDictionary`2.TryFindNearestNeighbour(`0,`0@,`1@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.TryGetValue(System.Numerics.Vector4,`0@)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeDictionary.TryGetValue``2(Enderlook.Collections.Spatial.KDTree{Enderlook.Collections.Spatial.Node{``0,``1},``0,``1}@,``0,``1@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.Remove(System.Numerics.Vector4)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveKey(`1)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{System#Numerics#Vector4,TValue}}#Remove(System.Collections.Generic.KeyValuePair{System.Numerics.Vector4,`0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Collections.Generic.KeyValuePair{`1,`2})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.System#Collections#IDictionary#Remove(System.Object)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Int32,System.Int32,System.Collections.Generic.KeyValuePair{`1,`2}@)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.RemoveEntry(System.Collections.Generic.KeyValuePair{System.Numerics.Vector4,`0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.RemoveItem(System.Collections.Generic.KeyValuePair{`1,`2})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector4`1.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector4`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Enumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector4`1.DictionaryEnumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector4`1"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.DictionaryEnumerator.Entry">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.DictionaryEnumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.DictionaryEnumerator.System#Collections#IDictionaryEnumerator#Key">
+            <summary>
+            Gets the key at the curernt position of the enumerator.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.DictionaryEnumerator.System#Collections#IDictionaryEnumerator#Value">
+            <summary>
+            Gets the value at the curernt position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.DictionaryEnumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.DictionaryEnumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.DictionaryEnumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection">
+            <summary>
+            Represent the collection of keys in a tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.System#Collections#Generic#ICollection{System#Numerics#Vector4}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that collection is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.System#Collections#Generic#ICollection{System#Numerics#Vector4}#Add(System.Numerics.Vector4)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Clear">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Contains(System.Numerics.Vector4)">
+            <summary>
+            Determines whether the tree contains a specific item.
+            </summary>
+            <param name="item">Item to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(n)</c>.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.CopyTo(System.Numerics.Vector4[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.CopyTo(System.Span{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.System#Collections#Generic#IEnumerable{System#Numerics#Vector4}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsProperSubsetOf(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsProperSubsetOf(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsProperSupersetOf(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsProperSupersetOf(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsProperSupersetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsSubsetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsSubsetOf(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsSubsetOf(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsSupersetOf(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsSupersetOf(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.IsSupersetOf(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.IsSubsetOf(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Overlaps(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Overlaps(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Overlaps(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Overlaps(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.System#Collections#Generic#ICollection{System#Numerics#Vector4}#Remove(System.Numerics.Vector4)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.SetEquals(System.Collections.Generic.IEnumerable{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.SetEquals(System.Numerics.Vector4[])">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.SetEquals(System.ReadOnlySpan{System.Numerics.Vector4})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.SetEquals(System.ReadOnlySpan{`1})"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Enumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.KeyCollection.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection">
+            <summary>
+            Represent the collection of values in a tree.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.Count">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Count"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.System#Collections#Generic#ICollection{TValue}#IsReadOnly">
+            <summary>
+            Determines that this tree is not read only.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Determines that collection is not synchronized.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Returns <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.System#Collections#Generic#ICollection{TValue}#Add(`0)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.Clear">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.Contains(`0)">
+            <summary>
+            Determines whether the tree contains a specific item.
+            </summary>
+            <param name="item">Item to locate in the tree.</param>
+            <returns><see langword="true"/> if <paramref name="item"/> is found in the tree. Otherwise <see langword="false"/>.</returns>
+            <remarks>Time complexity is <c>O(n)</c>.</remarks>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.CopyTo(`0[],System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(``0[],System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.CopyTo(System.Span{`0})">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``2(System.Span{``0})"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.CopyTo(System.Array,System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.CopyTo``1(System.Array,System.Int32)"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the tree unordered.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the tree unordered.</returns>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.System#Collections#Generic#IEnumerable{TValue}#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.GetEnumerator"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.System#Collections#Generic#ICollection{TValue}#Remove(`0)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="T:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.Enumerator">
+            <summary>
+            Unordered enumerator of <see cref="T:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection"/>.
+            </summary>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.Enumerator.Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="P:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc cref="P:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Current"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.Enumerator.Dispose">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Dispose"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.Enumerator.MoveNext">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.MoveNext"/>
+        </member>
+        <member name="M:Enderlook.Collections.Spatial.KDTreeVector4`1.ValueCollection.Enumerator.Reset">
+            <inheritdoc cref="M:Enderlook.Collections.Spatial.KDTree`3.Enumerator`2.Reset"/>
+        </member>
+        <member name="T:Enderlook.Collections.ISpatialDictionary`2">
+            <summary>
+            Describes basic queries to perform in a spatial structure.
+            </summary>
+            <typeparam name="TKey">Type of key.</typeparam>
+            <typeparam name="TValue">Type of value.</typeparam>
+        </member>
+        <member name="M:Enderlook.Collections.ISpatialDictionary`2.TryFindNearestNeighbour(`0,`0@,`1@)">
+            <summary>
+            Try to find the neighbour with the nearest key <paramref name="key"/> using the distance formula specified by the type.
+            </summary>
+            <param name="key">Reference element.</param>
+            <param name="closestKey">Nearest neighbour of <paramref name="key"/> if the collection was not empty.</param>
+            <param name="closestValue">Value of <paramref name="closestKey"/>.</param>
+            <returns><see langword="true"/> if a neighbour was found. <see langword="false"/> if collection was empty.</returns>
+        </member>
+        <member name="T:Enderlook.Collections.ISpatialDictionary`3">
+            <summary>
+            Describes basic queries to perform in a spatial structure.
+            </summary>
+            <typeparam name="TKey">Type of key.</typeparam>
+            <typeparam name="TValue">Type of value.</typeparam>
+            <typeparam name="TDistance">Type of distances.</typeparam>
+        </member>
+        <member name="M:Enderlook.Collections.ISpatialDictionary`3.TryFindNearestNeighbour(`0,`0@,`1@,`2@)">
+            <summary>
+            Try to find the neighbour with the nearest key <paramref name="key"/> using the distance formula specified by the type.
+            </summary>
+            <param name="key">Reference element.</param>
+            <param name="closestKey">Nearest neighbour of <paramref name="key"/> if the collection was not empty.</param>
+            <param name="closestValue">Value of <paramref name="closestKey"/>.</param>
+            <param name="distance">Distance from <paramref name="key"/> to <paramref name="closestKey"/>.</param>
+            <returns><see langword="true"/> if a neighbour was found. <see langword="false"/> if collection was empty.</returns>
+        </member>
+        <member name="T:Enderlook.Collections.ISpatialSet`1">
+            <summary>
+            Describes basic queries to perform in a spatial structure.
+            </summary>
+            <typeparam name="TElement">Type of element.</typeparam>
+        </member>
+        <member name="M:Enderlook.Collections.ISpatialSet`1.Add(`0)">
+            <summary>
+            Add a new element.
+            </summary>
+            <param name="element">Element of the element to add.</param>
+            <returns>Whenever an element was added (that means, the element was not present before).</returns>
+        </member>
+        <member name="M:Enderlook.Collections.ISpatialSet`1.TryFindNearestNeighbour(`0,`0@)">
+            <summary>
+            Try to find the neighbour with the nearest key <paramref name="element"/> using the distance formula specified by the type.
+            </summary>
+            <param name="element">Reference element.</param>
+            <param name="closest">Nearest neighbour to <paramref name="element"/> if the collection was not empty.</param>
+            <returns><see langword="true"/> if a neighbour was found. <see langword="false"/> if collection was empty.</returns>
+        </member>
+        <member name="T:Enderlook.Collections.ISpatialSet`2">
+            <summary>
+            Describes basic queries to perform in a spatial structure.
+            </summary>
+            <typeparam name="TElement">Type of element.</typeparam>
+            <typeparam name="TDistance">Type of distances.</typeparam>
+        </member>
+        <member name="M:Enderlook.Collections.ISpatialSet`2.TryFindNearestNeighbour(`0,`0@,`1@)">
+            <summary>
+            Try to find the neighbour with the nearest key <paramref name="element"/> using the distance formula specified by the type.
+            </summary>
+            <param name="element">Reference element.</param>
+            <param name="closest">Nearest neighbour to <paramref name="element"/> if the collection was not empty.</param>
+            <param name="distance">Distance from <paramref name="element"/> to <paramref name="closest"/>.</param>
+            <returns><see langword="true"/> if a neighbour was found. <see langword="false"/> if collection was empty.</returns>
+        </member>
+    </members>
+</doc>
