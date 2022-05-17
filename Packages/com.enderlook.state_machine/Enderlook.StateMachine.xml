@@ -4,6 +4,77 @@
         <name>Enderlook.StateMachine</name>
     </assembly>
     <members>
+        <member name="T:Enderlook.StateMachine.InitializationPolicy">
+            <summary>
+            Determines the excution order of subscribed delegates of <see cref="M:Enderlook.StateMachine.StateBuilder`3.OnEntry(System.Action)"/> (and overloads) during the initialization of the state machine.<br/>
+            This determines the order of execution of delegates from the initial state set by <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.SetInitialState(`0,Enderlook.StateMachine.InitializationPolicy)"/> (and parent states if the initial state is a substate).
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.InitializationPolicy.Ignore">
+            <summary>
+            Determines that subscribed delegates should not run.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.InitializationPolicy.ParentFirst">
+            <summary>
+            Determines that subscribed delegates on parents are run first.<br/>
+            For example:
+            <c>... -> ParentOf(ParentOf(n)) -> ParentOf(n) -> n</c>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.InitializationPolicy.ChildFirst">
+            <summary>
+            Determines that subscribed delegates on children are run first.<br/>
+            For example:
+            <c>n -> ParentOf(n) -> ParentOf(ParentOf(n)) -> ...</c>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.InitializationPolicy.Current">
+            <summary>
+            Determines that only the subscribed delegates of the current state are run.<br/>
+            Delegates subscribed on parent states won't be run.
+            For example:
+            <c>n</c>,
+            </summary>
+        </member>
+        <member name="T:Enderlook.StateMachine.GotoBuilder`4">
+            <summary>
+            Builder of goto transitions.
+            </summary>
+            <typeparam name="TState">Type that determines states.</typeparam>
+            <typeparam name="TEvent">Type that determines events.</typeparam>
+            <typeparam name="TRecipient">Type that determines internal data that can be acceded by actions.</typeparam>
+            <typeparam name="TParent">Type of parent of the <see cref="T:Enderlook.StateMachine.TransitionBuilder`4"/> instance which creates this instance.</typeparam>
+        </member>
+        <member name="M:Enderlook.StateMachine.GotoBuilder`4.OnEntryPolicy(Enderlook.StateMachine.TransitionPolicy)">
+            <summary>
+            Configures the policy of how subscribed delegates to on entry hook should be executed.<br/>
+            If this method is not executed, the default policy is <see cref="F:Enderlook.StateMachine.TransitionPolicy.ParentFirstWithCulling"/>.
+            </summary>
+            <param name="policy">Policy of subscribed delegates execution.</param>
+            <returns><see langword="this"/>.</returns>
+        </member>
+        <member name="M:Enderlook.StateMachine.GotoBuilder`4.OnExitPolicy(Enderlook.StateMachine.TransitionPolicy)">
+            <summary>
+            Configures the policy of how subscribed delegates to on exit hook should be executed.<br/>
+            If this method is not executed, the default policy is <see cref="F:Enderlook.StateMachine.TransitionPolicy.ChildFirstWithCulling"/>.
+            </summary>
+            <param name="policy">Policy of subscribed delegates execution.</param>
+            <returns><see langword="this"/>.</returns>
+        </member>
+        <member name="M:Enderlook.StateMachine.GotoBuilder`4.Goto(`0)">
+            <summary>
+            Determines to which state this transition goes.
+            </summary>
+            <param name="state">State to move</param>
+            <returns>Creator of the instance which created this instance.</returns>
+        </member>
+        <member name="M:Enderlook.StateMachine.GotoBuilder`4.GotoSelf">
+            <summary>
+            Determines to transite to the current state.
+            </summary>
+            <returns>Creator of the instance which created this instance.</returns>
+        </member>
         <member name="T:Enderlook.StateMachine.StateBuilder`3">
             <summary>
             Builder of a concrete state.
@@ -25,7 +96,9 @@
             <param name="state">Parent state of this state.</param>
             <returns><see langword="this"/>.</returns>
             <exception cref="T:System.ArgumentNullException">Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.Finalize"/> or <see cref="M:Enderlook.StateMachine.StateBuilder`3.Finalize"/> has already been called in this builder's hierarchy.<br/>
-            Thrown when <paramref name="state"/> is <see langword="null"/>.</exception>
+            Thrown when <paramref name="state"/> is <see langword="null"/><br/>
+            Thrown when <paramref name="state"/> is the current state.</exception>
+            <exception cref="T:System.InvalidOperationException">Throw when this state was already configured as a substate.</exception>
         </member>
         <member name="M:Enderlook.StateMachine.StateBuilder`3.OnEntry(System.Action)">
             <summary>
@@ -174,12 +247,12 @@
             <typeparam name="TEvent">Type that determines events.</typeparam>
             <typeparam name="TRecipient">Type that determines internal data that can be acceded by actions.</typeparam>
         </member>
-        <member name="M:Enderlook.StateMachine.StateMachineBuilder`3.SetInitialState(`0,System.Boolean)">
+        <member name="M:Enderlook.StateMachine.StateMachineBuilder`3.SetInitialState(`0,Enderlook.StateMachine.InitializationPolicy)">
             <summary>
             Determines the initial state of the state machine.
             </summary>
             <param name="state">Initial state.</param>
-            <param name="runEntryActions">If <see langword="true"/>, the actions stored in <see cref="M:Enderlook.StateMachine.StateBuilder`3.OnEntry(System.Action)"/> (and overloads) of the state <see cref="T:Enderlook.StateMachine.State`1"/> will be run during intialization.</param>
+            <param name="initializationPolicy">Determines the execution order of subscribed delegates in <see cref="M:Enderlook.StateMachine.StateBuilder`3.OnEntry(System.Action)"/> (and overloads) in the initial state.</param>
             <returns><see langword="this"/>.</returns>
             <exception cref="T:System.InvalidOperationException">Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.Finalize"/> or <see cref="M:Enderlook.StateMachine.StateBuilder`3.Finalize"/> has already been called in this builder's hierarchy.<br/>
             Thrown when <paramref name="state"/> is <see langword="null"/>.<br/>
@@ -200,7 +273,7 @@
             </summary>
             <returns>Created factory.</returns>
             <exception cref="T:System.InvalidOperationException">Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.Finalize"/> or <see cref="M:Enderlook.StateMachine.StateBuilder`3.Finalize"/> has already been called in this builder's hierarchy.<br/>
-            Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.SetInitialState(`0,System.Boolean)"/> was not called.<br/>
+            Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.SetInitialState(`0,Enderlook.StateMachine.InitializationPolicy)"/> was not called.<br/>
             Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.In(`0)"/> was not called.<br/>
             Thrown when a transition was not terminated with <see cref="M:Enderlook.StateMachine.TransitionBuilder`4.Goto(`0)"/>, <see cref="M:Enderlook.StateMachine.TransitionBuilder`4.StaySelf"/> nor <see cref="T:Enderlook.StateMachine.TransitionBuilder`4"/>.<br/>
             Thrown when an state has a not registered parent state passed to <see cref="M:Enderlook.StateMachine.StateBuilder`3.IsSubStateOf(`0)"/>.
@@ -293,29 +366,114 @@
             <exception cref="T:System.ArgumentNullException">Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.Finalize"/> or <see cref="M:Enderlook.StateMachine.StateBuilder`3.Finalize"/> has already been called in this builder's hierarchy.<br/>
             Thrown when <paramref name="action"/> is <see langword="null"/>.</exception>
         </member>
+        <member name="M:Enderlook.StateMachine.TransitionBuilder`4.OnEntryPolicy(Enderlook.StateMachine.TransitionPolicy)">
+            <inheritdoc cref="M:Enderlook.StateMachine.GotoBuilder`4.OnEntryPolicy(Enderlook.StateMachine.TransitionPolicy)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.TransitionBuilder`4.OnExitPolicy(Enderlook.StateMachine.TransitionPolicy)">
+            <inheritdoc cref="M:Enderlook.StateMachine.GotoBuilder`4.OnEntryPolicy(Enderlook.StateMachine.TransitionPolicy)"/>
+        </member>
         <member name="M:Enderlook.StateMachine.TransitionBuilder`4.Goto(`0)">
             <summary>
-            Determines to which state this transition goes.
+            Determines to which state this transition goes.<br/>
+            This is equivalent to <c>OnEntryPolicy(TransitionPolicy.ChildFirstWithCulling).OnExitPolicy(TransitionPolicy.ParentFirstWithCulling).Goto(state)</c>.
             </summary>
             <param name="state">State to move</param>
             <returns>Creator of this instance.</returns>
             <exception cref="T:System.ArgumentNullException">Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.Finalize"/> or <see cref="M:Enderlook.StateMachine.StateBuilder`3.Finalize"/> has already been called in this builder's hierarchy.<br/>
             Thrown when <paramref name="state"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Enderlook.StateMachine.TransitionBuilder`4.GotoSelf">
+        <member name="M:Enderlook.StateMachine.TransitionBuilder`4.GotoSelf(System.Boolean)">
             <summary>
-            Determines to transite to the current state.<br/>
-            That means, that on exit and on entry actions of current state (but not parent states in case of current state being a substate) will be executed.
+            Determines to transite to the current state (reentrant).<br/>
+            If <paramref name="runParentsActions"/> is <see langword="false"/> on exit and on entry actions of current state (but not parent states in case of current state being a substate) will be executed.<br/>
+            This is equivalent to <c>OnEntryPolicy(TransitionPolicy.ChildFirstWithCullingInclusive).OnExitPolicy(TransitionPolicy.ParentFirstWithCullingInclusive).Goto(currentState)</c>.<br/>
+            If <paramref name="runParentsActions"/> is <see langword="true"/> on exit and on entry actions of the current state (and parents in case of current state being a substate) will be executed.<br/>
+            This is equivalent to <c>OnEntryPolicy(TransitionPolicy.ChildFirst).OnExitPolicy(TransitionPolicy.ParentFirst).Goto(currentState)</c>.<br/>
             </summary>
+            <param name="runParentsActions">Determines if parent(s) actions should be executed or not in case of being a substate.</param>
             <returns>Creator of this instance.</returns>
             <exception cref="T:System.ArgumentNullException">Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.Finalize"/> or <see cref="M:Enderlook.StateMachine.StateBuilder`3.Finalize"/> has already been called in this builder's hierarchy.</exception>
         </member>
         <member name="M:Enderlook.StateMachine.TransitionBuilder`4.StaySelf">
             <summary>
-            Determines that will have no transition to any state, so no on entry nor on exit event will be raised.
+            Determines that will have no transition to any state, so no on entry nor on exit event will be raised.<br/>
+            This is equivalent to either <c>OnEntryPolicy(TransitionPolicy.Ignore).OnExitPolicy(TransitionPolicy.Ignore).GotoSelf()</c> or <c>OnEntryPolicy(TransitionPolicy.ChildFirstWithCulling).OnExitPolicy(TransitionPolicy.ParentFirstWithCulling).GotoSelf()</c> (in a state transition of <c>Self -> Self</c> both codes produces the same effect).
             </summary>
             <returns>Creator of this instance.</returns>
             <exception cref="T:System.ArgumentNullException">Thrown when <see cref="M:Enderlook.StateMachine.StateMachineBuilder`3.Finalize"/> or <see cref="M:Enderlook.StateMachine.StateBuilder`3.Finalize"/> has already been called in this builder's hierarchy.</exception>
+        </member>
+        <member name="T:Enderlook.StateMachine.TransitionPolicy">
+            <summary>
+            Determines the transition policy between two states.<br/>
+            This configures how subscribed delegates on states are run during transition between states.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.TransitionPolicy.Ignore">
+            <summary>
+            Determines that subscribed delegates should not run.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.TransitionPolicy.ParentFirst">
+            <summary>
+            Determines that subscribed delegates on parents are run first.<br/>
+            For example:
+            <c>... -> ParentOf(ParentOf(n)) -> ParentOf(n) -> n</c>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.TransitionPolicy.ChildFirst">
+            <summary>
+            Determines that subscribed delegates on children are run first.<br/>
+            For example:
+            <c>n -> ParentOf(n) -> ParentOf(ParentOf(n)) -> ...</c>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.TransitionPolicy.ParentFirstWithCulling">
+            <summary>
+            Determines that subscribed delegates on parents are run first from (exluding) the last common parent between the two states.<br/>
+            For example:<br/>
+            If <c>ParentOf(ParentOf(n)) == ParentOf(ParentOf(m))</c>:<br/>
+            <c>ParentOf(n) -> n</c>.<br/>
+            If <c>ParentOf(ParentOf(n)) != ParentOf(ParentOf(m))</c>:<br/>
+            <c>... -> ParentOf(ParentOf(n)) -> ParentOf(n) -> n</c>.<br/>
+            If <c>n == m</c>:<br/>
+            <c>... -> ParentOf(ParentOf(n)) -> ParentOf(n)</c>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.TransitionPolicy.ChildFirstWithCulling">
+            <summary>
+            Determines that subscribed delegates on children are run first until reach (excluding) the last common parent between the two states.<br/>
+            For example:<br/>
+            If <c>ParentOf(ParentOf(n)) == ParentOf(ParentOf(m))</c>:<br/>
+            <c>n -> ParentOf(n)</c>.<br/>
+            If <c>ParentOf(ParentOf(n)) != ParentOf(ParentOf(m))</c>:<br/>
+            <c>n -> ParentOf(n) -> ParentOf(ParentOf(n)) -> ...</c>.<br/>
+            If <c>n == m</c>:<br/>
+            <c>ParentOf(n) --> ParentOf(ParentOf(n)) -> ...</c>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.TransitionPolicy.ParentFirstWithCullingInclusive">
+            <summary>
+            Determines that subscribed delegates on parents are run first from (including) the last common parent between the two states.<br/>
+            For example:<br/>
+            If <c>ParentOf(ParentOf(n)) == ParentOf(ParentOf(m))</c>:<br/>
+            <c>ParentOf(ParentOf(n)) -> ParentOf(n) -> n</c>.<br/>
+            If <c>ParentOf(ParentOf(n)) != ParentOf(ParentOf(m))</c>:<br/>
+            <c>... -> ParentOf(ParentOf(n)) -> ParentOf(n) -> n</c>.<br/>
+            If <c>n == m</c>:<br/>
+            <c>ParentOf(ParentOf(n)) -> ParentOf(n) -> n</c>.
+            </summary>
+        </member>
+        <member name="F:Enderlook.StateMachine.TransitionPolicy.ChildFirstWithCullingInclusive">
+            <summary>
+            Determines that subscribed delegates on children are run first until reach (including) the last common parent between the two states.<br/>
+            For example:<br/>
+            If <c>ParentOf(ParentOf(n)) == ParentOf(ParentOf(m))</c>:<br/>
+            <c>n -> ParentOf(n)</c> -> ParentOf(ParentOf(n)).<br/>
+            If <c>ParentOf(ParentOf(n)) != ParentOf(ParentOf(m))</c>:<br/>
+            <c>n -> ParentOf(n) -> ParentOf(ParentOf(n)) -> ...</c>.<br/>
+            If <c>n == m</c>:<br/>
+            <c>n -> ParentOf(n) --> ParentOf(ParentOf(n)) -> ...</c>.
+            </summary>
         </member>
         <member name="T:Enderlook.StateMachine.ReadOnlySlice`1">
             <summary>
@@ -379,24 +537,6 @@
             <typeparam name="TState">Type that determines states.</typeparam>
             <typeparam name="TEvent">Type that determines events.</typeparam>
             <typeparam name="TRecipient">Type that determines internal data that can be acceded by actions.</typeparam>
-        </member>
-        <member name="T:Enderlook.StateMachine.StateMachine`3.CreateParametersBuilder">
-            <summary>
-            Parameters builder of method <see cref="M:Enderlook.StateMachine.StateMachineFactory`3.CreateWithParameters(`2)"/>.
-            </summary>
-        </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.CreateParametersBuilder.With``1(``0)">
-            <summary>
-            Stores a parameter that can be passed to callbacks.
-            </summary>
-            <typeparam name="TParameter">Type of parameter.</typeparam>
-            <param name="parameter">Parameter than can be passed to callbacks.</param>
-            <returns><see langword="this"/>.</returns>
-        </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.CreateParametersBuilder.Done">
-            <summary>
-            Initialized the state machine.
-            </summary>
         </member>
         <member name="P:Enderlook.StateMachine.StateMachine`3.CurrentState">
             <summary>
@@ -463,27 +603,6 @@
             <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="event"/> is <see langword="null"/>.</exception>
             <exception cref="T:System.InvalidOperationException">Thrown a parameter builder associated with this state machine has not been finalized.</exception>
         </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.FireWithParameter``1(`1,``0)">
-            <summary>
-            Fire an event to the state machine.<br/>
-            If the state machine is already firing an state, it's enqueued to run after completion of the current event.
-            </summary>
-            <typeparam name="TParameter">Type of parameter.</typeparam>
-            <param name="event">Event to fire.</param>
-            <param name="parameter">Parameter that can be passed to callbacks.</param>
-            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="event"/> is <see langword="null"/>.</exception>
-            <exception cref="T:System.InvalidOperationException">Thrown a parameter builder associated with this state machine has not been finalized.</exception>
-        </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.FireWithParameters(`1)">
-            <summary>
-            Fire an event to the state machine.<br/>
-            If the state machine is already firing an state, it's enqueued to run after completion of the current event.
-            </summary>
-            <param name="event">Event to fire.</param>
-            <returns>Parameters builder of this fire execution.</returns>
-            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="event"/> is <see langword="null"/>.</exception>
-            <exception cref="T:System.InvalidOperationException">Thrown a parameter builder associated with this state machine has not been finalized.</exception>
-        </member>
         <member name="M:Enderlook.StateMachine.StateMachine`3.FireImmediately(`1)">
             <summary>
             Fire an event to the state machine.<br/>
@@ -494,56 +613,18 @@
             <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="event"/> is <see langword="null"/>.</exception>
             <exception cref="T:System.InvalidOperationException">Thrown a parameter builder associated with this state machine has not been finalized.</exception>
         </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.FireImmediatelyWithParameter``1(`1,``0)">
-            <summary>
-            Fire an event to the state machine.<br/>
-            The event won't be enqueued but actually run, ignoring previously enqueued events.<br/>
-            If subsequent events are enqueued during the execution of the callbacks of this event, they will also be run after the completion of this event.
-            </summary>
-            <typeparam name="TParameter">Type of parameter.</typeparam>
-            <param name="event">Event to fire.</param>
-            <param name="parameter">Parameter that can be passed to callbacks.</param>
-            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="event"/> is <see langword="null"/>.</exception>
-            <exception cref="T:System.InvalidOperationException">Thrown a parameter builder associated with this state machine has not been finalized.</exception>
-        </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.FireImmediatelyWithParameters(`1)">
-            <summary>
-            Fire an event to the state machine.<br/>
-            The event won't be enqueued but actually run, ignoring previously enqueued events.<br/>
-            If subsequent events are enqueued during the execution of the callbacks of this event, they will also be run after the completion of this event.
-            </summary>
-            <param name="event">Event to fire.</param>
-            <returns>Parameters builder of this fire execution.</returns>
-            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="event"/> is <see langword="null"/>.</exception>
-            <exception cref="T:System.InvalidOperationException">Thrown a parameter builder associated with this state machine has not been finalized.</exception>
-        </member>
         <member name="M:Enderlook.StateMachine.StateMachine`3.Update">
             <summary>
             Executes the update callbacks registered in the current state.
             </summary>
             <exception cref="T:System.InvalidOperationException">Thrown a parameter builder associated with this state machine has not been finalized.</exception>
         </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.UpdateWithParameter``1(``0)">
+        <member name="T:Enderlook.StateMachine.StateMachine`3.InitializeParametersBuilder">
             <summary>
-            Executes the update callbacks registered in the current state.
-            </summary>
-            <typeparam name="TParameter">Type of parameter.</typeparam>
-            <param name="parameter">Parameter that can be passed to callbacks.</param>
-            <exception cref="T:System.InvalidOperationException">Thrown a parameter builder associated with this state machine has not been finalized.</exception>
-        </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.UpdateWithParameters">
-            <summary>
-            Executes the update callbacks registered in the current state.
-            </summary>
-            <returns>Parameters builder of this update execution.</returns>
-            <exception cref="T:System.InvalidOperationException">Thrown a parameter builder associated with this state machine has not been finalized.</exception>
-        </member>
-        <member name="T:Enderlook.StateMachine.StateMachine`3.FireImmediatelyParametersBuilder">
-            <summary>
-            Parameters builder of method <see cref="M:Enderlook.StateMachine.StateMachine`3.FireImmediatelyWithParameters(`1)"/>.
+            Parameters builder of method <see cref="M:Enderlook.StateMachine.StateMachineFactory`3.With``1(``0)"/>.
             </summary>
         </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.FireImmediatelyParametersBuilder.With``1(``0)">
+        <member name="M:Enderlook.StateMachine.StateMachine`3.InitializeParametersBuilder.With``1(``0)">
             <summary>
             Stores a parameter that can be passed to callbacks.
             </summary>
@@ -551,17 +632,23 @@
             <param name="parameter">Parameter than can be passed to callbacks.</param>
             <returns><see langword="this"/>.</returns>
         </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.FireImmediatelyParametersBuilder.Done">
+        <member name="M:Enderlook.StateMachine.StateMachine`3.InitializeParametersBuilder.Create(`2)">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateMachineFactory`3.Create(`2)"/>
+        </member>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.With``1(``0)">
             <summary>
-            Fires the event.
+            Stores a parameter(s) to pass on the next method call.
+            </summary>
+            <typeparam name="TParameter">Parameter type.</typeparam>
+            <param name="parameter">Parameter to store.</param>
+            <returns>A builder of parameters to store.</returns>
+        </member>
+        <member name="T:Enderlook.StateMachine.StateMachine`3.ParametersBuilder">
+            <summary>
+            Parameters builder of methods <see cref="M:Enderlook.StateMachine.StateMachine`3.Fire(`1)"/>, <see cref="M:Enderlook.StateMachine.StateMachine`3.FireImmediately(`1)"/> and <see cref="M:Enderlook.StateMachine.StateMachine`3.Update"/>.
             </summary>
         </member>
-        <member name="T:Enderlook.StateMachine.StateMachine`3.FireParametersBuilder">
-            <summary>
-            Parameters builder of method <see cref="M:Enderlook.StateMachine.StateMachine`3.FireWithParameters(`1)"/>.
-            </summary>
-        </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.FireParametersBuilder.With``1(``0)">
+        <member name="M:Enderlook.StateMachine.StateMachine`3.ParametersBuilder.With``1(``0)">
             <summary>
             Stores a parameter that can be passed to callbacks.
             </summary>
@@ -569,28 +656,14 @@
             <param name="parameter">Parameter than can be passed to callbacks.</param>
             <returns><see langword="this"/>.</returns>
         </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.FireParametersBuilder.Done">
-            <summary>
-            Fires the event.
-            </summary>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.ParametersBuilder.Fire(`1)">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateMachine`3.Fire(`1)"/>
         </member>
-        <member name="T:Enderlook.StateMachine.StateMachine`3.UpdateParametersBuilder">
-            <summary>
-            Parameters builder of method <see cref="M:Enderlook.StateMachine.StateMachine`3.UpdateWithParameters"/>.
-            </summary>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.ParametersBuilder.FireImmediately(`1)">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateMachine`3.FireImmediately(`1)"/>
         </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.UpdateParametersBuilder.With``1(``0)">
-            <summary>
-            Stores a parameter that can be passed to callbacks.
-            </summary>
-            <typeparam name="TParameter">Type of parameter.</typeparam>
-            <param name="parameter">Parameter than can be passed to callbacks.</param>
-            <returns><see langword="this"/>.</returns>
-        </member>
-        <member name="M:Enderlook.StateMachine.StateMachine`3.UpdateParametersBuilder.Done">
-            <summary>
-            Executes the update.
-            </summary>
+        <member name="M:Enderlook.StateMachine.StateMachine`3.ParametersBuilder.Update">
+            <inheritdoc cref="M:Enderlook.StateMachine.StateMachine`3.Update"/>
         </member>
         <member name="T:Enderlook.StateMachine.StateMachineFactory`3">
             <summary>
@@ -608,23 +681,15 @@
             <param name="recipient">Recipient for the new created <see cref="T:Enderlook.StateMachine.StateMachine`3"/>.</param>
             <returns>New <see cref="T:Enderlook.StateMachine.StateMachine`3"/>.</returns>
         </member>
-        <member name="M:Enderlook.StateMachine.StateMachineFactory`3.CreateWithParameter``1(`2,``0)">
+        <member name="M:Enderlook.StateMachine.StateMachineFactory`3.With``1(``0)">
             <summary>
             Creates a configured and initialized <see cref="T:Enderlook.StateMachine.StateMachine`3"/> using the configuration provided by this factory.<br/>
-            This method is thread-safe.
+            This method is thread-safe.<br/>
+            Additionally, this methods allows to store a parameter that will be passed to the subscribed delegates of the on entry of the initial state (this is ignored is the factory was configured to do so).
             </summary>
-            <typeparam name="TParameter">Type of parameter.</typeparam>
-            <param name="recipient">Recipient for the new created <see cref="T:Enderlook.StateMachine.StateMachine`3"/>.</param>
-            <param name="parameter">Initial parameter that can be passed for the on entry callback of the initial state.</param>
-            <returns>New <see cref="T:Enderlook.StateMachine.StateMachine`3"/>.</returns>
-        </member>
-        <member name="M:Enderlook.StateMachine.StateMachineFactory`3.CreateWithParameters(`2)">
-            <summary>
-            Creates a configured and initialized <see cref="T:Enderlook.StateMachine.StateMachine`3"/> using the configuration provided by this factory.<br/>
-            This method is thread-safe.
-            </summary>
-            <param name="recipient">Recipient for the new created <see cref="T:Enderlook.StateMachine.StateMachine`3"/>.</param>
-            <returns>Parameters builder of this instantiation.</returns>
+            <typeparam name="TParameter">Parameter type.</typeparam>
+            <param name="parameter">Parameter to store.</param>
+            <returns>A builder of parameters to store that will be passed during the creation of the instance.</returns>
         </member>
     </members>
 </doc>
