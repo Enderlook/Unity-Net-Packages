@@ -7,7 +7,7 @@
         <member name="T:Enderlook.Pools.DynamicObjectPool`1">
             <summary>
             A lightweight, fast, dynamically-sized and thread-safe object pool to store objects.<br/>
-            The pool is desinged for fast rent and return of element, so during multithreading scenarios it may accidentally free unnecessary objects during return (however, this is not a fatal error).
+            The pool is designed for fast rent and return of elements, so during multithreading scenarios it may accidentally free unnecessary objects during return (however, this is not a fatal error).
             </summary>
             <typeparam name="T">Type of object to pool</typeparam>
         </member>
@@ -62,7 +62,7 @@
             This reserve pool is only acceded when the hot pool gets full or empty since it's slower.<br/>
             This pool has a dynamic size so this value represent the initial size of the pool which may enlarge or shrink over time.</param>
             <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
-            If no delegate is provided, a factory with the default constructor of <typeparamref name="T"/> will be used.</param>
+            If no delegate is provided, a factory with the parameterless constructor (or <see langword="default"/> for value types if missing) of <typeparamref name="T"/> will be used.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="hotCapacity"/> is lower than 1.</exception>
         </member>
         <member name="M:Enderlook.Pools.DynamicObjectPool`1.#ctor(System.Int32,System.Func{`0})">
@@ -73,7 +73,7 @@
             If this capacity is fulled, the pool will expand a cold region.<br/>
             The hot capacity should preferably be not greater than <c><see cref="P:System.Environment.ProcessorCount"/> * 2</c>.</param>
             <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
-            If no delegate is provided, a factory with the default constructor for <typeparamref name="T"/> will be used.</param>
+            If no delegate is provided, a factory with the parameterless constructor (or <see langword="default"/> for value types if missing) of <typeparamref name="T"/> will be used.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="hotCapacity"/> is lower than 1.</exception>
         </member>
         <member name="M:Enderlook.Pools.DynamicObjectPool`1.#ctor(System.Int32)">
@@ -88,7 +88,7 @@
             Creates a pool of objects.
             </summary>
             <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
-            If no delegate is provided, a factory with the default constructor for <typeparamref name="T"/> will be used.</param>
+            If no delegate is provided, a factory with the parameterless constructor (or <see langword="default"/> for value types if missing) of <typeparamref name="T"/> will be used.</param>
         </member>
         <member name="M:Enderlook.Pools.DynamicObjectPool`1.#ctor">
             <summary>
@@ -113,7 +113,7 @@
         <member name="T:Enderlook.Pools.DynamicValueObjectPool`1">
             <summary>
             A lightweight, fast, dynamically-sized and thread-safe object pool to store value-type objects.<br/>
-            The pool is desinged for fast rent and return of element, so during multithreading scenarios it may accidentally free unnecessary objects during return (however, this is not a fatal error).
+            The pool is designed for fast rent and return of elements, so during multithreading scenarios it may accidentally free unnecessary objects during return (however, this is not a fatal error).
             </summary>
             <typeparam name="T">Type of object to pool</typeparam>
         </member>
@@ -168,7 +168,7 @@
             This reserve pool is only acceded when the hot pool gets full or empty since it's slower.<br/>
             This pool has a dynamic size so this value represent the initial size of the pool which may enlarge or shrink over time.</param>
             <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
-            If no delegate is provided, a factory with the default constructor of <typeparamref name="T"/> will be used.</param>
+            If no delegate is provided, a factory with the parameterless constructor (or <see langword="default"/> for value types if missing) of <typeparamref name="T"/> will be used.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="hotCapacity"/> is lower than 1.</exception>
         </member>
         <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.#ctor(System.Int32,System.Func{`0})">
@@ -179,7 +179,7 @@
             If this capacity is fulled, the pool will expand a cold region.<br/>
             The hot capacity should preferably be not greater than <c><see cref="P:System.Environment.ProcessorCount"/> * 2</c>.</param>
             <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
-            If no delegate is provided, a factory with the default constructor for <typeparamref name="T"/> will be used.</param>
+            If no delegate is provided, a factory with the parameterless constructor (or <see langword="default"/> for value types if missing) of <typeparamref name="T"/> will be used.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="hotCapacity"/> is lower than 1.</exception>
         </member>
         <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.#ctor(System.Int32)">
@@ -194,7 +194,7 @@
             Creates a pool of objects.
             </summary>
             <param name="factory">Delegate used to construct instances of the pooled objects.<br/>
-            If no delegate is provided, a factory with the default constructor for <typeparamref name="T"/> will be used.</param>
+            If no delegate is provided, a factory with the parameterless constructor (or <see langword="default"/> for value types if missing) of <typeparamref name="T"/> will be used.</param>
         </member>
         <member name="M:Enderlook.Pools.DynamicValueObjectPool`1.#ctor">
             <summary>
@@ -225,7 +225,14 @@
         </member>
         <member name="P:Enderlook.Pools.ObjectPool`1.Shared">
             <summary>
-            Retrieves a shared <see cref="T:Enderlook.Pools.ObjectPool`1"/> instance.
+            Retrieves a shared <see cref="T:Enderlook.Pools.ObjectPool`1"/> instance.<br/>
+            The shared pool has the following features:
+            <list type="bullet">
+                <item>Instantiates new elements when empty using the parameterless constructor (or <see langword="default"/> for value types if missing) of <typeparamref name="T"/>.</item>item>
+                <item>Resize itself to accommodate all returned elements to the pool.</item>
+                <item>Periodically trims itself removing old elements from the pool (GC-triggered).</item>
+                <item>Is thread-safe.</item>
+            </list>
             </summary>
         </member>
         <member name="M:Enderlook.Pools.ObjectPool`1.ApproximateCount">
