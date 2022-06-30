@@ -1,6 +1,6 @@
 {
   "name": "com.enderlook.pools",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "displayName": "Enderlook Pools",
   "description": "https://github.com/Enderlook/Net-Pools",
   "dependencies": {
