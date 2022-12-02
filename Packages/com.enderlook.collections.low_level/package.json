@@ -1,6 +1,6 @@
 {
   "name": "com.enderlook.collections.low_level",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "displayName": "Enderlook Collections Low Level",
   "description": "https://github.com/Enderlook/Net-Collections",
   "dependencies": {
