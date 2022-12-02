@@ -4,897 +4,597 @@
         <name>Enderlook.Collections</name>
     </assembly>
     <members>
-        <member name="T:Enderlook.Collections.BinaryHeapMax`1">
+        <member name="T:Enderlook.Collections.BinarySearchExtensions">
             <summary>
-            Represent a basic binary heap where elements with highest values have higher priority.
-            </summary>
-            <typeparam name="TData">Type of element.</typeparam>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`1.Count">
-            <inheritdoc cref="P:Enderlook.Collections.IPriorityQueue`1.Count"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`1.Capacity">
-            <summary>
-            Capacity of the heap.
+            Extension functions to do binary searchs in collections.
             </summary>
         </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`1.IsEmpty">
-            <inheritdoc cref="P:Enderlook.Collections.IPriorityQueue`1.IsEmpty"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.#ctor">
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``1(System.Collections.Generic.List{``0},``0,System.Int32,System.Int32)">
             <summary>
-            Creates a new binary heap.
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.List`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``2(System.Collections.Generic.List{``0},``0,System.Int32,System.Int32,``1)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.List`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``1(System.Collections.Generic.IList{``0},``0,System.Int32,System.Int32)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.ICollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``2(System.Collections.Generic.IList{``0},``0,System.Int32,System.Int32,``1)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.List`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``1(System.Collections.Generic.IReadOnlyList{``0},``0,System.Int32,System.Int32)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``2(System.Collections.Generic.IReadOnlyList{``0},``0,System.Int32,System.Int32,``1)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.List`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``1(System.ReadOnlySpan{``0},``0)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.ReadOnlySpan`1.Length"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``2(System.ReadOnlySpan{``0},``0,``1)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.ReadOnlySpan`1.Length"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``1(System.Collections.Generic.List{``0},``0)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.ICollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``2(System.Collections.Generic.List{``0},``0,``1)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.List`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.ICollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``2(System.Collections.Generic.IList{``0},``0,``1)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.ICollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``1(System.Collections.Generic.IReadOnlyList{``0},``0)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearchFirst``2(System.Collections.Generic.IReadOnlyList{``0},``0,``1)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a value in the <paramref name="source"/> or in a portion of it.<br/>
+            Only use if <paramref name="source"/> is sorted.
+            </summary>
+            <typeparam name="T">Element <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Where the index of <paramref name="item"/> will be looked for.</param>
+            <param name="item">The object to locate in the <paramref name="source"/>. The value can be <see langword="null"/> for reference types.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearch``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Searches the entire sorted collection for <paramref name="item"/> and returns the zero-based index of the element.
+            </summary>
+            <typeparam name="T">Type of <paramref name="item"/>.</typeparam>
+            <param name="source">Source of elements where <paramref name="item"/> will be looked for.</param>
+            <param name="item">Element to look for.</param>
+            <returns>The zero-based index of item in the sorted collection, if item is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.ICollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearch``2(System.Collections.Generic.IList{``0},``0,``1)">
+            <summary>
+            Searches the entire sorted collection for <paramref name="item"/> and returns the zero-based index of the element.
+            </summary>
+            <typeparam name="T">Type of <paramref name="item"/>.</typeparam>
+            <param name="source">Source of elements where <paramref name="item"/> will be looked for.</param>
+            <param name="item">Element to look for.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.ICollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearch``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32,``0)">
+            <summary>
+            Searches the entire sorted collection for <paramref name="item"/> and returns the zero-based index of the element.
+            </summary>
+            <typeparam name="T">Type of <paramref name="item"/>.</typeparam>
+            <param name="source">Source of elements where <paramref name="item"/> will be looked for.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <param name="item">Element to look for.</param>
+            <returns>The zero-based index of item in the sorted collection, if item is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.ICollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearch``2(System.Collections.Generic.IList{``0},System.Int32,System.Int32,``0,``1)">
+            <summary>
+            Searches the entire sorted collection for <paramref name="item"/> and returns the zero-based index of the element.
+            </summary>
+            <typeparam name="T">Type of <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Source of elements where <paramref name="item"/> will be looked for.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <param name="item">Element to look for.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.ICollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearch``2(System.Collections.Generic.IReadOnlyList{``0},``0,``1)">
+            <summary>
+            Searches the entire sorted collection for <paramref name="item"/> and returns the zero-based index of the element.
+            </summary>
+            <typeparam name="T">Type of <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Source of elements where <paramref name="item"/> will be looked for.</param>
+            <param name="item">Element to look for.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearch``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32,System.Int32,``0)">
+            <summary>
+            Searches the entire sorted collection for <paramref name="item"/> and returns the zero-based index of the element.
+            </summary>
+            <typeparam name="T">Type of <paramref name="item"/>.</typeparam>
+            <param name="source">Source of elements where <paramref name="item"/> will be looked for.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <param name="item">Element to look for.</param>
+            <returns>The zero-based index of item in the sorted collection, if item is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> is <see langword="null"/></exception>
+        </member>
+        <member name="M:Enderlook.Collections.BinarySearchExtensions.BinarySearch``2(System.Collections.Generic.IReadOnlyList{``0},System.Int32,System.Int32,``0,``1)">
+            <summary>
+            Searches the entire sorted collection for <paramref name="item"/> and returns the zero-based index of the element.
+            </summary>
+            <typeparam name="T">Type of <paramref name="item"/>.</typeparam>
+            <typeparam name="U">Comparer of <typeparamref name="T"/>.</typeparam>
+            <param name="source">Source of elements where <paramref name="item"/> will be looked for.</param>
+            <param name="index">The zero-based starting index of the range to search.</param>
+            <param name="count">The length of the range to search.</param>
+            <param name="item">Element to look for.</param>
+            <param name="comparer">The comparer implementation to use when comparing elements.</param>
+            <returns>The zero-based index of value in the sorted <paramref name="source"/>, if <paramref name="item"/> is found;<br/>
+            otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or,<br/>
+            if there is no larger element, the bitwise complement of <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/></exception>
+        </member>
+        <member name="T:Enderlook.Collections.EnumerableHelpers">
+            <summary>
+            Helper functions for working with enumerables.
             </summary>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.#ctor(System.Int32)">
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArrayFromPool``2(``0,System.Int32@)">
             <summary>
-            Creates a binary heap with the specified capacity.
+            Converts an enumerable to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/> using pooled arrays from <see cref="P:System.Buffers.ArrayPool`1.Shared"/>.
             </summary>
-            <param name="capacity">Amount of elements than can be stored in it.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="capacity"/> is lower than 1.</exception>
+            <param name="source">The enumerable to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArrayFromPoolEnumerator``2(``0,System.Int32@)">
             <summary>
-            Creates a new binary heap.
+            Converts an enumerator to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/> using pooled arrays from <see cref="P:System.Buffers.ArrayPool`1.Shared"/>.
             </summary>
-            <param name="values">Elements to add to the heap.</param>
+            <param name="source">The enumerator to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.#ctor(`0[])">
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArray``2(``0,System.Int32@)">
             <summary>
-            Creates a new binary heap.
+            Converts an enumerable to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/>.
             </summary>
-            <param name="values">Elements to add to the heap.</param>
+            <param name="source">The enumerable to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.Clear">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.Clear"/>
+        <member name="M:Enderlook.Collections.EnumerableHelpers.ToArrayEnumerator``2(``0,System.Int32@)">
+            <summary>
+            Converts an enumerator to an array using the same logic as <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <param name="source">The enumerator to convert.</param>
+            <param name="length">The number of items stored in the resulting array, 0-indexed.</param>
+            <returns>
+            The resulting array. The length of the array may be greater than <paramref name="length"/>, which is the actual number of elements in the array.
+            </returns>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.Enqueue(`0)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.Enqueue(`0)"/>
+        <member name="T:Enderlook.Collections.IListExtensions">
+            <summary>
+            Extension functions for <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.EnqueueRange(`0[])">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.EnqueueRange(`0[])"/>
+        <member name="M:Enderlook.Collections.IListExtensions.RemoveFirst``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean},System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.ListExtensions.RemoveFirst``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean},System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.EnqueueRange(System.Collections.Generic.IEnumerable{`0})">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.EnqueueRange(System.Collections.Generic.IEnumerable{`0})"/>
+        <member name="M:Enderlook.Collections.IListExtensions.RemoveLast``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean},System.Int32)">
+            <inheritdoc cref="M:Enderlook.Collections.ListExtensions.RemoveLast``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean},System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.Peek">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.Peek"/>
+        <member name="M:Enderlook.Collections.IListExtensions.ChangeEach``1(System.Collections.Generic.IList{``0},System.Func{``0,``0})">
+            <inheritdoc cref="M:Enderlook.Collections.ListExtensions.ChangeEach``1(System.Collections.Generic.List{``0},System.Func{``0,``0})"/>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.TryPeek(`0@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.TryPeek(`0@)"/>
+        <member name="M:Enderlook.Collections.IListExtensions.ChangeEach``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Int32,``0})">
+            <inheritdoc cref="M:Enderlook.Collections.ListExtensions.ChangeEach``1(System.Collections.Generic.List{``0},System.Func{``0,System.Int32,``0})"/>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.Dequeue">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.Dequeue"/>
+        <member name="T:Enderlook.Collections.IReadOnlyCollectionExtensions">
+            <summary>
+            Extension functions for <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>.
+            </summary>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.TryDequeue(`0@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.TryDequeue(`0@)"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`1.System#Collections#Generic#ICollection{TData}#IsReadOnly">
-            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`1.System#Collections#ICollection#IsSynchronized">
-            <inheritdoc cref="P:System.Collections.ICollection.IsSynchronized"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`1.System#Collections#ICollection#SyncRoot">
-            <inheritdoc cref="P:System.Collections.ICollection.SyncRoot"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.System#Collections#Generic#ICollection{TData}#Add(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.System#Collections#Generic#ICollection{TData}#Contains(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Contains(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.System#Collections#Generic#ICollection{TData}#CopyTo(`0[],System.Int32)">
+        <member name="M:Enderlook.Collections.IReadOnlyCollectionExtensions.CopyTo``1(System.Collections.Generic.IReadOnlyCollection{``0},``0[],System.Int32)">
             <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
-            <inheritdoc cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.System#Collections#Generic#ICollection{TData}#Remove(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.System#Collections#Generic#IEnumerable{TData}#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMax`1.UnsortedEnumerator">
-            <summary>
-            Represent the unsorted enumerator of a heap.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.UnsortedEnumerator.Dispose">
-            <inheritdoc cref="M:System.IDisposable.Dispose"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.UnsortedEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`1.UnsortedEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`1.UnsortedEnumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.UnsortedEnumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`1.TrimExcess">
-            <summary>
-            Sets capacity to the actual number of elements in the heap, if that is less than 90 percent of current capacity.
-            </summary>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMax`2">
-            <summary>
-            Represent a basic binary heap where elements with highest values have higher priority.
-            </summary>
-            <typeparam name="TData">Type of element.</typeparam>
-            <typeparam name="TPriority">Type of priority.</typeparam>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.Count">
-            <inheritdoc cref="P:Enderlook.Collections.IPriorityQueue`2.Count"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.Capacity">
-            <summary>
-            Capacity of the heap.
-            </summary>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.IsEmpty">
-            <inheritdoc cref="P:Enderlook.Collections.IPriorityQueue`2.IsEmpty"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.#ctor">
-            <summary>
-            Creates a new binary heap.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.#ctor(System.Int32)">
-            <summary>
-            Creates a binary heap with the specified capacity.
-            </summary>
-            <param name="capacity">Amount of elements than can be stored in it.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="capacity"/> is lower than 1.</exception>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.#ctor(System.Collections.Generic.IEnumerable{System.ValueTuple{`0,`1}})">
-            <summary>
-            Creates a new binary heap.
-            </summary>
-            <param name="values">Elements to add to the heap.</param>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.#ctor(System.ValueTuple{`0,`1}[])">
-            <summary>
-            Creates a new binary heap.
-            </summary>
-            <param name="values">Elements to add to the heap.</param>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.Clear">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Clear"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.Enqueue(System.ValueTuple{`0,`1})">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.Enqueue((TData Data, TPriority Priority))"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.EnqueueRange(System.ValueTuple{`0,`1}[])">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.EnqueueRange((TData Data, TPriority Priority)[])"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.EnqueueRange(System.Collections.Generic.IEnumerable{System.ValueTuple{`0,`1}})">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.EnqueueRange(IEnumerable&lt;(TData Data, TPriority Priority)&gt;)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.Peek">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Peek"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.TryPeek(System.ValueTuple{`0,`1}@)">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.TryPeek(out (TData Data, TPriority Priority))"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.Dequeue">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Dequeue"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.TryDequeue(System.ValueTuple{`0,`1}@)">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.TryDequeue(out (TData Data, TPriority Priority))"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#IsReadOnly">
-            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.System#Collections#ICollection#IsSynchronized">
-            <inheritdoc cref="P:System.Collections.ICollection.IsSynchronized"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.System#Collections#ICollection#SyncRoot">
-            <inheritdoc cref="P:System.Collections.ICollection.SyncRoot"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#Add(System.ValueTuple{`0,`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#Contains(System.ValueTuple{`0,`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Contains(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#CopyTo(System.ValueTuple{`0,`1}[],System.Int32)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
-            <inheritdoc cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#Remove(System.ValueTuple{`0,`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.System#Collections#Generic#IEnumerable{(TDataData,TPriorityPriority)}#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMax`2.UnsortedEnumerator">
-            <summary>
-            Represent the unsorted enumerator of a heap.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.UnsortedEnumerator.Dispose">
-            <inheritdoc cref="M:System.IDisposable.Dispose"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.UnsortedEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.UnsortedEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.UnsortedEnumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.UnsortedEnumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.TrimExcess">
-            <summary>
-            Sets capacity to the actual number of elements in the heap, if that is less than 90 percent of current capacity.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.Enqueue(`0,`1)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Enqueue(`0,`1)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.Enqueue(System.Collections.Generic.KeyValuePair{`0,`1})">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Enqueue(System.Collections.Generic.KeyValuePair{`0,`1})"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.EnqueueRange(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.EnqueueRange(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.EnqueueRange(System.Collections.Generic.KeyValuePair{`0,`1}[])">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.EnqueueRange(System.Collections.Generic.KeyValuePair{`0,`1}[])"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.TryPeek(`0@,`1@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@,`1@)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.TryPeek(`0@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.TryDequeue(`0@,`1@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@,`1@)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.TryDequeue(`0@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@)"/>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMax`2.ElementCollection">
-            <summary>
-            Colletion of all elements in a heap.
-            </summary>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.Count">
-            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.System#Collections#Generic#ICollection{TData}#IsReadOnly">
-            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.System#Collections#Generic#ICollection{TData}#Add(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.System#Collections#Generic#ICollection{TData}#Clear">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Clear"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.System#Collections#Generic#ICollection{TData}#Contains(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Contains(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.System#Collections#Generic#IEnumerable{TData}#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.UnsortedEnumerator">
-            <summary>
-            Represent the unsorted enumerator of a <see cref="T:Enderlook.Collections.BinaryHeapMax`2.ElementCollection"/>.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.UnsortedEnumerator.Dispose">
-            <inheritdoc cref="M:System.IDisposable.Dispose"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.UnsortedEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.UnsortedEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.UnsortedEnumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMax`2.ElementCollection.UnsortedEnumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMin`1">
-            <summary>
-            Represent a basic binary heap where elements with lowest values have higher priority.
-            </summary>
-            <typeparam name="TData">Type of element.</typeparam>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`1.Count">
-            <inheritdoc cref="P:Enderlook.Collections.IPriorityQueue`1.Count"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`1.Capacity">
-            <summary>
-            Capacity of the heap.
-            </summary>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`1.IsEmpty">
-            <inheritdoc cref="P:Enderlook.Collections.IPriorityQueue`1.IsEmpty"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.#ctor">
-            <summary>
-            Creates a new binary heap.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.#ctor(System.Int32)">
-            <summary>
-            Creates a binary heap with the specified capacity.
-            </summary>
-            <param name="capacity">Amount of elements than can be stored in it.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="capacity"/> is lower than 1.</exception>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Creates a new binary heap.
-            </summary>
-            <param name="values">Elements to add to the heap.</param>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.#ctor(`0[])">
-            <summary>
-            Creates a new binary heap.
-            </summary>
-            <param name="values">Elements to add to the heap.</param>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.Clear">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.Clear"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.Enqueue(`0)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.Enqueue(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.EnqueueRange(`0[])">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.EnqueueRange(`0[])"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.EnqueueRange(System.Collections.Generic.IEnumerable{`0})">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.EnqueueRange(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.Peek">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.Peek"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.TryPeek(`0@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.TryPeek(`0@)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.Dequeue">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.Dequeue"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.TryDequeue(`0@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`1.TryDequeue(`0@)"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`1.System#Collections#Generic#ICollection{TData}#IsReadOnly">
-            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`1.System#Collections#ICollection#IsSynchronized">
-            <inheritdoc cref="P:System.Collections.ICollection.IsSynchronized"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`1.System#Collections#ICollection#SyncRoot">
-            <inheritdoc cref="P:System.Collections.ICollection.SyncRoot"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.System#Collections#Generic#ICollection{TData}#Add(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.System#Collections#Generic#ICollection{TData}#Contains(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Contains(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.System#Collections#Generic#ICollection{TData}#CopyTo(`0[],System.Int32)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
-            <inheritdoc cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.System#Collections#Generic#ICollection{TData}#Remove(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.System#Collections#Generic#IEnumerable{TData}#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMin`1.UnsortedEnumerator">
-            <summary>
-            Represent the unsorted enumerator of a heap.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.UnsortedEnumerator.Dispose">
-            <inheritdoc cref="M:System.IDisposable.Dispose"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.UnsortedEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`1.UnsortedEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`1.UnsortedEnumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.UnsortedEnumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`1.TrimExcess">
-            <summary>
-            Sets capacity to the actual number of elements in the heap, if that is less than 90 percent of current capacity.
-            </summary>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMin`2">
-            <summary>
-            Represent a basic binary heap where elements with lowest values have higher priority.
-            </summary>
-            <typeparam name="TData">Type of element.</typeparam>
-            <typeparam name="TPriority">Type of priority.</typeparam>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.Count">
-            <inheritdoc cref="P:Enderlook.Collections.IPriorityQueue`2.Count"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.Capacity">
-            <summary>
-            Capacity of the heap.
-            </summary>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.IsEmpty">
-            <inheritdoc cref="P:Enderlook.Collections.IPriorityQueue`2.IsEmpty"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.#ctor">
-            <summary>
-            Creates a new binary heap.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.#ctor(System.Int32)">
-            <summary>
-            Creates a binary heap with the specified capacity.
-            </summary>
-            <param name="capacity">Amount of elements than can be stored in it.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="capacity"/> is lower than 1.</exception>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.#ctor(System.Collections.Generic.IEnumerable{System.ValueTuple{`0,`1}})">
-            <summary>
-            Creates a new binary heap.
-            </summary>
-            <param name="values">Elements to add to the heap.</param>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.#ctor(System.ValueTuple{`0,`1}[])">
-            <summary>
-            Creates a new binary heap.
-            </summary>
-            <param name="values">Elements to add to the heap.</param>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.Clear">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Clear"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.Enqueue(System.ValueTuple{`0,`1})">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.Enqueue((TData Data, TPriority Priority))"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.EnqueueRange(System.ValueTuple{`0,`1}[])">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.EnqueueRange((TData Data, TPriority Priority)[])"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.EnqueueRange(System.Collections.Generic.IEnumerable{System.ValueTuple{`0,`1}})">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.EnqueueRange(IEnumerable&lt;(TData Data, TPriority Priority)&gt;)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.Peek">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Peek"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.TryPeek(System.ValueTuple{`0,`1}@)">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.TryPeek(out (TData Data, TPriority Priority))"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.Dequeue">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Dequeue"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.TryDequeue(System.ValueTuple{`0,`1}@)">
-            <inheritdoc cref="!:IPriorityQueue&lt;TData, TPriority&gt;.TryDequeue(out (TData Data, TPriority Priority))"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#IsReadOnly">
-            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.System#Collections#ICollection#IsSynchronized">
-            <inheritdoc cref="P:System.Collections.ICollection.IsSynchronized"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.System#Collections#ICollection#SyncRoot">
-            <inheritdoc cref="P:System.Collections.ICollection.SyncRoot"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#Add(System.ValueTuple{`0,`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#Contains(System.ValueTuple{`0,`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Contains(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#CopyTo(System.ValueTuple{`0,`1}[],System.Int32)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
-            <inheritdoc cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.System#Collections#Generic#ICollection{(TDataData,TPriorityPriority)}#Remove(System.ValueTuple{`0,`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.System#Collections#Generic#IEnumerable{(TDataData,TPriorityPriority)}#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMin`2.UnsortedEnumerator">
-            <summary>
-            Represent the unsorted enumerator of a heap.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.UnsortedEnumerator.Dispose">
-            <inheritdoc cref="M:System.IDisposable.Dispose"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.UnsortedEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.UnsortedEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.UnsortedEnumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.UnsortedEnumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.TrimExcess">
-            <summary>
-            Sets capacity to the actual number of elements in the heap, if that is less than 90 percent of current capacity.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.Enqueue(`0,`1)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Enqueue(`0,`1)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.Enqueue(System.Collections.Generic.KeyValuePair{`0,`1})">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.Enqueue(System.Collections.Generic.KeyValuePair{`0,`1})"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.EnqueueRange(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.EnqueueRange(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.EnqueueRange(System.Collections.Generic.KeyValuePair{`0,`1}[])">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.EnqueueRange(System.Collections.Generic.KeyValuePair{`0,`1}[])"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.TryPeek(`0@,`1@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@,`1@)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.TryPeek(`0@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.TryDequeue(`0@,`1@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@,`1@)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.TryDequeue(`0@)">
-            <inheritdoc cref="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@)"/>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMin`2.ElementCollection">
-            <summary>
-            Colletion of all elements in a heap.
-            </summary>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.Count">
-            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.System#Collections#Generic#ICollection{TData}#IsReadOnly">
-            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.IsReadOnly"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.System#Collections#Generic#ICollection{TData}#Add(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.System#Collections#Generic#ICollection{TData}#Clear">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Clear"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.System#Collections#Generic#ICollection{TData}#Contains(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Contains(`0)"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-            <remarks>Elements are unsorted.</remarks>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.System#Collections#Generic#IEnumerable{TData}#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="T:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.UnsortedEnumerator">
-            <summary>
-            Represent the unsorted enumerator of a <see cref="T:Enderlook.Collections.BinaryHeapMin`2.ElementCollection"/>.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.UnsortedEnumerator.Dispose">
-            <inheritdoc cref="M:System.IDisposable.Dispose"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.UnsortedEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.UnsortedEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.UnsortedEnumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Enderlook.Collections.BinaryHeapMin`2.ElementCollection.UnsortedEnumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc cref="M:System.Collections.IEnumerator.Reset"/>
-        </member>
-        <member name="T:Enderlook.Collections.IPriorityQueue`1">
-            <summary>
-            Represent a queue where each element has a priority
-            </summary>
-            <typeparam name="T">Type of element</typeparam>
-        </member>
-        <member name="P:Enderlook.Collections.IPriorityQueue`1.Count">
-            <inheritdoc cref="!:ICollection.Count"/>
-        </member>
-        <member name="P:Enderlook.Collections.IPriorityQueue`1.IsEmpty">
-            <summary>
-            Whenever the heap is empty or contains elements.
-            </summary>
-        </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`1.Clear">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Clear"/>
-        </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`1.Enqueue(`0)">
-            <summary>
-            Add an element.
-            </summary>
-            <param name="element">Element to add.</param>
-        </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`1.EnqueueRange(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Add several elements.
-            </summary>
-            <param name="elements">Elements to add.</param>
-        </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`1.EnqueueRange(`0[])">
-            <summary>
-            Add several elements.
-            </summary>
-            <param name="elements">Elements to add.</param>
-        </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`1.Peek">
-            <summary>
-            Returns the element with the highest priority without consuming it.
-            </summary>
-            <return>Element with highest priority</return>
-            <exception cref="T:System.InvalidOperationException">Thrown when <see cref="P:Enderlook.Collections.IPriorityQueue`1.Count"/> is 0.</exception>
-        </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`1.TryPeek(`0@)">
-            <summary>
-            Try to return the element with the highest priority without consuming it.
-            </summary>
-            <param name="element">Element with highest priority, if any.</param>
-            <return>Whenever an element was peek or not if the heap was empty.</return>
-        </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`1.Dequeue">
-            <summary>
-            Consumes and return the element with the highest priority.
-            </summary>
-            <return>Element with the highest priority.</return>
-        </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`1.TryDequeue(`0@)">
+        <member name="T:Enderlook.Collections.IReadOnlyListExtensions">
             <summary>
-            Try to consume and return the element with the highest priority.
+            Extension functions for <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
             </summary>
-            <param name="element">Element with the highest priority, if any.</param>
-            <return>Whenever an element was extracted or not if the heap was empty.</return>
         </member>
-        <member name="T:Enderlook.Collections.IPriorityQueue`2">
+        <member name="M:Enderlook.Collections.IReadOnlyListExtensions.ForEach``1(System.Collections.Generic.IReadOnlyList{``0},System.Action{``0})">
             <summary>
-            Represent a queue where each element has a priority
+            Performs the specified <paramref name="action"/> on each element of the <paramref name="source"/>.
             </summary>
-            <typeparam name="TData">Type of element.</typeparam>
-            <typeparam name="TPriority">Type of priority.</typeparam>
-        </member>
-        <member name="P:Enderlook.Collections.IPriorityQueue`2.Count">
-            <inheritdoc cref="!:ICollection.Count"/>
+            <typeparam name="T">Type of the element in <paramref name="source"/>.</typeparam>
+            <param name="source">Source to look for element to perform the <paramref name="action"/></param>
+            <param name="action">Action to perform on each element of <paramref name="source"/></param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="action"/> are <see langword="null"/>.</exception>
+            <seealso cref="M:System.Array.ForEach``1(``0[],System.Action{``0})"/>
         </member>
-        <member name="P:Enderlook.Collections.IPriorityQueue`2.IsEmpty">
-            <summary>
-            Whenever the heap is empty or contains elements.
-            </summary>
+        <member name="M:Enderlook.Collections.IReadOnlyListExtensions.CopyTo``1(System.Collections.Generic.IReadOnlyList{``0},``0[])">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.CopyTo(`0[])"/>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.Clear">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Clear"/>
+        <member name="M:Enderlook.Collections.IReadOnlyListExtensions.CopyTo``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32,``0[],System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.CopyTo(System.Int32,`0[],System.Int32,System.Int32)"/>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.Enqueue(`0,`1)">
+        <member name="T:Enderlook.Collections.ListExtensions">
             <summary>
-            Add element <paramref name="data"/> with priority <paramref name="priority"/>.
+            Extension functions for <see cref="T:System.Collections.Generic.List`1"/>.
             </summary>
-            <param name="data">Element to add.</param>
-            <param name="priority">Priority of the element.</param>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.Enqueue(System.ValueTuple{`0,`1})">
+        <member name="M:Enderlook.Collections.ListExtensions.RemoveFirst``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean},System.Int32)">
             <summary>
-            Add element with priority.
+            Removes the first(s) element(s) from a list which matches a criteria determined by <paramref name="selector"/>.
             </summary>
-            <param name="element">Element to add.</param>
+            <typeparam name="T">Type of element.</typeparam>
+            <param name="source">List to remove item.</param>
+            <param name="selector">Function to determine if the item must be removed.</param>
+            <param name="removeAmount">Amount of items which must the criteria must be removed. On 0, nothing happens and <paramref name="selector"/> is never executed.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="selector"/> are <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="removeAmount"/> is negative.</exception>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.Enqueue(System.Collections.Generic.KeyValuePair{`0,`1})">
+        <member name="M:Enderlook.Collections.ListExtensions.RemoveLast``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean},System.Int32)">
             <summary>
-            Add element with priority.
+            Removes the last(s) element(s) from a list which matches a criteria determined by <paramref name="selector"/>.
             </summary>
-            <param name="element">Element to add.</param>
+            <typeparam name="T">Type of element.</typeparam>
+            <param name="source">List to remove item.</param>
+            <param name="selector">Function to determine if the item must be removed.</param>
+            <param name="removeAmount">Amount of items which must the criteria must be removed. On 0, nothing happens and <paramref name="selector"/> is never executed.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="selector"/> are <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="removeAmount"/> is negative.</exception>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.EnqueueRange(System.Collections.Generic.IEnumerable{System.ValueTuple{`0,`1}})">
+        <member name="M:Enderlook.Collections.ListExtensions.ChangeEach``1(System.Collections.Generic.List{``0},System.Func{``0,``0})">
             <summary>
-            Add several elements.
+            Performs the specified <paramref name="function"/> on each element of the <paramref name="source"/>.
             </summary>
-            <param name="elements">Elements to add.</param>
+            <typeparam name="T">Type of the element in <paramref name="source"/>.</typeparam>
+            <param name="source">Source to look for element to perform the <paramref name="function"/>.</param>
+            <param name="function">Function to perform on each element of <paramref name="source"/>.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="function"/> are <see langword="null"/>.</exception>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.EnqueueRange(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})">
+        <member name="M:Enderlook.Collections.ListExtensions.ChangeEach``1(System.Collections.Generic.List{``0},System.Func{``0,System.Int32,``0})">
             <summary>
-            Add several elements.
+            Performs the specified <paramref name="function"/> on each element of the <paramref name="source"/>.
             </summary>
-            <param name="elements">Elements to add.</param>
+            <typeparam name="T">Type of the element in <paramref name="source"/>.</typeparam>
+            <param name="source">Source to look for element to perform the <paramref name="function"/>.</param>
+            <param name="function">Function to perform on each element of <paramref name="source"/>.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="function"/> are <see langword="null"/>.</exception>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.EnqueueRange(System.ValueTuple{`0,`1}[])">
+        <member name="T:Enderlook.Collections.QueueExtensions">
             <summary>
-            Add several elements.
+            Extension functions for <see cref="T:System.Collections.Generic.Queue`1"/>.
             </summary>
-            <param name="elements">Elements to add.</param>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.EnqueueRange(System.Collections.Generic.KeyValuePair{`0,`1}[])">
+        <member name="M:Enderlook.Collections.QueueExtensions.EnqueueRange``1(System.Collections.Generic.Queue{``0},System.ReadOnlySpan{``0})">
             <summary>
-            Add several elements.
+            Enqueue elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
-            <param name="elements">Elements to add.</param>
+            <param name="source">Where elements will be enqueue.</param>
+            <param name="values">Elements to enqueue.</param>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.Peek">
+        <member name="M:Enderlook.Collections.QueueExtensions.EnqueueRange``1(System.Collections.Generic.Queue{``0},System.Collections.Generic.List{``0})">
             <summary>
-            Returns the element with the highest priority without consuming it.
+            Enqueue elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
-            <return>Element with highest priority</return>
-            <exception cref="T:System.InvalidOperationException">Thrown when <see cref="P:Enderlook.Collections.IPriorityQueue`2.Count"/> is 0.</exception>
+            <param name="source">Where elements will be enqueue.</param>
+            <param name="values">Elements to enqueue.</param>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.TryPeek(System.ValueTuple{`0,`1}@)">
+        <member name="M:Enderlook.Collections.QueueExtensions.EnqueueRange``1(System.Collections.Generic.Queue{``0},System.Collections.Generic.IList{``0})">
             <summary>
-            Try to return the element with the highest priority without consuming it.
+            Enqueue elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
-            <param name="element">Element with highest priority, if any.</param>
-            <return>Whenever an element was peek or not if the heap was empty.</return>
+            <param name="source">Where elements will be enqueue.</param>
+            <param name="values">Elements to enqueue.</param>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.TryPeek(`0@,`1@)">
+        <member name="M:Enderlook.Collections.QueueExtensions.EnqueueRange``1(System.Collections.Generic.Queue{``0},System.Collections.Generic.IReadOnlyList{``0})">
             <summary>
-            Try to return the element with the highest priority without consuming it.
+            Enqueue elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
-            <param name="data">Element with highest priority, if any.</param>
-            <param name="priority">Priority of that element, if any.</param>
-            <return>Whenever an element was peek or not if the heap was empty.</return>
+            <param name="source">Where elements will be enqueue.</param>
+            <param name="values">Elements to enqueue.</param>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.TryPeek(`0@)">
+        <member name="M:Enderlook.Collections.QueueExtensions.EnqueueRange``1(System.Collections.Generic.Queue{``0},System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            Try to return the element with the highest priority without consuming it.
+            Enqueue elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
-            <param name="data">Element with highest priority, if any.</param>
-            <return>Whenever an element was peek or not if the heap was empty.</return>
+            <param name="source">Where elements will be enqueue.</param>
+            <param name="values">Elements to enqueue.</param>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.Dequeue">
+        <member name="T:Enderlook.Collections.SpanExtensions">
             <summary>
-            Consumes and return the element with the highest priority.
+            Extension functions for <see cref="T:System.Span`1"/>.
             </summary>
-            <return>Element with the highest priority.</return>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(System.ValueTuple{`0,`1}@)">
+        <member name="M:Enderlook.Collections.SpanExtensions.ChangeEach``1(System.Span{``0},System.Func{``0,``0})">
             <summary>
-            Try to consums and return the element with the highest priority.
+            Performs the specified <paramref name="function"/> on each element of the <paramref name="source"/>.
             </summary>
-            <param name="element">Element with the highest priority, if any.</param>
-            <return>Whenever an element was extracted or not if the heap was empty.</return>
+            <typeparam name="T">Type of the element in <paramref name="source"/>.</typeparam>
+            <param name="source">Source to look for element to perform the <paramref name="function"/></param>
+            <param name="function">Function to perform on each element of <paramref name="source"/></param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="function"/> are <see langword="null"/>.</exception>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@,`1@)">
+        <member name="M:Enderlook.Collections.SpanExtensions.ChangeEach``1(System.Span{``0},System.Func{``0,System.Int32,``0})">
             <summary>
-            Try to consums and return the element with the highest priority.
+            Performs the specified <paramref name="function"/> on each element of the <paramref name="source"/>.
             </summary>
-            <param name="data">Element with highest priority, if any.</param>
-            <param name="priority">Priority of that element, if any.</param>
-            <return>Whenever an element was extracted or not if the heap was empty.</return>
+            <typeparam name="T">Type of the element in <paramref name="source"/>.</typeparam>
+            <param name="source">Source to look for element to perform the <paramref name="function"/></param>
+            <param name="function">Function to perform on each element of <paramref name="source"/></param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="function"/> are <see langword="null"/>.</exception>
         </member>
-        <member name="M:Enderlook.Collections.IPriorityQueue`2.TryDequeue(`0@)">
+        <member name="M:Enderlook.Collections.SpanExtensions.ForEach``1(System.Span{``0},System.Action{``0})">
             <summary>
-            Try to consums and return the element with the highest priority.
+            Performs the specified <paramref name="action"/> on each element of the <paramref name="source"/>.
             </summary>
-            <param name="data">Element with highest priority, if any.</param>
-            <return>Whenever an element was extracted or not if the heap was empty.</return>
+            <typeparam name="T">Type of the element in <paramref name="source"/>.</typeparam>
+            <param name="source">Source to look for element to perform the <paramref name="action"/></param>
+            <param name="action">Action to perform on each element of <paramref name="source"/></param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="action"/> are <see langword="null"/>.</exception>
         </member>
-        <member name="T:Enderlook.Collections.ISpatialIndex`2">
+        <member name="M:Enderlook.Collections.SpanExtensions.ForEach``1(System.Span{``0},System.Action{``0,System.Int32})">
             <summary>
-            Describes basic queries to perform in a spatial structure.
+            Performs the specified <paramref name="action"/> on each element of the <paramref name="source"/>.
             </summary>
-            <typeparam name="TIndex">Type of index.</typeparam>
-            <typeparam name="TDistance">Type of distances.</typeparam>
+            <typeparam name="T">Type of the element in <paramref name="source"/>.</typeparam>
+            <param name="source">Source to look for element to perform the <paramref name="action"/></param>
+            <param name="action">Action to perform on each element of <paramref name="source"/></param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="action"/> are <see langword="null"/>.</exception>
         </member>
-        <member name="M:Enderlook.Collections.ISpatialIndex`2.Clear">
+        <member name="M:Enderlook.Collections.SpanExtensions.RandomPick``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{System.Single})">
             <summary>
-            Remove all elements.
+            Returns a random element from <paramref name="source"/> taking into account its weight from <paramref name="weights"/>.
             </summary>
+            <typeparam name="T">Type of the element in <paramref name="source"/>.</typeparam>
+            <param name="source">Source to look for a random element.</param>
+            <param name="weights">Weight of each element.</param>
+            <returns>Random element from <paramref name="source"/>.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when parameters doesn't have same length.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="source"/> or <paramref name="weights"/> length is 0.</exception>
         </member>
-        <member name="M:Enderlook.Collections.ISpatialIndex`2.Contains(`0)">
+        <member name="M:Enderlook.Collections.SpanExtensions.Suffle``1(System.Span{``0})">
             <summary>
-            Check if the collection contains the given index.
+            Suffle element of <paramref name="source"/>.
             </summary>
-            <param name="index">Index to check if exists.</param>
-            <returns>Whenever the index <paramref name="index"/> is contained or not.</returns>
+            <typeparam name="T">Type of elements in <paramref name="source"/>.</typeparam>
+            <param name="source">Array to shuffle.</param>
         </member>
-        <member name="P:Enderlook.Collections.ISpatialIndex`2.Count">
+        <member name="T:Enderlook.Collections.StackExtensions">
             <summary>
-            Returns the count of elements in this collection.
+            Extension functions for <see cref="T:System.Collections.Generic.Stack`1"/>.
             </summary>
         </member>
-        <member name="P:Enderlook.Collections.ISpatialIndex`2.IsEmpty">
+        <member name="M:Enderlook.Collections.StackExtensions.PushRange``1(System.Collections.Generic.Stack{``0},System.ReadOnlySpan{``0})">
             <summary>
-            Whenever this collection is empty.
+            Push elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
+            <typeparam name="T">Type of elements in <paramref name="source"/>.</typeparam>
+            <param name="source">Where elements will be pushed.</param>
+            <param name="values">Elements to push.</param>
         </member>
-        <member name="M:Enderlook.Collections.ISpatialIndex`2.Remove(`0)">
+        <member name="M:Enderlook.Collections.StackExtensions.PushRange``1(System.Collections.Generic.Stack{``0},System.Collections.Generic.List{``0})">
             <summary>
-            Remove an element which has the given index.
+            Push elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
-            <param name="index">Index of element to remove.</param>
-            <return>Whenever the element with the given index was found and removed.</return>
+            <typeparam name="T">Type of elements in <paramref name="source"/>.</typeparam>
+            <param name="source">Where elements will be pushed.</param>
+            <param name="values">Elements to push.</param>
         </member>
-        <member name="M:Enderlook.Collections.ISpatialIndex`2.Insert(`0)">
+        <member name="M:Enderlook.Collections.StackExtensions.PushRange``1(System.Collections.Generic.Stack{``0},System.Collections.Generic.IList{``0})">
             <summary>
-            Inserts a new element.
+            Push elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
-            <param name="index">Index of the element to insert.</param>
-            <returns>Whenever an element was added (that means, the element was not present before).</returns>
+            <typeparam name="T">Type of elements in <paramref name="source"/>.</typeparam>
+            <param name="source">Where elements will be pushed.</param>
+            <param name="values">Elements to push.</param>
         </member>
-        <member name="M:Enderlook.Collections.ISpatialIndex`2.FindNearestNeighbour(`0)">
+        <member name="M:Enderlook.Collections.StackExtensions.PushRange``1(System.Collections.Generic.Stack{``0},System.Collections.Generic.IReadOnlyList{``0})">
             <summary>
-            Find the neighbour with the nearest key <paramref name="index"/> using the distance formula specified by the type.
+            Push elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
-            <param name="index">Reference index.</param>
-            <returns>Nearest neighbour and its raw distance. Depending on the implementation of this interface, <c>rawDistance</c> can be the squared distance, linear or any other.</returns>
-            <exception cref="T:System.InvalidOperationException">Thrown if the collection is empty.</exception>
+            <typeparam name="T">Type of elements in <paramref name="source"/>.</typeparam>
+            <param name="source">Where elements will be pushed.</param>
+            <param name="values">Elements to push.</param>
         </member>
-        <member name="M:Enderlook.Collections.ISpatialIndex`2.TryFindNearestNeighbour(`0)">
+        <member name="M:Enderlook.Collections.StackExtensions.PushRange``1(System.Collections.Generic.Stack{``0},System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            Try to find the neighbour with the nearest key <paramref name="index"/> using the distance formula specified by the type.
+            Push elements from <paramref name="values"/> into <paramref name="source"/>.
             </summary>
-            <param name="index">Reference index.</param>
-            <returns>Nearest neighbour if the collection was not empty.</returns>
+            <typeparam name="T">Type of elements in <paramref name="source"/>.</typeparam>
+            <param name="source">Where elements will be pushed.</param>
+            <param name="values">Elements to push.</param>
         </member>
     </members>
 </doc>

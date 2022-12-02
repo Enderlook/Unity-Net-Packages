@@ -1,10 +1,9 @@
 {
-  "name": "com.enderlook.collections",
-  "version": "0.2.0",
-  "displayName": "Enderlook Collections",
+  "name": "com.enderlook.collections.priority",
+  "version": "0.1.0",
+  "displayName": "Enderlook Collections Priority",
   "description": "https://github.com/Enderlook/Net-Collections",
   "dependencies": {
-    "com.enderlook.collections-extensions": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.enderlook.collections-extensions#com.enderlook.collections-extensions/v0.1.0",
     "com.system.memory": "https://github.com/Enderlook/Unity-Net-Packages.git?path=Packages/com.system.memory#com.system.memory/v4.5.4"
   },
   "keywords": [
