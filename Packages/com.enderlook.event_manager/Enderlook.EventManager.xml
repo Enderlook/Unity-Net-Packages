@@ -14,11 +14,6 @@
             A shared instance of the event manager.
             </summary>
         </member>
-        <member name="M:Enderlook.EventManager.EventManager.Finalize">
-            <summary>
-            Automatically disposes the object in case it wasn't disposed by the user.
-            </summary>
-        </member>
         <member name="M:Enderlook.EventManager.EventManager.Raise``1(``0)">
             <summary>
             Raises an event type <typeparamref name="TEvent"/>.<br/>
@@ -38,8 +33,8 @@
         </member>
         <member name="M:Enderlook.EventManager.EventManager.DynamicRaise``1(``0)">
             <summary>
-            If <c><paramref name="argument"/> <see langword="is"/> <see langword="null"/></c>, it does the same as <c>RaiseExactly&lt;<typeparamref name="TEvent"/>&gt;(<see langword="default"/>)</c>.<br/>
-            If not, it runs the method <see cref="M:Enderlook.EventManager.EventManager.Raise``1(``0)"/> using the type of the passed instance.<br/>
+            If <c><paramref name="argument"/> <see langword="is"/> <see langword="null"/></c>, it does the same as <see cref="M:Enderlook.EventManager.EventManager.Raise``1(``0)"/> passing <see langword="null"/>.<br/>
+            If not, it runs the method <see cref="M:Enderlook.EventManager.EventManager.Raise``1(``0)"/> using the type of the passed instance as generic argument.<br/>
             This method is equivalent to following pseudo-code:
             <code>
             <see langword="if"/> (<paramref name="argument"/> <see langword="is"/> <see langword="null"/>)
@@ -47,7 +42,7 @@
             <see langword="else"/><br/>
                 RaiseExactly&lt;<paramref name="argument"/>.GetType()&gt;((<paramref name="argument"/>.GetType())<paramref name="argument"/>);
             </code>
-            (Internally it doesn't use reflection unlike what the pseudo-code looks like, so isn't expensive).
+            (Internally it doesn't use reflection unlike what the pseudo-code looks like, so it isn't expensive).
             </summary>
             <typeparam name="TEvent">Type of the event.</typeparam>
             <param name="argument">Arguments of this event.</param>
