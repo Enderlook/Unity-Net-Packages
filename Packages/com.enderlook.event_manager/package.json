@@ -1,6 +1,6 @@
 {
   "name": "com.enderlook.event_manager",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "displayName": "Enderlook Event Manager",
   "description": "",
   "dependencies": {
